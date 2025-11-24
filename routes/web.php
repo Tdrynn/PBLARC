@@ -1,0 +1,87 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
+Route::get('/login', function () {
+    return view('auth.login'); // perhatikan: gunakan "auth.login" dengan titik
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+Route::get('/home', function () {
+    return view('user.home');
+})->name('home');
+
+Route::get('/package', function () {
+    return view('user.package');
+})->name('package');
+
+Route::get('/profile', function () {
+    return view('user.profile');
+})->name('profile');
+
+Route::get('/history', function() {
+    return view('user.history');
+})->name('history');
+
+Route::get('/changeprofile', function() {
+    return view('user.change_profile');
+})->name('changeprofile');
+
+Route::get('/changepassword', function() {
+    return view('user.change_password');
+})->name('changepassword');
+
+Route::get('/picnic', function() {
+    return view('user.picnic');
+})->name('picnic');
+
+Route::get('/camping', function() {
+    return view('user.camping');
+})->name('camping');
+
+Route::get('/camperVan', function() {
+    return view('user.camperVan');
+})->name('camperVan');
+
+Route::get('/groupEvent', function() {
+    return view('user.groupEvent');
+})->name('groupEvent');
+
+Route::get('/bookingPicnic', function() {
+    return view('user.booking_picnic');
+})->name('bookingPicnic');
+
+Route::get('/bookingCamping', function() {
+    return view('user.booking_camping');
+})->name('bookingCamping');
+
+Route::get('/bookingCampervan', function() {
+    return view('user.booking_campervan');
+})->name('bookingCampervan');
+
+Route::get('/bookingGroupEvent', function() {
+    return view('user.booking_groupEvent');
+})->name('bookingGroupEvent');
+
+Route::get('/payment', function() {
+    return view('user.payment');
+})->name('payment');
+
+Route::get('/paymentQris', function() {
+    return view('user.payment_qris');
+})->name('paymentQris');
+
+Route::get('/paymentVirtualAccount', function() {
+    return view('user.payment_virtualAccount');
+})->name('paymentVirtualAccount');
+
+Route::get('/invoice', function() {
+    return view('user.invoice');
+})->name('invoice');
