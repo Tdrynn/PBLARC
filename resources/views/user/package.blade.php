@@ -2,9 +2,9 @@
 
 @section('content')
     @include('layouts.navbar.navbar_back')
-
     <div class="row">
-        <section id="package" class="Package d-flex flex-column align-items-center text-light justify-content-center py-5 min-vh-100">
+        <section id="package"
+            class="Package d-flex flex-column align-items-center text-light justify-content-center py-5 min-vh-100">
             <h1 class="fs-1 fw-bold mb-4 mt-4">Our Packages</h1>
 
             <div class="d-flex flex-column align-items-center gap-4 my-auto">
