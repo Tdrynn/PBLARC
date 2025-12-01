@@ -202,11 +202,8 @@ body, html {
 }
 
 @media (max-width: 768px) {
-    .login-card h4 { 
-        font-size: 18px; 
-    }
-    .login-card p { 
-        font-size: 12px; 
+    .login-card {
+        width: 90%;
     }
     .footer-border {
         border-bottom: 1px solid #fff !important;
