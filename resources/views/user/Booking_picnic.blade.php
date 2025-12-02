@@ -74,7 +74,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="participants" class="form-label">Number of participants</label>
-                                    <input type="number" class="form-control border-success w-50" id="participants">
+                                    <input type="number" class="form-control border-success w-50" id="participants" required>
                                 </div>
 
                                 <div class="col flex-column">
@@ -122,71 +122,215 @@
                             <p class="text-success text-center my-1">Enter the amount if you want to rent, leave it blank if
                                 you don't want to rent.</p>
 
-                            <div class="row">
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Flysheet 3x3 <br> <small>IDR-25K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="flysheet" min="0">
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Flysheet 3x3</h6>
+                                        <p class="text-muted mb-2">IDR 25K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="flysheet">−</button>
+                                            <input type="number" id="flysheet"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="flysheet">+</button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Small Stove <br> <small>IDR-10K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="SmallStove" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Small Stove</h6>
+                                        <p class="text-muted mb-2">IDR-10K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="smallStove">−</button>
+                                            <input type="number" id="smallStove"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="smallStove">+</button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Regular Mat <br> <small>IDR-10K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="RegularMat" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Regular Mat</h6>
+                                        <p class="text-muted mb-2">IDR-10K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="regularMat">−</button>
+                                            <input type="number" id="regularMat"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="regularMat">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Portable Stove <br> <small>IDR-15K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="PortableStove" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Portable Stove</h6>
+                                        <p class="text-muted mb-2">IDR-15K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="portableStove">−</button>
+                                            <input type="number" id="portableStove"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="portableStove">+</button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Sleeping Bag <br> <small>IDR-15K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="SleepingBag" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Sleeping Bag</h6>
+                                        <p class="text-muted mb-2">IDR-15K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="sleepingBag">−</button>
+                                            <input type="number" id="sleepingBag"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="sleepingBag">+</button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Grill Pan <br> <small>IDR-15K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="GrillPan" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Grill Pan</h6>
+                                        <p class="text-muted mb-2">IDR-15K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="grillPan">−</button>
+                                            <input type="number" id="grillPan"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="grillPan">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Folding Chair<br> <small>IDR-15K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="FoldingChair" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Folding Chair</h6>
+                                        <p class="text-muted mb-2">IDR-15K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="foldingChair">−</button>
+                                            <input type="number" id="foldingChair"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="foldingChair">+</button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Nesting<br> <small>IDR-15K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="Nesting" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Nesting</h6>
+                                        <p class="text-muted mb-2">IDR-15K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="Nesting">−</button>
+                                            <input type="number" id="Nesting"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="Nesting">+</button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Folding Table<br> <small>IDR-20K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="FoldingTable" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Folding Table</h6>
+                                        <p class="text-muted mb-2">IDR-20K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="foldingTable">−</button>
+                                            <input type="number" id="foldingTable"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="foldingTable">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Tent Lamp<br> <small>IDR-10K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="Tent Lamp" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Tent Lamp</h6>
+                                        <p class="text-muted mb-2">IDR-10K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="tentLamp">−</button>
+                                            <input type="number" id="tentLamp"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="tentLamp">+</button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Hammock<br> <small>IDR-15K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="Hammock" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Hammock</h6>
+                                        <p class="text-muted mb-2">IDR-15K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="hammock">−</button>
+                                            <input type="number" id="hammock"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="hammock">+</button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col gap-1 d-flex align-items-center">
-                                    <p class="fw-semibold my-2 addon-label">Portable Gas<br> <small>IDR-30K</small></p>
-                                    <input type="number" class="form-control border-success addon-input" id="PortableGas" min="0">
+                                <div class="col">
+                                    <div class="p-3 text-center">
+                                        <h6 class="fw-semibold mb-1">Portable Gas</h6>
+                                        <p class="text-muted mb-2">IDR-30K</p>
+
+                                        <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="portableGas">−</button>
+                                            <input type="number" id="portableGas"
+                                                class="form-control form-control-sm text-center" value="0" min="0"
+                                                style="width: 60px;">
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="portableGas">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -200,13 +344,13 @@
                         </div>
 
                         <div class="d-flex gap-3 my-4 align-items-end justify-content-end">
-                            <button type="cancel" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancel</button>
+                            <button type="cancel" class="btn btn-danger btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#cancelModal">Cancel</button>
                             <button type="submit" class="btn btn-success btn-lg">Submit</button>
                         </div>
                     </form>
                 </div>
             </div>
-            {{-- Form Booking --}}
         </div>
     </div>
 
@@ -227,4 +371,21 @@
             </div>
         </div>
     </div>
+
+    {{-- Scrip Button (+ / -) --}}
+    <script>
+        document.querySelectorAll('.plus-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const input = document.getElementById(this.dataset.input);
+                input.value = parseInt(input.value) + 1;
+            });
+        });
+
+        document.querySelectorAll('.minus-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const input = document.getElementById(this.dataset.input);
+                input.value = Math.max(0, parseInt(input.value) - 1);
+            });
+        });
+    </script>
 @endsection

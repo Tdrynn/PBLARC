@@ -122,7 +122,7 @@
 
                             <div class="mb-2">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" id="phone" class="form-control" placeholder="+621234567890" required>
+                                <input type="number" id="phone" class="form-control" placeholder="+621234567890" required>
                             </div>
 
                             <!-- Submit Button -->

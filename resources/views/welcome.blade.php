@@ -4,17 +4,17 @@
     @include('layouts.navbar.navbar_main')
     <div class="row">
         {{-- Home Section --}}
-        <section id="home" class="container HomePage1 d-flex align-items-center justify-content-center text-white" style="background-color:  tomato;">
+        <section id="home" class="container HomePage1 d-flex align-items-center justify-content-center text-white">
             <div class="row">
-                <div class="col-md-8 ms-3">
+                <div class="col-md-8">
                     <div class="ms-2">
-                        <h1 class="fw-bold" style="font-size: 5rem;">Angklung River Camp</h1>
-                        <p class="fs-2">Angklung River Camp is a serene riverside camping site in Klungkung, Bali,
+                        <h1 class="fw-bold font-main-size">Angklung River Camp</h1>
+                        <p class="fs-1">Angklung River Camp is a serene riverside camping site in Klungkung, Bali,
                             perfect for nature lovers seeking a peaceful escape.</p>
 
                         {{-- Button Booking --}}
                         <a href="{{ route('package') }}"
-                            class="btn btn-success d-flex align-items-center gap-2 px-4 py-2 mb-3"
+                            class="btn btn-success d-flex align-items-center gap-2 px-4 py-2 my-4"
                             style="background-color: #B5C7B2; color: #114A06; border-radius: 64px; height: 60px; width: 250px; font-size: 20px;">
                             <span class="fw-bold mx-auto">BOOKING NOW</span>
                             <img src="{{ Vite::asset('resources/images/BookingLogo.png') }}" alt="Booking Icon" width="30"

@@ -1,7 +1,18 @@
 @import 'bootstrap/scss/bootstrap';
 
-body, html {
+body,
+html {
     overflow-x: hidden !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none ;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 .HomePage1 {
@@ -11,6 +22,10 @@ body, html {
     background-repeat: no-repeat;
     width: 100%;
     min-height: 100vh;
+}
+
+.font-main-size {
+    font-size: 6rem;
 }
 
 .HomePage2 {
@@ -74,6 +89,12 @@ body, html {
     min-height: 100vh;
 }
 
+.package-img {
+    height: 280px;
+    width: 95%;
+    object-fit: cover;
+}
+
 .learnMore {
     background: url('../images/learnMore.png') center/cover no-repeat;
     background-color: #84AE92;
@@ -91,6 +112,20 @@ body, html {
     background-repeat: no-repeat;
     width: 100%;
     min-height: 100vh;
+}
+
+.addon-group input {
+    max-width: 60px;
+}
+
+.addon-label {
+    width: 110px;
+}
+
+.form-booking {
+    width: 70%;
+    background-color: #fff;
+    height: auto;
 }
 
 .Payment {
@@ -205,9 +240,33 @@ body, html {
     .login-card {
         width: 90%;
     }
+
     .footer-border {
         border-bottom: 1px solid #fff !important;
         border-right: none !important;
+    }
+
+    .package-img {
+        height: 200px;
+        width: 95%;
+    }
+
+    .form-booking {
+        width: 90%;
+        background-color: #fff;
+        height: auto;
+    }
+    .addon-wrapper {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .addon-input-group {
+        width: 100px;
+        margin: auto;
+    }
+    .font-main-size {
+        font-size: 5rem;
     }
 }
 
@@ -215,9 +274,11 @@ body, html {
     .learnMore {
         padding: 20px 10px;
     }
+
     .facility-icon {
         width: 30px !important;
     }
+
     .footer-border {
         border-right: 1px solid #fff !important;
         border-bottom: none !important;
