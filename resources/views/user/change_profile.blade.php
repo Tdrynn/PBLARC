@@ -22,12 +22,14 @@
 
                     <div class="d-flex flex-column text-start">
                         <a href="{{ route('changeprofile') }}" class="text-decoration-none text-black fs-4 mt-4">
-                            <img src="{{ Vite::asset('resources/images/change.png') }}" alt="change" style="width: 40px; height: 40px;" class="me-3">
+                            <img src="{{ Vite::asset('resources/images/change.png') }}" alt="change"
+                                style="width: 40px; height: 40px;" class="me-3">
                             Change Profile
                         </a>
 
                         <a href="{{ route('changepassword') }}" class="text-decoration-none text-black fs-4 mt-4">
-                            <img src="{{ Vite::asset('resources/images/padlock.png') }}" alt="change" style="width: 40px; height: 40px;" class="me-3">
+                            <img src="{{ Vite::asset('resources/images/padlock.png') }}" alt="change"
+                                style="width: 40px; height: 40px;" class="me-3">
                             Change Password
                         </a>
 
@@ -43,17 +45,20 @@
                             History
                         </a>
 
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"
-                            class="text-decoration-none text-black fs-4 mt-4 text-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                class="bi bi-box-arrow-in-right me-3" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
-                                <path fill-rule="evenodd"
-                                    d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
-                            </svg>
-                            Log Out
-                        </a>
+                        <form action="/action" method="POST">
+                            @csrf
+                            <a href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#logoutModal"
+                                class="text-decoration-none text-black fs-4 mt-4 text-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                    class="bi bi-box-arrow-in-right me-3" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                                    <path fill-rule="evenodd"
+                                        d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                </svg>
+                                Log Out
+                            </a>
+                        </form>
 
                     </div>
 
@@ -65,7 +70,8 @@
 
                     <!-- Header -->
                     <div class="d-flex align-items-center text-start" style="gap: 10px; padding: 20px;">
-                        <img src="{{ Vite::asset('resources/images/change.png') }}" alt="change" style="width: 40px; height: 40px;">
+                        <img src="{{ Vite::asset('resources/images/change.png') }}" alt="change"
+                            style="width: 40px; height: 40px;">
                         <h1 class="m-0">Change Profile</h1>
                     </div>
 
@@ -76,7 +82,8 @@
 
                             <div class="mb-2">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                                <input type="text" id="name" class="form-control" placeholder="Enter your name"
+                                    required>
                             </div>
 
                             <div class="mb-2">
@@ -90,10 +97,10 @@
                                 <div class="d-flex align-items-center" style="gap: 20px;">
                                     <!-- Male -->
                                     <div class="form-check d-flex align-items-center" style="gap: 8px;">
-                                        <input class="form-check-input" type="radio" name="gender" id="male" value="male"
-                                            required>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                            class="bi bi-gender-male" viewBox="0 0 16 16">
+                                        <input class="form-check-input" type="radio" name="gender" id="male"
+                                            value="male" required>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                            fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"
                                                 d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8" />
                                         </svg>
@@ -104,8 +111,8 @@
                                     <div class="form-check d-flex align-items-center" style="gap: 8px;">
                                         <input class="form-check-input" type="radio" name="gender" id="female"
                                             value="female">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                            class="bi bi-gender-female" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                            fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"
                                                 d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8M3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5" />
                                         </svg>
@@ -116,13 +123,14 @@
 
                             <div class="mb-2">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control" placeholder="ExampleEmail@gmail.com"
-                                    required>
+                                <input type="email" id="email" class="form-control"
+                                    placeholder="ExampleEmail@gmail.com" required>
                             </div>
 
                             <div class="mb-2">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" id="phone" class="form-control" placeholder="+621234567890" required>
+                                <input type="tel" id="phone" class="form-control" placeholder="+621234567890"
+                                    required>
                             </div>
 
                             <!-- Submit Button -->
