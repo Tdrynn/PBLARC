@@ -15,35 +15,6 @@ Route::get('/login', function () {
 })->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-Route::post('/register', [AuthController::class, 'register'])->name('register.post');
-
-Route::get('/home', function () {
-    return view('user.home');
-})->name('home');
-
-Route::get('/package', function () {
-    return view('user.package');
-})->name('package');
-
-Route::get('/profile', function () {
-    return view('user.profile');
-})->name('profile');
-
-Route::get('/history', function () {
-    return view('user.history');
-})->name('history');
-
-Route::get('/changeprofile', function () {
-    return view('user.change_profile');
-})->name('changeprofile');
-
-Route::get('/changepassword', function () {
-    return view('user.change_password');
-})->name('changepassword');
-
 Route::get('/picnic', function () {
     return view('user.picnic');
 })->name('picnic');
@@ -60,37 +31,70 @@ Route::get('/groupEvent', function () {
     return view('user.groupEvent');
 })->name('groupEvent');
 
-Route::get('/bookingPicnic', function () {
-    return view('user.booking_picnic');
-})->name('bookingPicnic');
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 
-Route::get('/bookingCamping', function () {
-    return view('user.booking_camping');
-})->name('bookingCamping');
+Route::get('/package', function () {
+    return view('user.package');
+})->name('package');
 
-Route::get('/bookingCampervan', function () {
-    return view('user.booking_campervan');
-})->name('bookingCampervan');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', function () {
+        return view('user.home');
+    })->name('home');
 
-Route::get('/bookingGroupEvent', function () {
-    return view('user.booking_groupEvent');
-})->name('bookingGroupEvent');
 
-Route::get('/payment', function () {
-    return view('user.payment');
-})->name('payment');
+    Route::get('/profile', function () {
+        return view('user.profile');
+    })->name('profile');
 
-Route::get('/paymentQris', function () {
-    return view('user.payment_qris');
-})->name('paymentQris');
+    Route::get('/history', function () {
+        return view('user.history');
+    })->name('history');
 
-Route::get('/paymentVirtualAccount', function () {
-    return view('user.payment_virtualAccount');
-})->name('paymentVirtualAccount');
+    Route::get('/changeprofile', function () {
+        return view('user.change_profile');
+    })->name('changeprofile');
 
-Route::get('/invoice', function () {
-    return view('user.invoice');
-})->name('invoice');
+    Route::get('/changepassword', function () {
+        return view('user.change_password');
+    })->name('changepassword');
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/bookingPicnic', function () {
+        return view('user.booking_picnic');
+    })->name('bookingPicnic');
+
+    Route::get('/bookingCamping', function () {
+        return view('user.booking_camping');
+    })->name('bookingCamping');
+
+    Route::get('/bookingCampervan', function () {
+        return view('user.booking_campervan');
+    })->name('bookingCampervan');
+
+    Route::get('/bookingGroupEvent', function () {
+        return view('user.booking_groupEvent');
+    })->name('bookingGroupEvent');
+
+    Route::get('/payment', function () {
+        return view('user.payment');
+    })->name('payment');
+
+    Route::get('/paymentQris', function () {
+        return view('user.payment_qris');
+    })->name('paymentQris');
+
+    Route::get('/paymentVirtualAccount', function () {
+        return view('user.payment_virtualAccount');
+    })->name('paymentVirtualAccount');
+
+    Route::get('/invoice', function () {
+        return view('user.invoice');
+    })->name('invoice');
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});

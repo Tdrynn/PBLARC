@@ -83,33 +83,17 @@
                                 <div class="mb-1">
                                     <label for="disabledTextInput" class="form-label">Name</label>
                                     <input type="text" id="disabledTextInput" class="form-control"
-                                        placeholder="Example Name">
-                                </div>
-                                <div class="mb-1">
-                                    <label for="disabledTextInput" class="form-label">Date of Birth</label>
-                                    <input type="text" id="disabledTextInput" class="form-control"
-                                        placeholder="31/12/1990">
-                                </div>
-                                <div class="mb-1">
-                                    <label for="disabledTextInput" class="form-label">Gender</label>
-                                    <div class="d-flex align-items-center" style="gap: 8px;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                            fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8" />
-                                        </svg>
-                                        <p class="m-0">Male</p>
-                                    </div>
+                                        placeholder={{ session('user_name') }}>
                                 </div>
                                 <div class="mb-1">
                                     <label for="disabledTextInput" class="form-label">Email</label>
                                     <input type="text" id="disabledTextInput" class="form-control"
-                                        placeholder="ExampleEmail@gmail.com">
+                                        placeholder={{ session('user_email') }}>
                                 </div>
                                 <div class="mb-1">
                                     <label for="disabledTextInput" class="form-label">Phone Number</label>
                                     <input type="text" id="disabledTextInput" class="form-control"
-                                        placeholder="+621234567890">
+                                        placeholder={{ session('user_phone') }}>
                                 </div>
                             </fieldset>
                         </form>
@@ -130,7 +114,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-0">
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
-                    <form action="{{ route('welcome') }}" method="POST" class="d-inline">
+                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-danger px-4">Yes</button>
                     </form>
