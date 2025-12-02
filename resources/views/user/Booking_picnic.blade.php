@@ -56,34 +56,34 @@
                 <div class="w-75 justify-content-center align-items-center mx-auto mt-0">
                     <form>
                         <div class="mb-2">
-                            <label for="name" class="form-label">Reservation Name</label>
+                            <label for="name" class="form-label fw-semibold">Reservation Name</label>
                             <input type="text" class="form-control border-success" id="name" required>
                         </div>
 
                         <div class="mb-2">
-                            <label for="telephone" class="form-label">WhatsApp Number</label>
+                            <label for="telephone" class="form-label fw-semibold">WhatsApp Number</label>
                             <input type="tel" class="form-control border-success" id="telephone" required>
                         </div>
 
                         <div class="mb-2">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label fw-semibold">Email</label>
                             <input type="email" class="form-control border-success" id="email" aria-describedby="emailHelp">
                         </div>
 
                         <div class="mb-2 container p-0">
                             <div class="row">
                                 <div class="col">
-                                    <label for="participants" class="form-label">Number of participants</label>
+                                    <label for="participants" class="form-label fw-semibold">Number of participants</label>
                                     <input type="number" class="form-control border-success w-50" id="participants" required>
                                 </div>
 
                                 <div class="col flex-column">
-                                    <label for="adult" class="form-label">Adult</label>
+                                    <label for="adult" class="form-label fw-semibold">Adult</label>
                                     <input type="number" class="form-control border-success w-50" id="adult">
                                 </div>
 
                                 <div class="col flex-column ">
-                                    <label for="child" class="form-label">Child (Above 5 y.o)</label>
+                                    <label for="child" class="form-label fw-semibold">Child (Above 5 y.o)</label>
                                     <input type="number" class="form-control border-success w-50" id="child">
                                 </div>
                             </div>
@@ -92,12 +92,12 @@
                         <div class="mb-2 container p-0">
                             <div class="row">
                                 <div class="col">
-                                    <label for="checkin" class="form-label">Check in Date</label>
+                                    <label for="checkin" class="form-label fw-semibold">Check in Date</label>
                                     <input type="date" class="form-control border-success w-75" id="checkin">
                                 </div>
 
                                 <div class="col">
-                                    <label for="checkout" class="form-label">Check out Date</label>
+                                    <label for="checkout" class="form-label fw-semibold">Check out Date</label>
                                     <input type="date" class="form-control border-success w-75" id="checkout">
                                 </div>
 
