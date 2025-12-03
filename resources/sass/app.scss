@@ -1,20 +1,5 @@
 @import 'bootstrap/scss/bootstrap';
 
-body,
-html {
-    overflow-x: hidden !important;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none ;
-    margin: 0;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
 .HomePage1 {
     background: linear-gradient(rgba(0, 0, 0, 0.67), rgba(0, 0, 0, 0.67)), url('../images/HP1.jpeg') center/cover no-repeat;
     background-size: cover;
