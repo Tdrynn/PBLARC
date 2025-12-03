@@ -8,7 +8,7 @@
             <div class="container-fluid px-0 my-1 mt-2 mb-4">
                 <h1 class="text-center fw-bold">Picnic</h1>
 
-                <div class="row gx-0 border border-dark">
+                <div class="row gx-0">
                     <div class="col-lg-6 col-md-6 col-12 d-flex justify-content-center">
                         <img src="{{ Vite::asset('resources/images/PN1.png') }}" alt="picnic" class="img-fluid rounded-4">
                     </div>

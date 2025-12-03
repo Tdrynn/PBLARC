@@ -3,6 +3,7 @@
 @section('content')
     @include('layouts.navbar.navbar_profile')
     <div class="row">
+
         <section id="profile" class="ProfilePage container d-flex align-items-center justify-content-center flex-column">
 
             <div class="row d-flex align-items-center mx-5 gap-5">

@@ -4,7 +4,7 @@
 
         <div class="row justify-content-center">
             <!-- Kolom Kiri -->
-            <div class="col-md-5 mb-4 mb-md-0 border-end border-light text-start">
+            <div class="col-md-5 mb-4 mb-md-0 text-start footer-border">
                 <img src="{{ Vite::asset('resources/images/Logo.png') }}" alt="Logo" width="80">
                 <p class="text-start w-75">
                     Enjoy the experience of camping by the river with fresh air and Balinese green views.
@@ -13,10 +13,10 @@
 
                 <h5 class="mt-3 fw-bold text-start">Products</h5>
                 <div class="d-flex flex-wrap gap-4">
-                    <p class="mb-0">Picnic</p>
-                    <p class="mb-0">Campervan</p>
-                    <p class="mb-0">Camping</p>
-                    <p class="mb-0">Group Event</p>
+                    <a href="{{ Route('picnic') }}" class="text-decoration-none text-white">Picnic</a>
+                    <a href="{{ Route('camping') }}" class="text-decoration-none text-white">Camping</a>
+                    <a href="{{ Route('camperVan') }}" class="text-decoration-none text-white">Campervan</a>
+                    <a href="{{ Route('groupEvent') }}" class="text-decoration-none text-white">Group Event</a>
                 </div>
 
                 <h5 class="mt-4 fw-bold text-start">Our Social Media</h5>
@@ -57,7 +57,7 @@
             </div>
 
             <!-- Kolom Kanan -->
-            <div class="border-start border-light col-md-5 d-flex flex-column align-items-center justify-content-center mt-4 mt-md-0">
+            <div class="col-md-5 d-flex flex-column align-items-center justify-content-center mt-4 mt-md-0">
                 <h6>Our Location</h6>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.7774069858797!2d115.40455171043561!3d-8.520979686272996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd21138678f0fbd%3A0xb6f7bbddacbe88a4!2sAngklung%20River%20Camp!5e0!3m2!1sid!2sid!4v1762180918490!5m2!1sid!2sid" frameborder="0" width="350" height="300" style="border: 0; border-radius: 15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </>

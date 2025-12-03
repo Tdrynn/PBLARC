@@ -25,12 +25,12 @@
 
                         <button type="submit" class="btn btn-success btn-green w-100 my-2">Log In</button>
                     </div>
-
-                    <div class="text-center mt-1">
-                        <p>Don't have an account? <a href="/register" class="text-primary">Create account</a>
-                        </p>
-                    </div>
                 </form>
+
+                <div class="text-center mt-1">
+                    <p>Don't have an account? <a href="/register" class="text-primary">Create account</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
