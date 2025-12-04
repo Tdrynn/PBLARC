@@ -41,6 +41,10 @@ Route::get('/package', function () {
     return view('user.package');
 })->name('package');
 
+Route::get('/reviewList', function() {
+    return view('user.review_list');
+})->name('reviewList');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', function () {
         return view('user.home');
