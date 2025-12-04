@@ -77,7 +77,10 @@
                         </div>
 
                         <div class="col d-flex justify-content-end align-items-end">
-                            <button class="btn text-light fw-semibold rounded-4 me-3 mb-0" style="background-color:#114A06; width:90px; height:40px;">Booking</button>
+                            <a href="{{ Route('bookingCampervan') }}">
+                                <button class="btn text-light fw-semibold rounded-4 me-3 mb-0"
+                                    style="background-color:#114A06; width:90px; height:40px;">Booking</button>
+                            </a>
                         </div>
                     </div>
                 </div>

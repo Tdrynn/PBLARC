@@ -32,17 +32,18 @@
                 </div>
                 <div class="d-flex flex-wrap gap-4 justify-content-center">
                     <div class="d-flex align-items-center gap-2">
-                        <img src="{{ Vite::asset('resources/images/toilet.png') }}" alt="toilet" class="img-fluid" width="40px">
+                        <img src="{{ Vite::asset('resources/images/toilet.png') }}" alt="toilet" class="img-fluid"
+                            width="40px">
                         <p class="fs-5 text-dark fw-semibold">Toilet</p>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                        <img src="{{ Vite::asset('resources/images/parking.png') }}" alt="parking" class="img-fluid" width="40px"
-                        >
+                        <img src="{{ Vite::asset('resources/images/parking.png') }}" alt="parking" class="img-fluid"
+                            width="40px">
                         <p class="fs-5 text-dark fw-semibold">Parking</p>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                        <img src="{{ Vite::asset('resources/images/electrical.png') }}" alt="electrical" class="img-fluid" width="40px"
-                        >
+                        <img src="{{ Vite::asset('resources/images/electrical.png') }}" alt="electrical" class="img-fluid"
+                            width="40px">
                         <p class="fs-5 text-dark fw-semibold">Electrical Socket</p>
                     </div>
                     <div class="d-flex align-items-center gap-2">
@@ -75,8 +76,10 @@
                         </div>
 
                         <div class="col d-flex justify-content-end align-items-end">
-                            <button class="btn text-light fw-semibold rounded-4 me-3 mb-0"
-                                style="background-color:#114A06; width:90px; height:40px;">Booking</button>
+                            <a href="{{ Route('bookingPicnic') }}">
+                                <button class="btn text-light fw-semibold rounded-4 me-3 mb-0"
+                                    style="background-color:#114A06; width:90px; height:40px;">Booking</button>
+                            </a>
                         </div>
                     </div>
                 </div>
