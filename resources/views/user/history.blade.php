@@ -44,7 +44,7 @@
                             </svg>
                             History
                         </a>
-                        <form action="/logout" method="POST">
+                        <form action="/logout" method="POST" class="mt-4">
                             @csrf
                             <a href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#logoutModal"
                                 class="text-decoration-none text-black fs-4 mt-4 text-start">

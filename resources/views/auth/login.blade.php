@@ -10,7 +10,7 @@
                 <p style="font-size: 14px; color: #555;">Your amazing camping will begin here</p>
                 <form method="POST" action="/login">
                     @csrf
-                    <div class="form-container mx-auto">
+                    <div class="m-2">
                         <div class="form-floating mb-3 text-start">
                             <input type="email" name="email" class="form-control" id="floatingInput"
                                 placeholder="name@example.com" required>

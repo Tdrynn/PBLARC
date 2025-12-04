@@ -45,7 +45,7 @@
                             History
                         </a>
 
-                        <form action="/action" method="POST">
+                        <form action="/action" method="POST" class="mt-4">
                             @csrf
                             <a href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#logoutModal"
                                 class="text-decoration-none text-black fs-4 mt-4 text-start">
@@ -84,41 +84,6 @@
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" id="name" class="form-control" placeholder="Enter your name"
                                     required>
-                            </div>
-
-                            <div class="mb-2">
-                                <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" id="dob" class="form-control" required>
-                            </div>
-
-                            <!-- Gender -->
-                            <div class="mb-2">
-                                <label class="form-label">Gender</label>
-                                <div class="d-flex align-items-center" style="gap: 20px;">
-                                    <!-- Male -->
-                                    <div class="form-check d-flex align-items-center" style="gap: 8px;">
-                                        <input class="form-check-input" type="radio" name="gender" id="male"
-                                            value="male" required>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                            fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8" />
-                                        </svg>
-                                        <label class="form-check-label" for="male">Male</label>
-                                    </div>
-
-                                    <!-- Female -->
-                                    <div class="form-check d-flex align-items-center" style="gap: 8px;">
-                                        <input class="form-check-input" type="radio" name="gender" id="female"
-                                            value="female">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                            fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8M3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5" />
-                                        </svg>
-                                        <label class="form-check-label" for="female">Female</label>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="mb-2">
