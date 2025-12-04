@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-    @include('layouts.navbar.navbar_back')
+    @include('layouts.navbar.navbar_unLogin')
     <div class="row">
         <div class="vh-100 text-white d-flex align-items-center justify-content-center HomePage1 object-fit-cover">
             <div class="login-card text-center text-black">
