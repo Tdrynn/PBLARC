@@ -4,24 +4,16 @@
     @include('layouts.navbar.navbar_profile')
     <div class="row">
         <section id="profile" class="ProfilePage container d-flex align-items-center justify-content-center flex-column">
+            <div class="row gap-5 w-100 align-items-center justify-content-center my-5">
 
-            <div class="row d-flex align-items-center mx-5 gap-5">
-                {{-- Card Kiri --}}
-                <div class="justify-content-center border border-light d-flex flex-column align-items-center text-center"
-                    style="background-color: white; width: 400px; height: 600px; border-radius: 20px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor"
-                        class="bi bi-person-circle my0" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                        <path fill-rule="evenodd"
-                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                    </svg>
+                {{-- Left Card --}}
+                <div class="col-md-3 col-10 bg-white rounded-5 mt-3" style="height: auto;">
+                    <h1 class="text-center mt-3">{{ session('user_name') }}</h1>
+                    <h6 class="text-center">{{ session('user_email') }}</h6>
 
-                    <a href="#" class="text-black text-decoration-none mt-2">Change Profile Picture</a>
-                    <h1 class="text-center mt-3">Andika Nugraha</h1>
-                    <h6>AndikaNug@gmail.com</h6>
-
-                    <div class="d-flex flex-column text-start">
-                        <a href="{{ route('changeprofile') }}" class="text-decoration-none text-black fs-4 mt-4">
+                    {{-- Profile Settings --}}
+                    <div class="d-flex flex-column text-start p-3">
+                        <a href="{{ route('changeprofile') }}" class="text-decoration-none text-black fs-4">
                             <img src="{{ Vite::asset('resources/images/change.png') }}" alt="change"
                                 style="width: 40px; height: 40px;" class="me-3">
                             Change Profile
@@ -44,7 +36,7 @@
                             </svg>
                             History
                         </a>
-                        <form action="/logout" method="POST" class="mt-4">
+                        <form action="/logout" method="POST" class="my-3">
                             @csrf
                             <a href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#logoutModal"
                                 class="text-decoration-none text-black fs-4 mt-4 text-start">
@@ -58,16 +50,13 @@
                                 Log Out
                             </a>
                         </form>
-
                     </div>
-
                 </div>
 
-                {{-- Card kanan --}}
-                <div class="justify-content-center gap-3 border border-light"
-                    style="background-color: white; width: 750px; height: 550px; border-radius: 20px;">
+                {{-- Right Card --}}
+                <div class="col-md-7 col-sm-12 bg-white justify-content-center gap-3 rounded-5">
 
-                    <!-- Header -->
+                    {{-- Title --}}
                     <div class="d-flex align-items-center text-start" style="padding: 20px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                             class="bi bi-clock-history me-3" viewBox="0 0 16 16">
@@ -80,7 +69,8 @@
                         <h1 class="m-0">History</h1>
                     </div>
 
-                    <div class="container d-flex flex-column align-items-center gap-3 text-light text-center p2"
+                    {{-- Content --}}
+                    <div class="container d-flex flex-column align-items-center gap-3 text-light text-center mb-5"
                         style="max-height: 425px; overflow-y: auto;">
                         <div class="row bg-warning rounded-3" style="width: 95%;">
                             <div class="col">
@@ -150,7 +140,8 @@
                             </div>
 
                             <div class="mb-3 ">
-                                <a href="{{ Route('review') }}" class="text-success-emphasis d-flex justify-content-end text-decoration-none">
+                                <a href="{{ Route('review') }}"
+                                    class="text-success-emphasis d-flex justify-content-end text-decoration-none">
                                     <button type="button" class="btn btn-light shadow bg-body-tertiary end"
                                         style="width: 25%; height: auto;">Review</button>
                                 </a>
@@ -192,29 +183,27 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-    </div>
-    </section>
+        </section>
 
-    <!-- Modal Logout -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title w-100 fw-bold" id="logoutModalLabel">Are you sure?</h5>
-                </div>
-                <div class="modal-body">
-                    <p class="text-muted">You will be logged out from your account.</p>
-                </div>
-                <div class="modal-footer d-flex justify-content-center border-0">
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
-                    <form action="{{ route('welcome') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-danger px-4">Yes</button>
-                    </form>
+        <!-- Modal Logout -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title w-100 fw-bold" id="logoutModalLabel">Are you sure?</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-muted">You will be logged out from your account.</p>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center border-0">
+                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-danger px-4">Yes</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 @endsection

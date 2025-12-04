@@ -104,3 +104,4 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
 });
+
