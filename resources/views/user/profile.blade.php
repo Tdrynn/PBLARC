@@ -3,6 +3,7 @@
 @section('content')
     @include('layouts.navbar.navbar_profile')
     <div class="row">
+
         <section id="profile" class="ProfilePage container d-flex align-items-center justify-content-center flex-column">
 
             <div class="row d-flex align-items-center mx-5 gap-5">
@@ -44,18 +45,20 @@
                             </svg>
                             History
                         </a>
-
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"
-                            class="text-decoration-none text-black fs-4 mt-4 text-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="currentColor"
-                                class="bi bi-box-arrow-in-right me-3" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
-                                <path fill-rule="evenodd"
-                                    d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
-                            </svg>
-                            Log Out
-                        </a>
+                        <form action="/logout" method="post" class="mt-4">
+                            @csrf
+                            <a href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#logoutModal"
+                                class="text-decoration-none text-black fs-4 mt-4 text-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="currentColor"
+                                    class="bi bi-box-arrow-in-right me-3" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                                    <path fill-rule="evenodd"
+                                        d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                </svg>
+                                Log Out
+                            </a>
+                        </form>
 
                     </div>
 
@@ -81,32 +84,17 @@
                                 <div class="mb-1">
                                     <label for="disabledTextInput" class="form-label">Name</label>
                                     <input type="text" id="disabledTextInput" class="form-control"
-                                        placeholder="Example Name">
-                                </div>
-                                <div class="mb-1">
-                                    <label for="disabledTextInput" class="form-label">Date of Birth</label>
-                                    <input type="text" id="disabledTextInput" class="form-control" placeholder="31/12/1990">
-                                </div>
-                                <div class="mb-1">
-                                    <label for="disabledTextInput" class="form-label">Gender</label>
-                                    <div class="d-flex align-items-center" style="gap: 8px;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                            class="bi bi-gender-male" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8" />
-                                        </svg>
-                                        <p class="m-0">Male</p>
-                                    </div>
+                                        placeholder={{ session('user_name') }}>
                                 </div>
                                 <div class="mb-1">
                                     <label for="disabledTextInput" class="form-label">Email</label>
                                     <input type="text" id="disabledTextInput" class="form-control"
-                                        placeholder="ExampleEmail@gmail.com">
+                                        placeholder={{ session('user_email') }}>
                                 </div>
                                 <div class="mb-1">
                                     <label for="disabledTextInput" class="form-label">Phone Number</label>
                                     <input type="text" id="disabledTextInput" class="form-control"
-                                        placeholder="+621234567890">
+                                        placeholder={{ session('user_phone') }}>
                                 </div>
                             </fieldset>
                         </form>
@@ -127,7 +115,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-0">
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
-                    <form action="{{ route('welcome') }}" method="POST" class="d-inline">
+                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-danger px-4">Yes</button>
                     </form>

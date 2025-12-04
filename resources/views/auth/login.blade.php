@@ -8,26 +8,29 @@
                 <img src="{{ Vite::asset('resources/images/LogoCLR.png') }}" alt="Logo" width="60">
                 <h4 style="font-weight: 700;">Log in to your account</h4>
                 <p style="font-size: 14px; color: #555;">Your amazing camping will begin here</p>
-                <form>
-                    <div class="form-container mx-auto">
+                <form method="POST" action="/login">
+                    @csrf
+                    <div class="m-2">
                         <div class="form-floating mb-3 text-start">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                            <input type="email" name="email" class="form-control" id="floatingInput"
+                                placeholder="name@example.com" required>
                             <label for="floatingInput">Email address</label>
                         </div>
 
                         <div class="form-floating mb-3 text-start border border-success-subtle">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                            <input type="password" name="password" class="form-control" id="floatingPassword"
+                                placeholder="Password" required>
                             <label for="floatingPassword">Password</label>
                         </div>
 
                         <button type="submit" class="btn btn-success btn-green w-100 my-2">Log In</button>
                     </div>
-
-                    <div class="text-center mt-1">
-                        <p>Don't have an account? <a href="{{ route('register') }}" class="text-primary">Create account</a>
-                        </p>
-                    </div>
                 </form>
+
+                <div class="text-center mt-1">
+                    <p>Don't have an account? <a href="/register" class="text-primary">Create account</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
