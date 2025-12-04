@@ -91,14 +91,13 @@ input[type=number] {
     object-fit: cover;
 }
 
-.learnMore {
-    background: url('../images/learnMore.png') center/cover no-repeat;
-    background-color: #84AE92;
+.LearnMore {
+    background: url('../images/LearnMore.jpg') center/cover no-repeat;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    min-height: 100vh;
+    min-height: auto;
 }
 
 .Booking {
@@ -295,5 +294,8 @@ input[type=number] {
     .footer-border {
         border-right: 1px solid #fff !important;
         border-bottom: none !important;
+    }
+    .facility {
+        width: 95%;
     }
 }
