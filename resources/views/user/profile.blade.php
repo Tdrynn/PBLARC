@@ -18,8 +18,8 @@
                     </svg>
 
                     <a href="#" class="text-black text-decoration-none mt-2">Change Profile Picture</a>
-                    <h1 class="text-center mt-3">Andika Nugraha</h1>
-                    <h6>AndikaNug@gmail.com</h6>
+                    <h1 class="text-center mt-3">{{ session('user_name') }}</h1>
+                    <h6>{{ session('user_email') }}</h6>
 
                     <div class="d-flex flex-column text-start">
                         <a href="{{ route('changeprofile') }}" class="text-decoration-none text-black fs-4 mt-4">

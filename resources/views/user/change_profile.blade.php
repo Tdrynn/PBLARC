@@ -17,8 +17,8 @@
                     </svg>
 
                     <a href="#" class="text-black text-decoration-none mt-2">Change Profile Picture</a>
-                    <h1 class="text-center mt-3">Andika Nugraha</h1>
-                    <h6>AndikaNug@gmail.com</h6>
+                    <h1 class="text-center mt-3">{{ session('user_name') }}</h1>
+                    <h6>{{ session('user_email') }}</h6>
 
                     <div class="d-flex flex-column text-start">
                         <a href="{{ route('changeprofile') }}" class="text-decoration-none text-black fs-4 mt-4">
@@ -77,25 +77,26 @@
 
                     <!-- Form -->
                     <div class="d-flex flex-column align-items-center">
-                        <form style="width: 85%;" action="#" method="POST">
+                        <form style="width: 85%;" action={{ route('updateprofile') }} method="POST">
                             @csrf
+                            @method('PUT')
 
                             <div class="mb-2">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" id="name" class="form-control" placeholder="Enter your name"
-                                    required>
+                                <input type="text" id="name" class="form-control" name="name"
+                                    value={{ session('user_name') }} required>
                             </div>
 
                             <div class="mb-2">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control"
-                                    placeholder="ExampleEmail@gmail.com" required>
+                                <input type="email" id="email" class="form-control" name="email"
+                                    value={{ session('user_email') }} required>
                             </div>
 
                             <div class="mb-2">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" id="phone" class="form-control" placeholder="+621234567890"
-                                    required>
+                                <input type="tel" id="phone" class="form-control" name="phone"
+                                    value={{ session('user_phone') }} required>
                             </div>
 
                             <!-- Submit Button -->
