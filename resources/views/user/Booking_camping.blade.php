@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.navbar.navbar_back')
+    @include('layouts.navbar.navbar_camping')
     <div class="row">
         <div class="Booking">
 

@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}">
+                    <a href="{{ route('history') }}">
                     <button type="button" class="btn btn-success me-4">Back</button>
                     </a>
                 </li>

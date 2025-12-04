@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.navbar.navbar_back')
+    @include('layouts.navbar.navbar_campervan')
     <div class="row">
         <div class="Booking">
 
@@ -229,7 +229,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-0">
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
-                    <form action="{{ route('campervan') }}" method="POST" class="d-inline">
+                    <form action="{{ route('camperVan') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-danger px-4">Yes</button>
                     </form>

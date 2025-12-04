@@ -1,5 +1,20 @@
 @import 'bootstrap/scss/bootstrap';
 
+body,
+html {
+    overflow-x: hidden !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .HomePage1 {
     background: linear-gradient(rgba(0, 0, 0, 0.67), rgba(0, 0, 0, 0.67)), url('../images/HP1.jpeg') center/cover no-repeat;
     background-size: cover;
@@ -95,8 +110,22 @@
     min-height: 100vh;
 }
 
+.star {
+    transition: 0.2s;
+    stroke: #03AC0E;
+    stroke-width: 1.2;
+}
+
+.star.filled {
+    fill: #03AC0E;
+}
+
+.star:hover {
+    transform: scale(1.1);
+}
+
 .addon-group input {
-    max-width: 60px;
+    max-width: 100px;
 }
 
 .addon-label {
@@ -237,11 +266,13 @@
         background-color: #fff;
         height: auto;
     }
+
     .addon-wrapper {
         flex-direction: column;
         gap: 10px;
         text-align: center;
     }
+
     .addon-input-group {
         width: 100px;
         margin: auto;

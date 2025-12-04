@@ -45,7 +45,6 @@ Route::middleware(['auth'])->group(function () {
         return view('user.home');
     })->name('home');
 
-
     Route::get('/profile', function () {
         return view('user.profile');
     })->name('profile');
@@ -94,6 +93,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/invoice', function () {
         return view('user.invoice');
     })->name('invoice');
+
+    Route::get('/review', function () {
+        return view('user.review');
+    })->name('review');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
