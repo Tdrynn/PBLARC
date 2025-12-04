@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -97,4 +98,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
 });
