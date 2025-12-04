@@ -1,30 +1,19 @@
-@extends('layouts.app')
+@extends ('layouts.app')
 
 @section('content')
     @include('layouts.navbar.navbar_profile')
-
     <div class="row">
         <section id="profile" class="ProfilePage container d-flex align-items-center justify-content-center flex-column">
+            <div class="row gap-5 w-100 align-items-center justify-content-center my-5">
 
-            <div class="row d-flex align-items-center mx-5 gap-5">
+                {{-- Left Card --}}
+                <div class="col-md-3 col-10 bg-white rounded-5 mt-3" style="height: auto;">
+                    <h1 class="text-center mt-3">{{ session('user_name') }}</h1>
+                    <h6 class="text-center">{{ session('user_email') }}</h6>
 
-                {{-- Card Kiri --}}
-                <div class="justify-content-center border border-light d-flex flex-column align-items-center text-center"
-                    style="background-color: white; width: 400px; height: 600px; border-radius: 20px;">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor"
-                        class="bi bi-person-circle my0" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                        <path fill-rule="evenodd"
-                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                    </svg>
-
-                    <a href="#" class="text-black text-decoration-none mt-2">Change Profile Picture</a>
-                    <h1 class="text-center mt-3">Andika Nugraha</h1>
-                    <h6>AndikaNug@gmail.com</h6>
-
-                    <div class="d-flex flex-column text-start">
-                        <a href="{{ route('changeprofile') }}" class="text-decoration-none text-black fs-4 mt-4">
+                    {{-- Profile Settings --}}
+                    <div class="d-flex flex-column text-start p-3">
+                        <a href="{{ route('changeprofile') }}" class="text-decoration-none text-black fs-4">
                             <img src="{{ Vite::asset('resources/images/change.png') }}" alt="change"
                                 style="width: 40px; height: 40px;" class="me-3">
                             Change Profile
@@ -47,7 +36,7 @@
                             </svg>
                             History
                         </a>
-                        <form action="/logout" method="POST" class="mt-4">
+                        <form action="/logout" method="POST" class="my-3">
                             @csrf
                             <a href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#logoutModal"
                                 class="text-decoration-none text-black fs-4 mt-4 text-start">
@@ -64,43 +53,45 @@
                     </div>
                 </div>
 
-                {{-- Card Kanan --}}
-                <div class="justify-content-center gap-3 border border-light"
-                    style="background-color: white; width: 750px; height: 550px; border-radius: 20px;">
-                    <div class="d-flex align-items-center text-start" style="gap: 10px; padding: 20px;">
+                {{-- Right Card --}}
+                <div class="col-md-7 col-sm-12 bg-white justify-content-center gap-3 rounded-5">
+
+                    {{-- Title --}}
+                    <div class="d-flex align-items-center text-start" style="padding: 20px;">
                         <img src="{{ Vite::asset('resources/images/padlock.png') }}" alt="change"
                             style="width: 40px; height: 40px;">
                         <h1 class="m-0">Change Password</h1>
                     </div>
 
-                    <div class="d-flex flex-column align-items-center justify-content-center">
-                        <form class="w-75 h-75" action="#" method="POST">
+                    {{-- Content --}}
+                    <div class="d-flex flex-column align-items-center gap-3 text-dark text-center mb-5"
+                        style="max-height: 425px; overflow-y: auto;">
+                        <form class="h-75 text-start fw-semibold" action="#" method="POST" style="width: 95%;">
                             <div class="mb-2">
                                 <label for="password" class="form-label">Old Password</label>
-                                <input type="password" id="password" class="form-control" required>
+                                <input type="password" id="password" class="form-control border-success" required>
                             </div>
                             <div class="mb-2">
                                 <label for="newpassword" class="form-label">New Password</label>
-                                <input type="password" id="newpassword" class="form-control" required>
+                                <input type="password" id="newpassword" class="form-control border-success" required>
                             </div>
                             <div class="mb-2">
                                 <label for="confirmpassword" class="form-label">Confirm Password</label>
-                                <input type="password" id="confirmpassword" class="form-control" required>
+                                <input type="password" id="confirmpassword" class="form-control border-success" required>
                             </div>
 
-                            <div class="d-flex justify-content-end mt-3 gap-5">
-                                <button type="reset" class="btn btn-danger btn-lg w-50 px-4">Discard Changes</button>
-                                <button type="submit" class="btn btn-success btn-lg w-50 px-4">Save Changes</button>
+                            <div class="d-flex justify-content-end mt-4 gap-5 justify-content-end">
+                                <button type="reset" class="btn btn-danger btn-lg  button-profile">Discard Changes</button>
+                                <button type="submit" class="btn btn-success btn-lg button-profile">Save Changes</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
-    </div>
 
-    <!-- Modal Logout -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <!-- Modal Logout -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center">
                 <div class="modal-header border-0">
@@ -111,7 +102,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-0">
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
-                    <form action="{{ route('welcome') }}" method="POST" class="d-inline">
+                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-danger px-4">Yes</button>
                     </form>
