@@ -101,7 +101,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-});
 
     Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
 });
+
