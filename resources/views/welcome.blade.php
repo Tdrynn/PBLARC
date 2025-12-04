@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="ms-2">
-                        <h1 class="fw-bold font-main-size">Angklung River Camp</h1>
+                        <h1 class="fw-bold" style="font-size: 5rem;">Angklung River Camp</h1>
                         <p class="fs-1">Angklung River Camp is a serene riverside camping site in Klungkung, Bali,
                             perfect for nature lovers seeking a peaceful escape.</p>
 
