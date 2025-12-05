@@ -5,25 +5,30 @@
 
     <div class="row">
         <div id="picnic" class="text-light LearnMore py-4 shadow-lg p-3">
-            <div class="container-fluid px-0 my-1 mt-2 mb-4">
-                <h1 class="text-center fw-bold text-dark mt-3">Group Event</h1>
+            <div class="container-fluid px-0">
+                <h1 class="text-center fw-bold text-dark mt-5">Group Event</h1>
 
-                <div class="row gx-0">
-                    <div class="col-md-6 d-flex justify-content-end pe-1">
-                        <img src="{{ Vite::asset('resources/images/GE1.png') }}" alt="GroupEvent"
-                            class="rounded-4 object-fit-cover" width="525px" height="364px">
+                <div class="row gap-2 d-flex justify-content-center">
+                    <div class="col-md-5">
+                        <img src="{{ Vite::asset('resources/images/GE1.png') }}" alt="groupEvent"
+                            class="rounded-4 object-fit-cover img1-package p-1">
                     </div>
 
-                    <div class="col-md-6 ps-1">
-                        <div class="d-flex flex-wrap gap-1">
-                            <img src="{{ Vite::asset('resources/images/GE2.png') }}" alt="GroupEvent"
-                                class="rounded-4 object-fit-cover" width="300px" height="180px">
-                            <img src="{{ Vite::asset('resources/images/GE3.png') }}" alt="GroupEvent"
-                                class="rounded-4 object-fit-cover" width="300px" height="180px">
-                            <img src="{{ Vite::asset('resources/images/GE4.png') }}" alt="GroupEvent"
-                                class="rounded-4 object-fit-cover" width="300px" height="180px">
-                            <img src="{{ Vite::asset('resources/images/GE5.png') }}" alt="GroupEvent"
-                                class="rounded-4 object-fit-cover" width="300px" height="180px">
+                    <div class="col-md-3 g-0">
+                        <div class="d-flex flex-row flex-lg-column">
+                            <img src="{{ Vite::asset('resources/images/GE2.png') }}" alt="groupEvent"
+                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
+                            <img src="{{ Vite::asset('resources/images/GE3.png') }}" alt="groupEvent"
+                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 g-0">
+                        <div class="d-flex flex-row flex-lg-column">
+                            <img src="{{ Vite::asset('resources/images/GE4.png') }}" alt="groupEvent"
+                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
+                            <img src="{{ Vite::asset('resources/images/GE5.png') }}" alt="groupEvent"
+                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
                         </div>
                     </div>
                 </div>
@@ -96,7 +101,7 @@
                         </div>
 
                         <div class="col justify-content-center align-item-center d-flex my-auto">
-                            <a href="{{ Route('bookingPicnic') }}">
+                            <a href="{{ Route('bookingGroupEvent') }}">
                                 <button class="btn btn-lg text-light fw-semibold rounded-4 me-3 mb-0"
                                     style="background-color:#114A06;">Booking</button>
                             </a>

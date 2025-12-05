@@ -1,76 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @php $currentStep = 2; @endphp
+
     @include('layouts.navbar.navbar_back')
     <div class="row">
         <div class="Payment">
-            {{-- Progress Bar --}}
-            <div class="container d-flex justify-content-center mt-5">
-                <div class="p-4 rounded-4 d-flex align-items-center justify-content-center gap-1 mb-4"
-                    style="background-color: #FFFFFF; width: 280px; height: 65px;">
 
-                    {{-- STEP 1 --}}
-                    <div class="text-center">
-                        <div class="step-circle fw-bold fs-4">1</div>
-                        <div class="fw-medium">Booking</div>
-                    </div>
+            @include('layouts.progressBar')
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="100" class="bi bi-arrow-right mb-4"
-                        viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                    </svg>
-
-                    {{-- STEP 2 --}}
-                    <div class="text-center">
-                        <div class="step-circle fw-bold fs-4">2</div>
-                        <div class="fw-medium">Payment</div>
-                    </div>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="100" class="bi bi-arrow-right mb-4"
-                        viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.146-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                    </svg>
-
-                    {{-- STEP 3 --}}
-                    <div class="text-center">
-                        <div class="step-circle fw-bold fs-4">3</div>
-                        <div class="fw-medium">Invoice</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container d-flex justify-content-center mt-4">
-                <div class="row d-flex justify-content-center align-items-start gap-5"
-                    style="width: 100%; max-width: 1200px;">
+            <div class="container mt-4">
+                <div class="row d-flex justify-content-center align-items-center gap-4 my-4">
 
                     <!-- CARD KIRI -->
-                    <div class="col justify-content-center align-items-center d-flex">
-                        <div class="" style="background-color: white; width: 350px; height: 270px; border-radius: 20px;">
-                            <p class="fs-3 text-success fw-semibold text-center mt-3">Select Payment Method</p>
+                    <div class="col-md-4 col-9 justify-content-center align-items-center d-flex bg-light rounded-4">
+                        <div class="my-3">
+                            <p class="fs-3 text-success fw-semibold text-center">Select Payment Method</p>
 
-                            <a href="#"
-                                class="fs-3 fw-semibold text-success border-bottom border-2 border-success-subtle text-decoration-none mb-3 mx-4" style="border-width: 700px;">Cash</a><br>
+                            <div class="row my-2 border-bottom border-3 border-success-subtle mx-2">
+                                <a href="#"
+                                    class="fs-3 fw-semibold text-success text-decoration-none"
+                                    style="border-width: 700px;">Cash</a><br>
+                            </div>
 
-                            <a href="#"
-                                class="fs-3 fw-semibold text-success border-bottom border-2 border-success-subtle text-decoration-none mb-3 mx-4">Virtual
-                                Account
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-chevron-up ms-5" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
-                                </svg>
-                            </a><br>
+                            <div class="row my-2 border-bottom border-3 border-success-subtle mx-2">
+                                <a href="#" data-bs-toggle="collapse" data-bs-target="#VirtualAccount"
+                                    class="fs-3 fw-semibold text-success text-decoration-none">Virtual
+                                    Account
+                                </a>
 
-                            <a href="#"
-                                class="fs-3 fw-semibold text-success border-bottom border-2 border-success-subtle text-decoration-none mb-3 mx-4">QRIS</a>
+                                <div class="row collapse ms-3 fs-3 fw-semibold my-2" id="VirtualAccount">
+                                    <a href="" class="text-success text-decoration-none">BCA</a>
+                                    <a href="" class="text-success text-decoration-none">BRI</a>
+                                    <a href="" class="text-success text-decoration-none">MANDIRI</a>
+                                    <a href="" class="text-success text-decoration-none">BPD BALI</a>
+                                </div>
+                            </div>
+
+                            <div class="row my-2 border-bottom border-3 border-success-subtle mx-2">
+                                <a href="#"
+                                    class="fs-3 fw-semibold text-success text-decoration-none">QRIS</a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- CARD KANAN -->
-                    <div class="col mb-4">
-                        <div class="p-4" style="background-color:white; width:650px; border-radius:20px;">
+                    <div class="col bg-light rounded-4 mx-2">
+                        <div class="p-4">
                             <!-- Order ID -->
                             <div class="row border-bottom pb-2 mb-3 border-3" style="border-color:#AFAFAF;">
                                 <div class="col">
@@ -174,10 +151,13 @@
                             </p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
-
+        <script>
+            document.querySelector('[data-bs-target="#VirtualAccount]').addEventListener('click', function () {
+                const icon = document.getElementById('virtualAccount');
+            });
+        </script>
 @endsection
