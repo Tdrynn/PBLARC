@@ -71,10 +71,10 @@
                         </div>
 
                         <div class="col align-item-center">
-                            <div class="d-flex gap-2">
+                            <div class="d-flex gap-2 w-100">
                                 <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}" width="25"
                                     height="25">
-                                <p class="fw-bold fs-5 text-dark me-5 my-auto">Show Availaibility</p>
+                                <p class="fw-bold fs-5 text-dark me-5 my-auto w-100">Show Availaibility</p>
                                 <div class="ms-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                         class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
@@ -86,12 +86,11 @@
                             </div>
                             <div class="d-flex gap-3">
                                 <div>
-                                    <label for="checkin" class="form-label fw-semibold">Check in Date</label>
-                                    <input type="date" class="form-control border-success" id="checkin">
+                                    <label for="date" class="form-label fw-semibold">Date</label>
+                                    <input type="date" class="form-control border-success" id="date">
                                 </div>
-                                <div>
-                                    <label for="checkout" class="form-label fw-semibold">Check out Date</label>
-                                    <input type="date" class="form-control border-success" id="checkout">
+                                <div class="text-light" background-color="#fff">
+                                    <input type="date" id="checkout" class="form-control text-none" style="color: #fff; background-color: #fff; border-color: #fff;" disabled>
                                 </div>
                             </div>
                         </div>
