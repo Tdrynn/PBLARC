@@ -5,25 +5,30 @@
 
     <div class="row">
         <div id="picnic" class="text-light LearnMore py-4 shadow-lg p-3">
-            <div class="container-fluid px-0 my-1 mt-2 mb-4">
-                <h1 class="text-center fw-bold text-dark mt-3">Picnic</h1>
+            <div class="container-fluid px-0">
+                <h1 class="text-center fw-bold text-dark mt-5">Picnic</h1>
 
-                <div class="row gx-0">
-                    <div class="col-md-6 d-flex justify-content-end pe-1">
-                        <img src="{{ Vite::asset('resources/images/PN1.png') }}" alt="Campervan"
-                            class="rounded-4 object-fit-cover" width="525px" height="364px">
+                <div class="row gap-2 d-flex justify-content-center">
+                    <div class="col-md-5">
+                        <img src="{{ Vite::asset('resources/images/PN1.png') }}" alt="Picnic"
+                            class="rounded-4 object-fit-cover img1-package p-1">
                     </div>
 
-                    <div class="col-md-6 ps-1">
-                        <div class="d-flex flex-wrap gap-1">
-                            <img src="{{ Vite::asset('resources/images/PN2.png') }}" alt="Campervan"
-                                class="rounded-4 object-fit-cover" width="300px" height="180px">
-                            <img src="{{ Vite::asset('resources/images/PN3.png') }}" alt="Campervan"
-                                class="rounded-4 object-fit-cover" width="300px" height="180px">
-                            <img src="{{ Vite::asset('resources/images/PN4.png') }}" alt="Campervan"
-                                class="rounded-4 object-fit-cover" width="300px" height="180px">
-                            <img src="{{ Vite::asset('resources/images/PN5.png') }}" alt="Campervan"
-                                class="rounded-4 object-fit-cover" width="300px" height="180px">
+                    <div class="col-md-3 g-0">
+                        <div class="d-flex flex-row flex-lg-column">
+                            <img src="{{ Vite::asset('resources/images/PN2.png') }}" alt="Picnic"
+                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
+                            <img src="{{ Vite::asset('resources/images/PN3.png') }}" alt="Picnic"
+                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 g-0">
+                        <div class="d-flex flex-row flex-lg-column">
+                            <img src="{{ Vite::asset('resources/images/PN4.png') }}" alt="Picnic"
+                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
+                            <img src="{{ Vite::asset('resources/images/PN5.png') }}" alt="Picnic"
+                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
                         </div>
                     </div>
                 </div>
@@ -64,7 +69,7 @@
 
                 <div class="container bg-white text-dark rounded-4 p-3 shadow-sm">
                     <div class="row gap-2">
-                        <div class="col-md-6 col-12 ms-3 my-auto">
+                        <div class="col-md-6 col-12 my-auto">
                             <h5 class="fw-bold">Price</h5>
                             <p class="my-0">IDR 15k /person(adult)</p>
                             <p class="my-0">IDR 10k/child(above 5 years old)</p>
@@ -72,25 +77,24 @@
 
                         <div class="col align-item-center">
                             <div class="d-flex gap-2 w-100">
-                                <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}" width="25"
-                                    height="25">
-                                <p class="fw-bold fs-5 text-dark me-5 my-auto w-100">Show Availaibility</p>
-                                <div class="ms-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                        class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
-                                        <title>Ready To Book</title>
-                                        <path
-                                            d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
-                                    </svg>
-                                </div>
+                                <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}" width="30"
+                                    height="30">
+                                <p class="fw-bold fs-5 text-dark my-auto">Show Availaibility</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                    class="bi bi-patch-check-fill text-success my-auto" viewBox="0 0 16 16">
+                                    <title>Ready To Book</title>
+                                    <path
+                                        d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+                                </svg>
                             </div>
                             <div class="d-flex gap-3">
-                                <div>
+                                <div class="mt-1">
                                     <label for="date" class="form-label fw-semibold">Date</label>
                                     <input type="date" class="form-control border-success" id="date">
                                 </div>
                                 <div class="text-light" background-color="#fff">
-                                    <input type="date" id="checkout" class="form-control text-none" style="color: #fff; background-color: #fff; border-color: #fff;" disabled>
+                                    <input type="date" id="checkout" class="form-control text-none"
+                                        style="color: #fff; background-color: #fff; border-color: #fff;" disabled>
                                 </div>
                             </div>
                         </div>

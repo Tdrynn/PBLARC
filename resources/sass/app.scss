@@ -100,6 +100,16 @@ input[type=number] {
     min-height: auto;
 }
 
+.img1-package {
+    width: 525px;
+    height: 364px;
+}
+
+.img2-package {
+    width: 320px;
+    height: 180px;
+}
+
 .Booking {
     background: url('../images/Booking.png') center/cover no-repeat;
     background-size: cover;
@@ -217,21 +227,40 @@ input[type=number] {
 }
 
 .step-circle {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    border: 3px solid #2f472f;
+    border: 3px solid #244C2C;
+    color: #244C2C;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-weight: 350;
+    align-items: center;
     margin: auto;
+    font-weight: bold;
 }
 
-.step-active {
-    background-color: #2f472f;
-    color: #fff;
+.step-circle.active {
+    background-color: #244C2C;
+    color: white !important;
 }
+
+.step-label {
+    color: #2b2b2b;
+}
+
+.step-label.active-text {
+    color: #244C2C !important;
+    font-weight: 600;
+}
+
+.arrow {
+    fill: #1f1f1f;
+}
+
+.active-arrow {
+    fill: #244C2C !important;
+}
+
 
 .addon-input {
     width: 80px !important;
@@ -279,6 +308,19 @@ input[type=number] {
 
     .button-profile {
         width: 50%;
+    }
+
+    .img1-package {
+        width: 395px;
+        height: 364px;
+    }
+
+    .img2-package {
+        position: center;
+        width: 190px;
+        height: 180px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
