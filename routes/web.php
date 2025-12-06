@@ -41,7 +41,7 @@ Route::get('/package', function () {
     return view('user.package');
 })->name('package');
 
-Route::get('/reviewList', function() {
+Route::get('/reviewList', function () {
     return view('user.review_list');
 })->name('reviewList');
 
@@ -55,6 +55,9 @@ Route::middleware(['auth'])->group(function () {
     })->name('profile');
 
     Route::get('/history', function () {
+        return view('user.history');
+    })->name('history');
+    Route::post('/history', function () {
         return view('user.history');
     })->name('history');
 
@@ -108,4 +111,3 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
 });
-
