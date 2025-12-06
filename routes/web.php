@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChangePassController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -110,4 +111,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
+    Route::put('/update-pass', [ChangePassController::class, 'update'])->name('updatepass');
 });
