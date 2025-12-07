@@ -9,8 +9,19 @@
             {{-- Review Form --}}
             <div class="rounded-5 bg-white w-75 w-md-75 w-lg-50 p-3 position-fixed top-50 start-50 translate-middle">
                 <h3 class="fw-bold fs-2 border-bottom border-2 p-2 border-dark m-1">Leave a Review</h3>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-                <form action="" class="m-3">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
+                <form action={{ route('review.store') }} method="POST" class="m-3">
+                    @csrf
                     {{-- Star Review --}}
                     <div class="d-flex gap-4 simple-rating justify-content-center my-auto "
                         style="cursor:pointer; user-select:none;">
@@ -18,10 +29,10 @@
                             <svg class="star" data-value="{{ $i }}" xmlns="http://www.w3.org/2000/svg"
                                 width="80" height="80" fill="none" viewBox="-2 -2 20 20">
                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173
-                                            6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927
-                                            0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522
-                                            3.356.83 4.73c.078.443-.36.79-.746.592L8
-                                            13.187l-4.389 2.256z" />
+                                                        6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927
+                                                        0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522
+                                                        3.356.83 4.73c.078.443-.36.79-.746.592L8
+                                                        13.187l-4.389 2.256z" />
                             </svg>
                         @endfor
                     </div>
@@ -29,9 +40,9 @@
                     <input type="hidden" id="ratingValue" name="rating">
 
                     {{-- Review Box --}}
-                    <div class="mt-3>
+                    <div class="mt-3">
                         <label class=" form-label fw-semibold fs-4">Share your
-                        experience for this place</label>
+                            experience for this place</label>
                         <textarea class="form-control border-success fs-5" rows="5" name="review"></textarea>
                     </div>
 
