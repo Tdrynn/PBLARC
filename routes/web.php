@@ -7,7 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChangePassController;
 
 Route::middleware('redirect.auth')->group(function () {
-    Route::get('/', fn() => view('welcome'))->name('welcome');
+    Route::get('/', [ReviewController::class, 'welcome'])->name('welcome');
 });
 
 Route::get('/login', function () {
@@ -40,14 +40,11 @@ Route::get('/package', function () {
     return view('user.package');
 })->name('package');
 
-Route::get('/reviewList', function () {
-    return view('user.review_list');
-})->name('reviewList');
+Route::get('/reviewList', [ReviewController::class, 'index'])->name('reviewList');
+
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', function () {
-        return view('user.home');
-    })->name('home');
+    Route::get('/home', [ReviewController::class, 'home'])->name('home');
 
     Route::get('/profile', function () {
         return view('user.profile');
@@ -110,6 +107,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
     Route::put('/update-pass', [ChangePassController::class, 'update'])->name('updatepass');
+
     Route::get('/review', fn() => view('user.review'))->name('review');
     Route::post('review/store', [ReviewController::class, 'store'])->name('review.store');
+    Route::get('/reviewList/all', [ReviewController::class, 'all'])->name('reviewList.all');
 });

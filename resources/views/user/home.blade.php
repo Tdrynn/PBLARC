@@ -5,7 +5,8 @@
 
     <div class="row">
         {{-- Home Section --}}
-        <section id="home" class="container HomePage1 d-flex align-items-center justify-content-center text-white" style="background-color:  tomato;">
+        <section id="home" class="container HomePage1 d-flex align-items-center justify-content-center text-white"
+            style="background-color:  tomato;">
             <div class="row">
                 <div class="col-md-8 ms-3">
                     <div class="ms-2">
@@ -18,8 +19,8 @@
                             class="btn btn-success d-flex align-items-center gap-2 px-4 py-2 mb-3"
                             style="background-color: #B5C7B2; color: #114A06; border-radius: 64px; height: 60px; width: 250px; font-size: 20px;">
                             <span class="fw-bold mx-auto">BOOKING NOW</span>
-                            <img src="{{ Vite::asset('resources/images/BookingLogo.png') }}" alt="Booking Icon" width="30"
-                                height="30">
+                            <img src="{{ Vite::asset('resources/images/BookingLogo.png') }}" alt="Booking Icon"
+                                width="30" height="30">
                         </a>
 
                         {{-- Sosial Media --}}
@@ -85,7 +86,8 @@
                     <a href="{{ '#' }}" class="btn d-flex align-items-center justify-content-center gap-2"
                         style="background-color: #1F2922; color: #FFFFFF; border-radius: 64px; height: 60px; width: 250px; font-size: 20px;">
                         <span class="fw-bold">FIND OUT MORE</span>
-                        <img src="{{ Vite::asset('resources/images/Search.png') }}" alt="Search" width="28" height="28">
+                        <img src="{{ Vite::asset('resources/images/Search.png') }}" alt="Search" width="28"
+                            height="28">
                     </a>
                 </div>
             </div>
@@ -95,8 +97,7 @@
         <section id="gallery"
             class="container text-center flex-column align-items-center justify-content-center HomePage3 py-5 text-white">
 
-            <div id="galleryCarousel" class="carousel slide mt-5" data-bs-ride="carousel"
-                data-bs-interval="4000">
+            <div id="galleryCarousel" class="carousel slide mt-5" data-bs-ride="carousel" data-bs-interval="4000">
                 <h1 class="fw-bold mb-5" style="font-size: 3rem;">OUR GALLERY</h1>
                 <div class="carousel-inner" width="500" height="500">
 
@@ -151,20 +152,20 @@
                     </div>
 
                 </div>
-                    <!-- Controls -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon bg-light rounded-circle p-3 bg-dark"
-                            aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-light rounded-circle p-3 bg-dark"
+                        aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
 
-                    <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon bg-light rounded-circle p-3 bg-dark"
-                            aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-light rounded-circle p-3 bg-dark"
+                        aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </section>
 
@@ -175,37 +176,35 @@
             <div class="row align-items-center gap-3 d-flex d-md-flex flex-md-row flex-column">
                 <div class="col-md-6 justify-content-center" style="width: 400px; height: auto;">
                     <a href="{{ Route('reviewList') }}" class="text-decoration-none text-white align-items-center">
-                        <h1 class="fw-bold text-center" style="font-size: 100px;">4,4</h1>
-                        <h1 class="fw-bold text-center" style="font-size: 60px;">★★★★★</h1>
-                        <h5 class="text-center">Based on 70 Review</h5>
+                        <h1 class="fw-bold text-center" style="font-size: 100px;">
+                            {{ number_format($averageRating, 1) }}
+                        </h1>
+
+                        <h1 class="fw-bold text-center" style="font-size: 60px;">
+                            {{ str_repeat('★', round($averageRating)) }}
+                        </h1>
+                        <h5 class="text-center">
+                            Based on {{ $totalReviews }} Review{{ $totalReviews > 1 ? 's' : '' }}
+                        </h5>
                     </a>
                 </div>
-                <div class="col-md-6 align-items-center justify-content-center"
-                    style="width: 400px; height: auto; background: rgba(8, 6, 6, 0.3); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 20px;">
-                    <div class="d-flex align-items-center gap-3 text-white align-items-center">
-                        <img src="{{ Vite::asset('resources/images/Logo.png') }}" alt="Foto" width="50" height="50">
-                        <h1>Andika JP</h1>
+                @foreach ($reviews as $review)
+                    <div class="col-md-6 align-items-center justify-content-center"
+                        style="width: 400px; height: auto; background: rgba(8, 6, 6, 0.3); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 20px;">
+
+                        <div class="d-flex align-items-center gap-3 text-white">
+                            <img src="{{ Vite::asset('resources/images/Logo.png') }}" alt="Foto" width="50"
+                                height="50">
+                            <h1>{{ $review->name }}</h1>
+                        </div>
+
+                        <h4>{{ number_format($review->rating, 1) }} ★★★★★</h4>
+
+                        <p>{{ $review->review }}</p>
                     </div>
-                    <h4>4,4 ★★★★★</h4>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo vero autem deleniti explicabo
-                        repellendus facilis placeat accusantium, nesciunt deserunt delectus, doloremque cum. Dolore
-                        odit
-                        dolor repellendus, aperiam a tempore natus?</p>
-                </div>
-                <div class="col-md-6 align-items-center justify-content-center"
-                    style="width: 400px; height: auto; background: rgba(8, 6, 6, 0.3); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 20px;">
-                    <div class="d-flex align-items-center gap-3 text-white align-items-center">
-                        <img src="{{ Vite::asset('resources/images/Logo.png') }}" alt="Foto" width="50" height="50">
-                        <h1>Andika JP</h1>
-                    </div>
-                    <h4>4,4 ★★★★★</h4>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo vero autem deleniti explicabo
-                        repellendus facilis placeat accusantium, nesciunt deserunt delectus, doloremque cum. Dolore
-                        odit
-                        dolor repellendus, aperiam a tempore natus?</p>
-                </div>
+                @endforeach
             </div>
-            
+
             <a href="{{ Route('reviewList') }}" class="my-5 text-decoration-none text-white">
                 <h3>See All Review</h3>
             </a>
