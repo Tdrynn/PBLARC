@@ -89,24 +89,24 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="d-flex gap-3">
-                                <div>
-                                    <label for="checkin" class="form-label fw-semibold">Check in Date</label>
-                                    <input type="date" class="form-control border-success" id="checkin">
+                            <form action="{{ Route('bookingCampervan') }}">
+                                <div class="d-flex gap-3">
+                                    <div>
+                                        <label for="checkin" class="form-label fw-semibold">Check in Date</label>
+                                        <input type="date" class="form-control border-success" id="checkin" required>
+                                    </div>
+                                    <div>
+                                        <label for="checkout" class="form-label fw-semibold">Check out Date</label>
+                                        <input type="date" class="form-control border-success" id="checkout" required>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label for="checkout" class="form-label fw-semibold">Check out Date</label>
-                                    <input type="date" class="form-control border-success" id="checkout">
-                                </div>
-                            </div>
                         </div>
 
                         <div class="col justify-content-center align-item-center d-flex my-auto">
-                            <a href="{{ Route('bookingCampervan') }}">
-                                <button class="btn btn-lg text-light fw-semibold rounded-4 me-3 mb-0"
-                                    style="background-color:#114A06;">Booking</button>
-                            </a>
+                            <button class="btn btn-lg text-light fw-semibold rounded-4 me-3 mb-0"
+                                style="background-color:#114A06;">Booking</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
