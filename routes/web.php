@@ -107,6 +107,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
     Route::put('/update-pass', [ChangePassController::class, 'update'])->name('updatepass');
+
     Route::get('/review', fn() => view('user.review'))->name('review');
     Route::post('review/store', [ReviewController::class, 'store'])->name('review.store');
+    Route::get('/reviewList/all', [ReviewController::class, 'all'])->name('reviewList.all');
 });

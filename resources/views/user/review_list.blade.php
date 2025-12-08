@@ -38,9 +38,10 @@
             </div>
 
 
-            <a href="{{ $reviews->nextPageUrl() }}" class="my-4 text-white text-decoration-none">
-                <h5>Load More</h5>
+            <a href="{{ route('reviewList.all') }}" class="my-4 text-white text-decoration-none">
+                <h5>Show All Reviews</h5>
             </a>
+
 
         </section>
     </div>
