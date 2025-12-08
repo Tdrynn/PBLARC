@@ -8,6 +8,23 @@
                 <img src="{{ Vite::asset('resources/images/LogoCLR.png') }}" alt="Logo" width="60">
                 <h4 style="font-weight: 700;">Log in to your account</h4>
                 <p style="font-size: 14px; color: #555;">Your amazing camping will begin here</p>
+
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form method="POST" action="/login">
                     @csrf
                     <div class="m-2">
@@ -33,6 +50,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

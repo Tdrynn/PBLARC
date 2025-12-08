@@ -31,7 +31,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('login')->with('success', 'Akun berhasil dibuat');
+        return redirect()->route('login')->with('success', 'Account created successfully');
     }
 
     //login
@@ -60,7 +60,7 @@ class AuthController extends Controller
             return redirect('/home');
         }
 
-        return back()->with('error', 'Email atau password salah!');
+        return back()->with('error', 'Incorrect email or password');
     }
 
     public function logout(Request $request)
