@@ -6,12 +6,9 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChangePassController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-Route::post('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::middleware('redirect.auth')->group(function () {
+    Route::get('/', fn() => view('welcome'))->name('welcome');
+});
 
 Route::get('/login', function () {
     return view('auth.login'); // perhatikan: gunakan "auth.login" dengan titik
