@@ -6,33 +6,52 @@
     <div class="row">
         <section id="reviewList"
             class="HomePage4 text-white d-flex align-items-center justify-content-center flex-column container gap-3">
+
             <div class="row mt-5">
+
                 <div class="col-md-6 justify-content-center text-white align-items-center w-100 my-3" style="height: auto;">
                     <h1 class="fw-bold text-center">Our Rating</h1>
                     <h1 class="fw-bold text-center" style="font-size: 100px;">
                         {{ number_format($averageRating, 1) }}
                     </h1>
-
+                    @php
+                        $avgFilled = round($averageRating);
+                        $avgEmpty = 5 - $avgFilled;
+                    @endphp
                     <h1 class="fw-bold text-center" style="font-size: 60px;">
-                        {{ str_repeat('★', round($averageRating)) }}
+                        {{ str_repeat('★', $avgFilled) }}{{ str_repeat('☆', $avgEmpty) }}
                     </h1>
                 </div>
             </div>
 
-            <div class="row align-items-center gap-3 d-flex d-md-flex flex-md-row flex-column">
+            <div class="row align-items-center gap-3 d-flex d-md-flex flex-md-row flex-column justify-content-center">
                 @foreach ($reviews as $review)
+
+                    @php
+                        $filled = round($review->rating);
+                        $empty = 5 - $filled;
+                    @endphp
+
                     <div class="col-md-6 align-items-center justify-content-center"
                         style="width: 400px; height: auto; background: rgba(8, 6, 6, 0.3); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 20px;">
 
                         <div class="d-flex align-items-center gap-3 text-white align-items-center">
-                            <img src="{{ Vite::asset('resources/images/Logo.png') }}" alt="Foto" width="50"
-                                height="50">
+                            <img src="{{ Vite::asset('resources/images/Logo.png') }}" alt="Foto" width="50" height="50">
                             <h1>{{ $review->name }}</h1>
                         </div>
 
-                        <h4>{{ number_format($review->rating, 1) }} ★★★★★</h4>
+                        <div>
+                            <h3>
+                                {{ number_format($review->rating, 1) }}
+                                {{ str_repeat('★', $filled) }}{{ str_repeat('☆', $empty) }}
+                            </h3>
 
-                        <p>{{ $review->review }}</p>
+                            <small class="text-white-50 text-end">
+                                {{ $review->created_at->format('d M Y') }}
+                            </small>
+                        </div>
+
+                        <p class="fs-4">{{ $review->review }}</p>
                     </div>
                 @endforeach
             </div>

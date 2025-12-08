@@ -3,20 +3,16 @@
 @section('content')
     @php $currentStep = 1; @endphp
 
-    @include('layouts.navbar.navbar_camping')
+    @include('layouts.navbar.navbar_picnic')
     <div class="row">
         <div class="Booking">
 
             @include('layouts.progressBar')
 
             {{-- Form Booking --}}
-            <div class="d-flex flex-column mx-auto mt-3 mb-5 rounded-5"
-                style="background-color: #FFFFFF; width: 60%; height: auto;">
-                <div class="mt-4">
-                    <p class="text-success mb-0 text-center">Fill in the details below to make a reservation.</p>
-                </div>
-
-                <div class="w-75 justify-content-center align-items-center mx-auto mt-0">
+            <div class="d-flex flex-column mx-auto mt-3 mb-5 rounded-5 booking-form">
+                <div class="justify-content-center align-items-center mx-auto mt-0" style="width: 85%">
+                    <p class="text-success mb-0 text-center mt-4">Fill in the details below to make a reservation.</p>
                     <form>
                         <div class="mb-2">
                             <label for="name" class="form-label fw-semibold">Reservation Name</label>
@@ -35,37 +31,40 @@
 
                         <div class="mb-2 container p-0">
                             <div class="row">
+                                <div class="col col-6">
+                                    <label for="checkin" class="form-label fw-semibold">Check in Date</label>
+                                    <input type="date" class="form-control border-success w-75" id="checkin">
+                                </div>
+
                                 <div class="col">
-                                    <label for="participants" class="form-label fw-semibold">Number of participants</label>
-                                    <input type="number" class="form-control border-success w-50" id="participants"
-                                        required>
+                                    
                                 </div>
 
-                                <div class="col flex-column">
-                                    <label for="adult" class="form-label fw-semibold">Adult</label>
-                                    <input type="number" class="form-control border-success w-50" id="adult">
-                                </div>
-
-                                <div class="col flex-column ">
-                                    <label for="child" class="form-label fw-semibold">Child (Above 5 y.o)</label>
-                                    <input type="number" class="form-control border-success w-50" id="child">
+                                <div class="col">
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-2 container p-0">
                             <div class="row">
-                                <div class="col">
-                                    <label for="checkin" class="form-label fw-semibold">Check in Date</label>
-                                    <input type="date" class="form-control border-success w-75" id="checkin">
+                                <div class="col col-6">
+                                    <label for="participants" class="form-label fw-semibold">Number of participants</label>
+                                    <input type="number" class="form-control border-success w-75" id="participants"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-2 container p-0">
+                            <div class="row">
+                                <div class="col col-4 my-auto">
+                                    <label for="adult" class="form-label fw-semibold">Adult</label>
+                                    <input type="number" class="form-control border-success w-75" id="adult">
                                 </div>
 
-                                <div class="col">
-                                    <label for="checkout" class="form-label fw-semibold">Check out Date</label>
-                                    <input type="date" class="form-control border-success w-75" id="checkout">
-                                </div>
-
-                                <div class="col">
+                                <div class="col col-4 my-auto">
+                                    <label for="child" class="form-label fw-semibold">Child (Above 5 y.o)</label>
+                                    <input type="number" class="form-control border-success w-75" id="child">
                                 </div>
                             </div>
                         </div>

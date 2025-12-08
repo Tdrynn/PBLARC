@@ -5,22 +5,21 @@
 
     <div class="row">
         {{-- Home Section --}}
-        <section id="home" class="container HomePage1 d-flex align-items-center justify-content-center text-white"
-            style="background-color:  tomato;">
+        <section id="home" class="container HomePage1 d-flex align-items-center justify-content-center text-white">
             <div class="row">
-                <div class="col-md-8 ms-3">
+                <div class="col-md-8">
                     <div class="ms-2">
                         <h1 class="fw-bold" style="font-size: 5rem;">Angklung River Camp</h1>
-                        <p class="fs-2">Angklung River Camp is a serene riverside camping site in Klungkung, Bali,
+                        <p class="fs-1">Angklung River Camp is a serene riverside camping site in Klungkung, Bali,
                             perfect for nature lovers seeking a peaceful escape.</p>
 
                         {{-- Button Booking --}}
                         <a href="{{ route('package') }}"
-                            class="btn btn-success d-flex align-items-center gap-2 px-4 py-2 mb-3"
+                            class="btn btn-success d-flex align-items-center gap-2 px-4 py-2 my-4"
                             style="background-color: #B5C7B2; color: #114A06; border-radius: 64px; height: 60px; width: 250px; font-size: 20px;">
                             <span class="fw-bold mx-auto">BOOKING NOW</span>
-                            <img src="{{ Vite::asset('resources/images/BookingLogo.png') }}" alt="Booking Icon"
-                                width="30" height="30">
+                            <img src="{{ Vite::asset('resources/images/BookingLogo.png') }}" alt="Booking Icon" width="30"
+                                height="30">
                         </a>
 
                         {{-- Sosial Media --}}
@@ -83,11 +82,10 @@
 
 
                     <!-- Find Out More Button -->
-                    <a href="{{ '#' }}" class="btn d-flex align-items-center justify-content-center gap-2"
+                    <a href="{{ Route('FindOut') }}" class="btn d-flex align-items-center justify-content-center gap-2"
                         style="background-color: #1F2922; color: #FFFFFF; border-radius: 64px; height: 60px; width: 250px; font-size: 20px;">
                         <span class="fw-bold">FIND OUT MORE</span>
-                        <img src="{{ Vite::asset('resources/images/Search.png') }}" alt="Search" width="28"
-                            height="28">
+                        <img src="{{ Vite::asset('resources/images/Search.png') }}" alt="Search" width="28" height="28">
                     </a>
                 </div>
             </div>
@@ -153,17 +151,13 @@
 
                 </div>
                 <!-- Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon bg-light rounded-circle p-3 bg-dark"
-                        aria-hidden="true"></span>
+                <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-light rounded-circle p-3 bg-dark" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
 
-                <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon bg-light rounded-circle p-3 bg-dark"
-                        aria-hidden="true"></span>
+                <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-light rounded-circle p-3 bg-dark" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
@@ -180,8 +174,13 @@
                             {{ number_format($averageRating, 1) }}
                         </h1>
 
+                        @php
+                            $avgFilled = round($averageRating);
+                            $avgEmpty = 5 - $avgFilled;
+                        @endphp
+
                         <h1 class="fw-bold text-center" style="font-size: 60px;">
-                            {{ str_repeat('★', round($averageRating)) }}
+                            {{ str_repeat('★', $avgFilled) }}{{ str_repeat('☆', $avgEmpty) }}
                         </h1>
                         <h5 class="text-center">
                             Based on {{ $totalReviews }} Review{{ $totalReviews > 1 ? 's' : '' }}
@@ -193,12 +192,25 @@
                         style="width: 400px; height: auto; background: rgba(8, 6, 6, 0.3); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 20px;">
 
                         <div class="d-flex align-items-center gap-3 text-white">
-                            <img src="{{ Vite::asset('resources/images/Logo.png') }}" alt="Foto" width="50"
-                                height="50">
+                            <img src="{{ Vite::asset('resources/images/Logo.png') }}" alt="Foto" width="50" height="50">
                             <h1>{{ $review->name }}</h1>
                         </div>
 
-                        <h4>{{ number_format($review->rating, 1) }} ★★★★★</h4>
+                        @php
+                            $filled = round($review->rating);
+                            $empty = 5 - $filled;
+                        @endphp
+
+                        <div>
+                            <h3>
+                                {{ number_format($review->rating, 1) }}
+                                {{ str_repeat('★', $filled) }}{{ str_repeat('☆', $empty) }}
+                            </h3>
+
+                            <small class="text-white-50 text-end">
+                                {{ $review->created_at->format('d M Y') }}
+                            </small>
+                        </div>
 
                         <p>{{ $review->review }}</p>
                     </div>

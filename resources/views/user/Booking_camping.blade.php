@@ -11,11 +11,11 @@
 
             {{-- Form Booking --}}
             <div class="d-flex flex-column mx-auto mt-3 mb-5 rounded-5 form-booking">
-                <div class="mt-4">
-                    <p class="text-success mb-0 text-center">Fill in the details below to make a reservation.</p>
-                </div>
 
-                <div class="w-75 justify-content-center align-items-center mx-auto mt-0">
+                <div class="justify-content-center align-items-center mx-auto mt-0" style="width: 85%">
+
+                    <p class="mt-4 text-success mb-0 text-center">Fill in the details below to make a reservation.</p>
+
                     <form>
                         <div class="mb-2">
                             <label for="name" class="form-label fw-semibold">Reservation Name</label>
@@ -34,35 +34,35 @@
 
                         <div class="mb-2 container p-0">
                             <div class="row">
-                                <div class="col">
-                                    <label for="participants" class="form-label fw-semibold">Number of participants</label>
-                                    <input type="number" class="form-control border-success w-50" id="participants">
+                                <div class="col col-4">
+                                    <label for="checkin" class="form-label fw-semibold">Check in Date</label>
+                                    <input type="date" class="form-control border-success w-75" id="checkin">
                                 </div>
 
-                                <div class="col flex-column">
-                                    <label for="tent" class="form-label fw-semibold">Tent</label>
-                                    <input type="number" class="form-control border-success w-75" id="tent">
+                                <div class="col col-4">
+                                    <label for="checkout" class="form-label fw-semibold">Check out Date</label>
+                                    <input type="date" class="form-control border-success w-75" id="checkout">
                                 </div>
 
                                 <div class="col">
-
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-2 container p-0">
                             <div class="row">
-                                <div class="col">
-                                    <label for="checkin" class="form-label fw-semibold">Check in Date</label>
-                                    <input type="date" class="form-control border-success w-75" id="checkin">
+                                <div class="col col-4">
+                                    <label for="participants" class="form-label fw-semibold">Number of participants</label>
+                                    <input type="number" class="form-control border-success w-50" id="participants">
+                                </div>
+
+                                <div class="col col-4">
+                                    <label for="tent" class="form-label fw-semibold">Number of Tent</label>
+                                    <input type="number" class="form-control border-success w-50" id="tent">
                                 </div>
 
                                 <div class="col">
-                                    <label for="checkout" class="form-label fw-semibold">Check out Date</label>
-                                    <input type="date" class="form-control border-success w-75" id="checkout">
-                                </div>
 
-                                <div class="col">
                                 </div>
                             </div>
                         </div>

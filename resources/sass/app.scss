@@ -3,6 +3,7 @@
 body,
 html {
     overflow-x: hidden !important;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 input::-webkit-outer-spin-button,
@@ -52,6 +53,20 @@ input[type=number] {
     background-repeat: no-repeat;
     width: 100%;
     min-height: 100vh;
+}
+
+.FindOut {
+    background-color: #344539;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.FindOut-img {
+    width: 30rem;
+    height: 20rem;
 }
 
 .HomePage5 {
@@ -274,6 +289,12 @@ input[type=number] {
     margin: 0;
 }
 
+.booking-form {
+    background-color: #FFFFFF; 
+    width: 60%; 
+    height: auto;
+}
+
 @media (max-width: 768px) {
     .login-card {
         width: 90%;
@@ -321,6 +342,17 @@ input[type=number] {
         height: 180px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .FindOut-img {
+        width: 23rem;
+        height: 15rem;
+    }
+
+    .booking-form {
+        background-color: #FFFFFF; 
+        width: 90%; 
+        height: auto;
     }
 }
 
