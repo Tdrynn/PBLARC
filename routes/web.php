@@ -40,6 +40,10 @@ Route::get('/package', function () {
     return view('user.package');
 })->name('package');
 
+Route::get('/FindOut', function() {
+    return view('user.FindOut');
+})->name('FindOut');
+
 Route::get('/reviewList', [ReviewController::class, 'index'])->name('reviewList');
 
 

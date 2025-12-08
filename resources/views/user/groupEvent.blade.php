@@ -69,27 +69,25 @@
 
                 <div class="container bg-white text-dark rounded-4 p-3 shadow-sm">
                     <div class="row gap-2">
-                        <div class="col-md-6 col-12 ms-3 my-auto">
+                        <div class="col-md-5 col-12 ms-3 my-auto">
                             <h5 class="fw-bold">Price</h5>
                             <p class="my-0">IDR 15k /Event</p>
                         </div>
 
-                        <div class="col align-item-center">
+                        <div class="col-md-4 col-12 align-item-center">
                             <div class="d-flex gap-2">
                                 <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}" width="25"
                                     height="25">
-                                <p class="fw-bold fs-5 text-dark me-5 my-auto">Show Availaibility</p>
-                                <div class="ms-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                        class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
-                                        <title>Ready To Book</title>
-                                        <path
-                                            d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
-                                    </svg>
-                                </div>
+                                <h5 class="fw-bold text-dark my-auto">Show Availaibility</h5>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                    class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
+                                    <title>Ready To Book</title>
+                                    <path
+                                        d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+                                </svg>
                             </div>
                             <form action="{{ Route('bookingGroupEvent') }}">
-                                <div class="d-flex gap-3">
+                                <div class="d-flex gap-2 mt-1">
                                     <div>
                                         <label for="checkin" class="form-label fw-semibold">Check in Date</label>
                                         <input type="date" class="form-control border-success" id="checkin" required>
