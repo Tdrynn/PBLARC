@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChangePassController;
 
@@ -112,4 +113,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
     Route::put('/update-pass', [ChangePassController::class, 'update'])->name('updatepass');
+    Route::get('/review', fn() => view('user.review'))->name('review');
+    Route::post('review/store', [ReviewController::class, 'store'])->name('review.store');
 });
