@@ -8,211 +8,210 @@
         <p class="fs-5 fw-semibold my-auto">Add-ons (optional)</p>
     </div>
 
-    <p class="text-success text-center">Enter the amount if you want to rent, leave it blank if
-        you don't want to rent.</p>
+    <p class="text-success text-center">Enter the amount if you want to rent, leave it blank if you don't want to rent.
+    </p>
 
+    <!-- START ADDONS -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <!-- 1. Flysheet -->
         <div class="col">
             <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Flysheet 3x3</h6>
-                <p class="text-muted mb-2">IDR 25K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                <h6 class="fw-semibold">Flysheet 3x3</h6>
+                <p class="text-muted">IDR 25K</p>
+                <div class="d-flex justify-content-center gap-2">
                     <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="flysheet">−</button>
-                    <input type="number" id="flysheet" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
+                        data-input="addon_1">−</button>
+                    <input type="number" id="addon_1" name="addons[1]" class="form-control form-control-sm text-center"
+                        value="0" min="0" style="width:60px;">
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="flysheet">+</button>
+                        data-input="addon_1">+</button>
                 </div>
             </div>
         </div>
 
+        <!-- 2. Small Stove -->
         <div class="col">
             <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Small Stove</h6>
-                <p class="text-muted mb-2">IDR-10K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                <h6 class="fw-semibold">Small Stove</h6>
+                <p class="text-muted">IDR 10K</p>
+                <div class="d-flex justify-content-center gap-2">
                     <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="smallStove">−</button>
-                    <input type="number" id="smallStove" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
+                        data-input="addon_2">−</button>
+                    <input type="number" id="addon_2" name="addons[2]" class="form-control form-control-sm text-center"
+                        value="0" min="0" style="width:60px;">
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="smallStove">+</button>
+                        data-input="addon_2">+</button>
                 </div>
             </div>
         </div>
 
+        <!-- 3. Regular Mat -->
         <div class="col">
             <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Regular Mat</h6>
-                <p class="text-muted mb-2">IDR-10K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
+                <h6 class="fw-semibold">Regular Mat</h6>
+                <p class="text-muted">IDR 10K</p>
+                <div class="d-flex justify-content-center gap-2">
                     <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="regularMat">−</button>
-                    <input type="number" id="regularMat" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
+                        data-input="addon_3">−</button>
+                    <input type="number" id="addon_3" name="addons[3]" class="form-control form-control-sm text-center"
+                        value="0" min="0" style="width:60px;">
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="regularMat">+</button>
+                        data-input="addon_3">+</button>
                 </div>
             </div>
         </div>
+
+        <!-- 4. Portable Stove -->
+        <div class="col">
+            <div class="p-3 text-center">
+                <h6 class="fw-semibold">Portable Stove</h6>
+                <p class="text-muted">IDR 15K</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                        data-input="addon_4">−</button>
+                    <input type="number" id="addon_4" name="addons[4]" class="form-control form-control-sm text-center"
+                        value="0" min="0" style="width:60px;">
+                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                        data-input="addon_4">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Sleeping Bag -->
+        <div class="col">
+            <div class="p-3 text-center">
+                <h6 class="fw-semibold">Sleeping Bag</h6>
+                <p class="text-muted">IDR 15K</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                        data-input="addon_5">−</button>
+                    <input type="number" id="addon_5" name="addons[5]" class="form-control form-control-sm text-center"
+                        value="0" min="0" style="width:60px;">
+                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                        data-input="addon_5">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Grill Pan -->
+        <div class="col">
+            <div class="p-3 text-center">
+                <h6 class="fw-semibold">Grill Pan</h6>
+                <p class="text-muted">IDR 15K</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                        data-input="addon_6">−</button>
+                    <input type="number" id="addon_6" name="addons[6]" class="form-control form-control-sm text-center"
+                        value="0" min="0" style="width:60px;">
+                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                        data-input="addon_6">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Folding Chair -->
+        <div class="col">
+            <div class="p-3 text-center">
+                <h6 class="fw-semibold">Folding Chair</h6>
+                <p class="text-muted">IDR 15K</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                        data-input="addon_7">−</button>
+                    <input type="number" id="addon_7" name="addons[7]" class="form-control form-control-sm text-center"
+                        value="0" min="0" style="width:60px;">
+                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                        data-input="addon_7">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Nesting -->
+        <div class="col">
+            <div class="p-3 text-center">
+                <h6 class="fw-semibold">Nesting</h6>
+                <p class="text-muted">IDR 15K</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                        data-input="addon_8">−</button>
+                    <input type="number" id="addon_8" name="addons[8]" class="form-control form-control-sm text-center"
+                        value="0" min="0" style="width:60px;">
+                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                        data-input="addon_8">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Folding Table -->
+        <div class="col">
+            <div class="p-3 text-center">
+                <h6 class="fw-semibold">Folding Table</h6>
+                <p class="text-muted">IDR 20K</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                        data-input="addon_9">−</button>
+                    <input type="number" id="addon_9" name="addons[9]" class="form-control form-control-sm text-center"
+                        value="0" min="0" style="width:60px;">
+                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                        data-input="addon_9">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. Tent Lamp -->
+        <div class="col">
+            <div class="p-3 text-center">
+                <h6 class="fw-semibold">Tent Lamp</h6>
+                <p class="text-muted">IDR 10K</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                        data-input="addon_10">−</button>
+                    <input type="number" id="addon_10" name="addons[10]"
+                        class="form-control form-control-sm text-center" value="0" min="0" style="width:60px;">
+                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                        data-input="addon_10">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11. Hammock -->
+        <div class="col">
+            <div class="p-3 text-center">
+                <h6 class="fw-semibold">Hammock</h6>
+                <p class="text-muted">IDR 15K</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                        data-input="addon_11">−</button>
+                    <input type="number" id="addon_11" name="addons[11]"
+                        class="form-control form-control-sm text-center" value="0" min="0" style="width:60px;">
+                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                        data-input="addon_11">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12. Portable Gas -->
+        <div class="col">
+            <div class="p-3 text-center">
+                <h6 class="fw-semibold">Portable Gas</h6>
+                <p class="text-muted">IDR 30K</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                        data-input="addon_12">−</button>
+                    <input type="number" id="addon_12" name="addons[12]"
+                        class="form-control form-control-sm text-center" value="0" min="0" style="width:60px;">
+                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                        data-input="addon_12">+</button>
+                </div>
+            </div>
+        </div>
+
     </div>
+    <!-- END ADDONS -->
 
-    <div class="row">
-        <div class="col">
-            <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Portable Stove</h6>
-                <p class="text-muted mb-2">IDR-15K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="portableStove">−</button>
-                    <input type="number" id="portableStove" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
-                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="portableStove">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Sleeping Bag</h6>
-                <p class="text-muted mb-2">IDR-15K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="sleepingBag">−</button>
-                    <input type="number" id="sleepingBag" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
-                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="sleepingBag">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Grill Pan</h6>
-                <p class="text-muted mb-2">IDR-15K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="grillPan">−</button>
-                    <input type="number" id="grillPan" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
-                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="grillPan">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Folding Chair</h6>
-                <p class="text-muted mb-2">IDR-15K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="foldingChair">−</button>
-                    <input type="number" id="foldingChair" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
-                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="foldingChair">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Nesting</h6>
-                <p class="text-muted mb-2">IDR-15K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="Nesting">−</button>
-                    <input type="number" id="Nesting" class="form-control form-control-sm text-center" value="0" min="0"
-                        style="width: 60px;">
-                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="Nesting">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Folding Table</h6>
-                <p class="text-muted mb-2">IDR-20K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="foldingTable">−</button>
-                    <input type="number" id="foldingTable" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
-                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="foldingTable">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Tent Lamp</h6>
-                <p class="text-muted mb-2">IDR-10K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="tentLamp">−</button>
-                    <input type="number" id="tentLamp" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
-                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="tentLamp">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Hammock</h6>
-                <p class="text-muted mb-2">IDR-15K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="hammock">−</button>
-                    <input type="number" id="hammock" class="form-control form-control-sm text-center" value="0" min="0"
-                        style="width: 60px;">
-                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="hammock">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="p-3 text-center">
-                <h6 class="fw-semibold mb-1">Portable Gas</h6>
-                <p class="text-muted mb-2">IDR-30K</p>
-
-                <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                    <button type="button" class="btn btn-outline-success btn-sm minus-btn"
-                        data-input="portableGas">−</button>
-                    <input type="number" id="portableGas" class="form-control form-control-sm text-center" value="0"
-                        min="0" style="width: 60px;">
-                    <button type="button" class="btn btn-outline-success btn-sm plus-btn"
-                        data-input="portableGas">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
-{{-- Scrip Button (+ / -) --}}
+<!-- SCRIPT -->
 <script>
     document.querySelectorAll('.plus-btn').forEach(btn => {
         btn.addEventListener('click', function () {

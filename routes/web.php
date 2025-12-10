@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChangePassController;
+use App\Http\Controllers\CampingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -115,4 +116,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/update-pass', [ChangePassController::class, 'update'])->name('updatepass');
     Route::get('/review', fn() => view('user.review'))->name('review');
     Route::post('review/store', [ReviewController::class, 'store'])->name('review.store');
+
+    Route::post('/camping/check-availability', [CampingController::class, 'checkAvailability'])
+    ->name('booking.check');
+    Route::get('/booking/camping/{package_id}', [CampingController::class, 'showForm'])
+    ->name('booking.camping.form');
+    Route::post('/booking/{package_id}/store', [CampingController::class, 'store'])
+    ->name('booking.store');
 });

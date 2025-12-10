@@ -101,19 +101,22 @@
                             <div class="d-flex gap-3">
                                 <div>
                                     <label for="checkin" class="form-label fw-semibold">Check in Date</label>
-                                    <input type="date" class="form-control border-success" id="checkin">
+                                    <input type="date" class="form-control border-success" id="checkin"
+                                        onchange="checkAvailability()">
                                 </div>
                                 <div>
                                     <label for="checkout" class="form-label fw-semibold">Check out Date</label>
-                                    <input type="date" class="form-control border-success" id="checkout">
+                                    <input type="date" class="form-control border-success" id="checkout"
+                                        onchange="checkAvailability()">
                                 </div>
                             </div>
                         </div>
 
                         <div class="col justify-content-center align-item-center d-flex my-auto">
                             <a href="{{ Route('bookingCamping') }}">
-                                <button class="btn btn-lg text-light fw-semibold rounded-4 me-3 mb-0"
-                                    style="background-color:#114A06;">Booking</button>
+                                <button class="btn btn-lg text-light fw-semibold rounded-4 me-3 mb-0" id="bookingButton"
+                                    disabled class="btn btn-success" style="background-color:#114A06;">Booking</button>
+                                <meta name="csrf-token" content="{{ csrf_token() }}">
                             </a>
                         </div>
                     </div>
@@ -121,3 +124,41 @@
             </div>
         </div>
 @endsection
+
+    <script>
+        function checkAvailability() {
+            let checkin = document.getElementById("checkin").value;
+            let checkout = document.getElementById("checkout").value;
+            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            if (checkin === "" || checkout === "") return;
+
+            fetch("{{ route('booking.check') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": token
+                },
+                body: JSON.stringify({
+                    checkin: checkin,
+                    checkout: checkout
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    let btn = document.getElementById("bookingButton");
+
+                    if (data.available) {
+                        btn.disabled = false;
+                        btn.style.backgroundColor = "#114A06";
+                    } else {
+                        btn.disabled = true;
+                        btn.style.backgroundColor = "gray";
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        }
+    </script>

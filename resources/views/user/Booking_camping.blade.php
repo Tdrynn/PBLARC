@@ -16,32 +16,36 @@
                 </div>
 
                 <div class="w-75 justify-content-center align-items-center mx-auto mt-0">
-                    <form>
+                    <form action="{{ route('booking.store', $package->id) }}" method="POST">
+                        @csrf
                         <div class="mb-2">
                             <label for="name" class="form-label fw-semibold">Reservation Name</label>
-                            <input type="text" class="form-control border-success" id="name" required>
+                            <input type="text" class="form-control border-success" id="name" name="name" required>
                         </div>
 
                         <div class="mb-2">
                             <label for="telephone" class="form-label  fw-semibold">WhatsApp Number</label>
-                            <input type="tel" class="form-control border-success" id="telephone" required>
+                            <input type="tel" class="form-control border-success" id="telephone" name="telephone" required>
                         </div>
 
                         <div class="mb-2">
                             <label for="email" class="form-label fw-semibold">Email</label>
-                            <input type="email" class="form-control border-success" id="email" aria-describedby="emailHelp">
+                            <input type="email" class="form-control border-success" id="email" name="email"
+                                aria-describedby="emailHelp">
                         </div>
 
                         <div class="mb-2 container p-0">
                             <div class="row">
                                 <div class="col">
-                                    <label for="participants" class="form-label fw-semibold">Number of participants</label>
-                                    <input type="number" class="form-control border-success w-50" id="participants">
+                                    <label for="participants" class="form-label fw-semibold">Number of
+                                        participants</label>
+                                    <input type="number" class="form-control border-success w-50" id="participants"
+                                        name="participants">
                                 </div>
 
                                 <div class="col flex-column">
                                     <label for="tent" class="form-label fw-semibold">Tent</label>
-                                    <input type="number" class="form-control border-success w-75" id="tent">
+                                    <input type="number" class="form-control border-success w-75" id="tent" name="tent">
                                 </div>
 
                                 <div class="col">
@@ -54,12 +58,13 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="checkin" class="form-label fw-semibold">Check in Date</label>
-                                    <input type="date" class="form-control border-success w-75" id="checkin">
+                                    <input type="date" class="form-control border-success w-75" id="checkin" name="checkin">
                                 </div>
 
                                 <div class="col">
                                     <label for="checkout" class="form-label fw-semibold">Check out Date</label>
-                                    <input type="date" class="form-control border-success w-75" id="checkout">
+                                    <input type="date" class="form-control border-success w-75" id="checkout"
+                                        name="checkout">
                                 </div>
 
                                 <div class="col">
