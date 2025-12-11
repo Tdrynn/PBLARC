@@ -6,29 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('package_id')->constrained('packages'); // ✔ cukup ini 1 baris
+
             $table->string('name');
-            $table->string('telephone')->unique();
-            $table->string('email')->unique();
+            $table->string('telephone'); // ✔ tidak unique
+            $table->string('email')->nullable();
             $table->integer('participants');
-            $table->integer('tent');
+            $table->integer('tent')->nullable();
             $table->date('checkin');
             $table->date('checkout');
-            $table->foreignId('package_id')->constrained('packages')->after('id');
+
             $table->integer('total_price')->default(0);
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('bookings');

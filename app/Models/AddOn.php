@@ -8,7 +8,7 @@ class Addon extends Model
 {
     protected $table = 'addons';
 
-    protected $fillable = ['name', 'price'];
+    protected $fillable = ['name', 'price', 'stock'];
 
     public function bookings()
     {

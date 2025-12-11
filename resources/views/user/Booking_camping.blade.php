@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="w-75 justify-content-center align-items-center mx-auto mt-0">
-                    <form action="{{ route('booking.store', 2) }}" method="POST">
+                    <form action={{ route('booking.store', $package->id) }} method="POST">
                         @csrf
                         <div class="mb-2">
                             <label for="name" class="form-label fw-semibold">Reservation Name</label>
