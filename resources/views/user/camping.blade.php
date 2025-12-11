@@ -113,7 +113,7 @@
                         </div>
 
                         <div class="col justify-content-center align-item-center d-flex my-auto">
-                            <a href="{{ Route('bookingCamping') }}">
+                            <a href="{{ route('booking.camping', 2) }}">
                                 <button class="btn btn-lg text-light fw-semibold rounded-4 me-3 mb-0" id="bookingButton"
                                     disabled class="btn btn-success" style="background-color:#114A06;">Booking</button>
                                 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -133,7 +133,7 @@
 
             if (checkin === "" || checkout === "") return;
 
-            fetch("{{ route('booking.check') }}", {
+            fetch("{{ route('booking.check', 2) }}", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

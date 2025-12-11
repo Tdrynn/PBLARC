@@ -136,10 +136,9 @@ class CampingController extends Controller
         return redirect()->back()->with('success', 'Booking berhasil dibuat!');
     }
 
-    public function showForm($package_id)
+    public function bookingForm($package_id)
     {
         $package = Package::findOrFail($package_id);
-
-        return view('user.Booking_camping');
+        return view('user.booking_camping', compact('package'));
     }
 }

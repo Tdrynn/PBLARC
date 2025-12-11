@@ -77,10 +77,6 @@ Route::middleware(['auth'])->group(function () {
         return view('user.booking_picnic');
     })->name('bookingPicnic');
 
-    Route::get('/bookingCamping', function () {
-        return view('user.booking_camping');
-    })->name('bookingCamping');
-
     Route::get('/bookingCampervan', function () {
         return view('user.booking_campervan');
     })->name('bookingCampervan');
@@ -119,8 +115,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/camping/check-availability', [CampingController::class, 'checkAvailability'])
     ->name('booking.check');
-    Route::get('/booking/camping/{package_id}', [CampingController::class, 'showForm'])
-    ->name('booking.camping.form');
+    Route::get('/camping/{package_id}/booking', [CampingController::class, 'bookingForm'])
+    ->name('booking.camping');
     Route::post('/booking/{package_id}/store', [CampingController::class, 'store'])
     ->name('booking.store');
 });
