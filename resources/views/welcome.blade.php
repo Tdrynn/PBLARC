@@ -176,13 +176,13 @@
 
                         @php
                             $avgFilled = round($averageRating);
-                            $avgEmpty = 5 - $avgFilled;
                         @endphp
 
-                        <h1 class="fw-bold text-center" style="font-size: 60px;">
-                            {{ str_repeat('★', $avgFilled) }}{{ str_repeat('☆', $avgEmpty) }}
+                        <h1 class="fw-bold" style="font-size: 60px;">
+                            {{ str_repeat('★', $avgFilled) . str_repeat('☆', 5 - $avgFilled) }}
                         </h1>
-                        <h5 class="text-center">
+
+                        <h5>
                             Based on {{ $totalReviews }} Review{{ $totalReviews > 1 ? 's' : '' }}
                         </h5>
                     </a>
@@ -262,9 +262,50 @@
                 </div>
             </div>
 
-            <a href="{{ Route('reviewList') }}" class="my-5 text-decoration-none text-white">
-                <h3>See All Review</h3>
-            </a>
+            {{-- "Write a Review" Button --}}
+            <div class="d-flex justify-content-center my-5">
+                <a href="{{ Route('review') }}" class="text-decoration-none">
+                    <button type="button" class="btn btn-light shadow fw-bold">Write a Review</button>
+                </a>
+            </div>
+
+            {{-- "See All Reviews" --}}
+            <div class="text-center">
+                <a href="{{ Route('reviewList') }}" class="text-white text-decoration-none">
+                    <h3>See All Review</h3>
+                </a>
+            </div>
+
+            {{-- MODALS --}}
+            @foreach ($reviews as $group)
+                @foreach ($group as $review)
+                    <div class="modal fade" id="reviewModal{{ $review->id }}" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content modal-card text-light">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{{ $review->name }}'s Review</h5>
+                                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <small class="text-white-50">
+                                        {{ $review->created_at->format('d M Y') }}
+                                    </small>
+
+                                    @php $stars = round($review->rating); @endphp
+                                    <h3>
+                                        {{ number_format($review->rating, 1) }}
+                                        {{ str_repeat('★', $stars) . str_repeat('☆', 5 - $stars) }}
+                                    </h3>
+
+                                    <p>{{ $review->review }}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endforeach
         </section>
 
         <section id="moreinfo" class="HomePage5 align-items-center justify-content-center">

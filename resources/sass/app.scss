@@ -45,16 +45,6 @@ input[type=number] {
     min-height: 100vh;
 }
 
-.HomePage4 {
-    background: url('../images/HP4.png') center/cover no-repeat;
-    background-color: #344539;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    min-height: 100vh;
-}
-
 .FindOut {
     background-color: #344539;
     background-size: cover;
@@ -68,6 +58,52 @@ input[type=number] {
     width: 30rem;
     height: 20rem;
 }
+
+.HomePage4 {
+    background: url('../images/HP4.png') center/cover no-repeat;
+    background-color: #344539;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.review-card {
+    width: 350px; 
+    min-height: auto;
+    background: rgba(8, 6, 6, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.modal-card {
+    background: rgba(8, 6, 6, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.custom-control {
+    width: 40px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+    left: 20px;
+}
+
+.carousel-control-next {
+    right: 20px;
+}
+
+
 
 .HomePage5 {
     background-color: #1E1F1E;
@@ -107,7 +143,7 @@ input[type=number] {
 }
 
 .LearnMore {
-    background: url('../images/LearnMore.jpg') center/cover no-repeat;
+    background: url('../images/LearnMore.jpeg') center/cover no-repeat;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -131,7 +167,7 @@ input[type=number] {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
 }
 
 .star {
@@ -294,7 +330,6 @@ input[type=number] {
     width: 60%; 
     height: auto;
 }
-
 @media (max-width: 768px) {
     .login-card {
         width: 90%;
