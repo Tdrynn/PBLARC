@@ -154,10 +154,4 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            document.querySelector('[data-bs-target="#VirtualAccount]').addEventListener('click', function () {
-                const icon = document.getElementById('virtualAccount');
-            });
-        </script>
 @endsection

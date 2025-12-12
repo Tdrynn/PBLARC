@@ -60,24 +60,6 @@
                         </p>
                     </div>
 
-                    {{-- Star Script --}}
-                    <script>
-                        const stars = document.querySelectorAll(".simple-rating .star");
-                        const ratingInput = document.getElementById("ratingValue");
-
-                        stars.forEach((star) => {
-                            star.addEventListener("click", function() {
-                                const value = this.dataset.value;
-                                ratingInput.value = value;
-
-                                stars.forEach(s => s.classList.remove("filled"));
-
-                                for (let i = 0; i < value; i++) {
-                                    stars[i].classList.add("filled");
-                                }
-                            });
-                        });
-                    </script>
                 </form>
             </div>
         </section>
@@ -95,7 +77,7 @@
                 <div class="modal-footer d-flex justify-content-center border-0">
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
 
-                    <form action="{{ route('history') }}" method="POST" class="d-inline">
+                    <form action="{{ route('reviewList') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-danger px-4">Yes</button>
                     </form>
