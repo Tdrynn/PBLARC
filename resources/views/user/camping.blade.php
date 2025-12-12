@@ -4,30 +4,30 @@
     @include('layouts.navbar.navbar_learnMore')
 
     <div class="row">
-        <div id="picnic" class="text-light LearnMore py-4 shadow-lg p-3">
+        <div id="camping" class="text-light LearnMore py-4 shadow-lg p-3">
             <div class="container-fluid px-0">
                 <h1 class="text-center fw-bold text-dark mt-5">Camping</h1>
 
-                <div class="row gap-2 d-flex justify-content-center">
-                    <div class="col-md-5">
-                        <img src="{{ Vite::asset('resources/images/CP1.png') }}" alt="Camping"
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-5 g-0 align-item-center justify-content-center d-flex">
+                        <img src="{{ Vite::asset('resources/images/CP1.png') }}" alt="camping"
                             class="rounded-4 object-fit-cover img1-package p-1">
                     </div>
 
-                    <div class="col-md-3 g-0">
+                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
                         <div class="d-flex flex-row flex-lg-column">
-                            <img src="{{ Vite::asset('resources/images/CP2.png') }}" alt="Camping"
+                            <img src="{{ Vite::asset('resources/images/CP2.png') }}" alt="camping"
                                 class="rounded-4 object-fit-cover img2-package img2-package p-1">
-                            <img src="{{ Vite::asset('resources/images/CP3.png') }}" alt="Camping"
+                            <img src="{{ Vite::asset('resources/images/CP3.png') }}" alt="camping"
                                 class="rounded-4 object-fit-cover img2-package img2-package p-1">
                         </div>
                     </div>
 
-                    <div class="col-md-3 g-0">
+                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
                         <div class="d-flex flex-row flex-lg-column">
-                            <img src="{{ Vite::asset('resources/images/CP4.png') }}" alt="Camping"
+                            <img src="{{ Vite::asset('resources/images/CP4.png') }}" alt="camping"
                                 class="rounded-4 object-fit-cover img2-package img2-package p-1">
-                            <img src="{{ Vite::asset('resources/images/CP5.png') }}" alt="Camping"
+                            <img src="{{ Vite::asset('resources/images/CP5.png') }}" alt="camping"
                                 class="rounded-4 object-fit-cover img2-package img2-package p-1">
                         </div>
                     </div>
@@ -36,9 +36,11 @@
         </div>
 
         <div style="background-color: #4f9e84;">
-            <div class="my-3">
-                <div class="row mx-5 text-start">
-                    <h4 class="fw-bold text-start ms-4 mt-2 text-dark">Facility</h4>
+            <div class="my-3 bg-white rounded-4 shadow-sm p-2">
+                <div class="row ms-2">
+                    <div class="col-md-3" style="width: auto;">
+                        <h4 class="fw-bold text-dark">Facility & Price</h4>
+                    </div>
                 </div>
 
                 <div class="d-flex flex-wrap justify-content-center container facility gap-2">
@@ -67,20 +69,24 @@
                     <hr class="border border-dark opacity-75 mt-1 mb-3" style="width: 90%;">
                 </div>
 
-                <div class="container bg-white text-dark rounded-4 p-3 shadow-sm">
+                <div class="container">
                     <div class="row gap-2">
-                        <div class="col-md-6 col-12 my-auto d-flex gap-3">
+                        <div class="col-md-6 col-12 d-flex justify-content-start gap-3">
                             <div>
-                                <h5 class="fw-bold">Price</h5>
-                                <p class="my-0">tent 1-person IDR 25k (weekdays)</p>
-                                <p class="my-0">tent 1-person IDR 35k (weekend)</p>
-                                <p class="my-0">1 day</p>
+                                <h6 class="fw-semibold fs-6">Own Tent
+                                    <p class="fw-normal my-0 fs-6">(weekdays) <br> IDR 20K / day</p>
+                                    <p class="fw-normal my-0 fs-6">(weekend) <br> IDR 35K / day</p>
+                                </h6>
                             </div>
                             <div>
-                                <h5 class="fw-bold text-white">Price</h5>
-                                <p class="my-0">tent 2-person IDR 150k</p>
-                                <p class="my-0">tent 4-person IDR 250k</p>
-                                <p class="my-0">1 day</p>
+                                <h6 class="fw-semibold fs-6">Rent Tent 2
+                                    <p class="fw-normal my-0 fs-6 ">(weekdays / Weekend) <br> IDR 150k</p>
+                                </h6>
+                            </div>
+                            <div>
+                                <h6 class="fw-semibold">Rent Tent 4
+                                    <p class="fw-normal my-0 fs-6 "> (weekdays / Weekend) <br> IDR 250k / Day</p>
+                                </h6>
                             </div>
                         </div>
 

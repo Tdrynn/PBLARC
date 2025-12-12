@@ -34,11 +34,17 @@
                             <label for="floatingInput">Email address</label>
                         </div>
 
-                        <div class="form-floating mb-3 text-start border border-success-subtle">
-                            <input type="password" name="password" class="form-control" id="floatingPassword"
-                                placeholder="Password" required>
-                            <label for="floatingPassword">Password</label>
+                        <div class="form-floating mb-3 position-relative">
+                            <input type="password" id="password" class="form-control" placeholder="Password" name="password"
+                                required>
+                            <label for="password">Password</label>
+                            <button type="button" id="togglePassword"
+                                class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2">
+                                <i id="iconPassword" class="bi bi-eye-slash"></i>
+                            </button>
                         </div>
+
+
 
                         <button type="submit" class="btn btn-success btn-green w-100 my-2">Log In</button>
                     </div>
