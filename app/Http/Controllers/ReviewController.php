@@ -19,15 +19,15 @@ class ReviewController extends Controller
     public function welcome()
     {
         // Ambil 2 review terbaru
-        $reviews = Review::latest()->take(2)->get();
+        $reviews = Review::latest()->get()->chunk(2); // 2 review per slide
         $averageRating = Review::avg('rating');
         $totalReviews = Review::count();
-        return view('welcome', compact('reviews', 'averageRating', 'totalReviews'));
+        return view('user.home', compact('reviews', 'averageRating', 'totalReviews'));
     }
     public function home()
     {
         // Ambil 2 review terbaru
-        $reviews = Review::latest()->take(2)->get();
+        $reviews = Review::latest()->get()->chunk(2); // 2 review per slide
         $averageRating = Review::avg('rating');
         $totalReviews = Review::count();
         return view('user.home', compact('reviews', 'averageRating', 'totalReviews'));
@@ -55,6 +55,6 @@ class ReviewController extends Controller
             'name' => $user->name,
         ]);
 
-        return redirect()->back()->with('success', 'Thanks for review');
+        return redirect()->route('reviewList')->with('success', 'Thanks for review');
     }
 }
