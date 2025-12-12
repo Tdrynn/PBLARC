@@ -8,13 +8,13 @@
             <div class="container-fluid px-0">
                 <h1 class="text-center fw-bold text-dark mt-5">Picnic</h1>
 
-                <div class="row gap-2 d-flex justify-content-center">
-                    <div class="col-md-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-5 g-0 align-item-center justify-content-center d-flex">
                         <img src="{{ Vite::asset('resources/images/PN1.png') }}" alt="Picnic"
                             class="rounded-4 object-fit-cover img1-package p-1">
                     </div>
 
-                    <div class="col-md-3 g-0">
+                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
                         <div class="d-flex flex-row flex-lg-column">
                             <img src="{{ Vite::asset('resources/images/PN2.png') }}" alt="Picnic"
                                 class="rounded-4 object-fit-cover img2-package img2-package p-1">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 g-0">
+                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
                         <div class="d-flex flex-row flex-lg-column">
                             <img src="{{ Vite::asset('resources/images/PN4.png') }}" alt="Picnic"
                                 class="rounded-4 object-fit-cover img2-package img2-package p-1">
@@ -35,12 +35,12 @@
             </div>
         </div>
 
-        <div style="background-color: #4f9e84;">
-            <div class="my-3 bg-white rounded-4 shadow-sm border border-warning">
-                <div class="my-3 border border-dark">
-                    <div class="row ms-5">
-                        <div class="col-md-3 border border-dark" style="width: auto;">
-                            <h4 class="fw-bold text-dark">Facility</h4>
+        <d  iv style="background-color: #4f9e84;">
+            <div class="my-3 bg-white rounded-4 shadow-sm p-2">
+                <div>
+                    <div class="row ms-2">
+                        <div class="col-md-3" style="width: auto;">
+                            <h4 class="fw-bold text-dark">Facility & Price</h4>
                         </div>
                     </div>
 
@@ -71,12 +71,15 @@
                         <hr class="border border-dark opacity-75" style="width: 90%;">
                     </div>
 
-                    <div class="container bg-white text-dark rounded-4 shadow-sm">
+                    <div class="container">
                         <div class="row gap-2">
-                            <div class="col-md-6 col-12 my-auto" style="width: 50%">
-                                <h5 class="fw-bold">Price</h5>
-                                <p class="my-0">IDR 15k /person(adult)</p>
-                                <p class="my-0">IDR 10k/child(above 5 years old)</p>
+                            <div class="col-md-6 col-12 justify-content-start" style="width: 50%">
+                                <h6 class="fw-semibold fs-5">Adult
+                                    <p class="my-0 fs-6 fw-normal">IDR 15K /Person</p>
+                                </h6>
+                                <h6 class="fw-semibold fs-5">Child (Above 5 Years Old)
+                                    <p class="my-0 fs-6 fw-normal">IDR 10K /Child</p>
+                                </h6>
                             </div>
 
                             <div class="col-md-4 mx-auto col-12 align-item-center">

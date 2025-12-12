@@ -1,23 +1,6 @@
 import './bootstrap';
 import * as bootstrap from 'bootstrap';
 
-const stars = document.querySelectorAll(".simple-rating .star");
-const ratingInput = document.getElementById("ratingValue");
-
-// Star Input
-stars.forEach((star) => {
-    star.addEventListener("click", function () {
-        const value = this.dataset.value;
-        ratingInput.value = value;
-
-        stars.forEach(s => s.classList.remove("filled"));
-
-        for (let i = 0; i < value; i++) {
-            stars[i].classList.add("filled");
-        }
-    });
-});
-
 // Read More Review Modal
 document.addEventListener("DOMContentLoaded", function () {
     const modal = new bootstrap.Modal(document.getElementById('reviewModal'));
@@ -34,22 +17,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// + / - Button Add Ons
-document.querySelectorAll('.plus-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-        const input = document.getElementById(this.dataset.input);
-        input.value = parseInt(input.value) + 1;
-    });
-});
+// Hide / Unhide Password
+document.addEventListener("DOMContentLoaded", function () {
 
-document.querySelectorAll('.minus-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-        const input = document.getElementById(this.dataset.input);
-        input.value = Math.max(0, parseInt(input.value) - 1);
-    });
-});
+    function toggle(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
 
-// Payment Virtual Account
-document.querySelector('[data-bs-target="#VirtualAccount]').addEventListener('click', function () {
-    const icon = document.getElementById('virtualAccount');
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.replace("bi-eye-slash", "bi-eye");
+        } else {
+            input.type = "password";
+            icon.classList.replace("bi-eye", "bi-eye-slash");
+        }
+    }
+
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        toggle("password", "iconPassword");
+    });
+
+    document.getElementById("toggleConfirm").addEventListener("click", function () {
+        toggle("confirmPassword", "iconConfirm");
+    });
+
 });

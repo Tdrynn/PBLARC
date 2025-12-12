@@ -26,13 +26,13 @@
                     <div class="d-flex gap-4 simple-rating justify-content-center my-auto "
                         style="cursor:pointer; user-select:none;">
                         @for ($i = 1; $i <= 5; $i++)
-                            <svg class="star" data-value="{{ $i }}" xmlns="http://www.w3.org/2000/svg"
-                                width="80" height="80" fill="none" viewBox="-2 -2 20 20">
+                            <svg class="star" data-value="{{ $i }}" xmlns="http://www.w3.org/2000/svg" width="80" height="80"
+                                fill="none" viewBox="-2 -2 20 20">
                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173
-                                                        6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927
-                                                        0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522
-                                                        3.356.83 4.73c.078.443-.36.79-.746.592L8
-                                                        13.187l-4.389 2.256z" />
+                                                                                6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927
+                                                                                0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522
+                                                                                3.356.83 4.73c.078.443-.36.79-.746.592L8
+                                                                                13.187l-4.389 2.256z" />
                             </svg>
                         @endfor
                     </div>
@@ -50,7 +50,10 @@
                     <div class="d-flex gap-3 my-4 justify-content-end">
                         <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal"
                             data-bs-target="#cancelModal">Cancel</button>
-                        <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                        <form action="{{ route('reviewList') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                        </form>
                     </div>
 
                     <div class="d-flex justify-content-center">
@@ -60,6 +63,24 @@
                         </p>
                     </div>
 
+                    <script>
+                        const stars = document.querySelectorAll(".simple-rating .star");
+                        const ratingInput = document.getElementById("ratingValue");
+
+                        // Star Input
+                        stars.forEach((star) => {
+                            star.addEventListener("click", function () {
+                                const value = this.dataset.value;
+                                ratingInput.value = value;
+
+                                stars.forEach(s => s.classList.remove("filled"));
+
+                                for (let i = 0; i < value; i++) {
+                                    stars[i].classList.add("filled");
+                                }
+                            });
+                        });
+                    </script>
                 </form>
             </div>
         </section>
@@ -77,10 +98,9 @@
                 <div class="modal-footer d-flex justify-content-center border-0">
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
 
-                    <form action="{{ route('reviewList') }}" method="POST" class="d-inline">
-                        @csrf
+                    <a href="{{ Route('home') }}">
                         <button type="submit" class="btn btn-danger px-4">Yes</button>
-                    </form>
+                    </a>
                 </div>
 
             </div>

@@ -4,17 +4,17 @@
     @include('layouts.navbar.navbar_learnMore')
 
     <div class="row">
-        <div id="picnic" class="text-light LearnMore py-4 shadow-lg p-3">
+        <div id="campervan" class="text-light LearnMore py-4 shadow-lg p-3">
             <div class="container-fluid px-0">
                 <h1 class="text-center fw-bold text-dark mt-5">Campervan</h1>
 
-                <div class="row gap-2 d-flex justify-content-center">
-                    <div class="col-md-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-5 g-0 align-item-center justify-content-center d-flex">
                         <img src="{{ Vite::asset('resources/images/CV1.png') }}" alt="Campervan"
                             class="rounded-4 object-fit-cover img1-package p-1">
                     </div>
 
-                    <div class="col-md-3 g-0">
+                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
                         <div class="d-flex flex-row flex-lg-column">
                             <img src="{{ Vite::asset('resources/images/CV2.png') }}" alt="Campervan"
                                 class="rounded-4 object-fit-cover img2-package img2-package p-1">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 g-0">
+                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
                         <div class="d-flex flex-row flex-lg-column">
                             <img src="{{ Vite::asset('resources/images/CV4.png') }}" alt="Campervan"
                                 class="rounded-4 object-fit-cover img2-package img2-package p-1">
@@ -36,9 +36,11 @@
         </div>
 
         <div style="background-color: #4f9e84;">
-            <div class="my-3">
-                <div class="row mx-5 text-start">
-                    <h4 class="fw-bold text-start ms-4 mt-2 text-dark">Facility</h4>
+            <div class="my-3 bg-white rounded-4 shadow-sm p-2">
+                <div class="row ms-2">
+                    <div class="col-md-3" style="width: auto;">
+                        <h4 class="fw-bold text-dark">Facility & Price</h4>
+                    </div>
                 </div>
 
                 <div class="d-flex flex-wrap justify-content-center container facility gap-2">
@@ -67,12 +69,12 @@
                     <hr class="border border-dark opacity-75 mt-1 mb-3" style="width: 90%;">
                 </div>
 
-                <div class="container bg-white text-dark rounded-4 p-3 shadow-sm">
+                <div class="container">
                     <div class="row gap-2">
-                        <div class="col-md-5 col-12 ms-3 my-auto">
-                            <h5 class="fw-bold">Price</h5>
-                            <p class="my-0">IDR 150k /per-van</p>
-                            <p class="my-0">max 4-person</p>
+                        <div class="col-md-5 col-12 ms-3 justify-content-start">
+                            <h6 class="fw-semibold fs-5">1 Van (Max 4-person)
+                                <p class="my-0 fs-6 fw-normal">IDR 150k / Day</p>
+                            </h6>
                         </div>
 
                         <div class="col align-item-center">

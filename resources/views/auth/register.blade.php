@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
     @include('layouts.navbar.navbar_unLogin')
@@ -47,16 +47,25 @@
                                         required>
                                     <label for="email">Email Address</label>
                                 </div>
-                                <div class="form-floating text-start mb-3">
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Password" required>
+                                <div class="form-floating mb-3 position-relative">
+                                    <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
                                     <label for="password">Password</label>
+                                    <button type="button" id="togglePassword"
+                                        class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2">
+                                        <i id="iconPassword" class="bi bi-eye-slash"></i>
+                                    </button>
                                 </div>
-                                <div class="form-floating text-start mb-2">
-                                    <input type="password" class="form-control" id="confirmPassword"
-                                        placeholder="Confirm Password" required name="password_confirmation">
+
+                                <div class="form-floating mb-3 position-relative">
+                                    <input type="password" id="confirmPassword" class="form-control"
+                                        placeholder="Confirm Password" name="password_confirmation" required>
                                     <label for="confirmPassword">Confirm Password</label>
+                                    <button type="button" id="toggleConfirm"
+                                        class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2">
+                                        <i id="iconConfirm" class="bi bi-eye-slash"></i>
+                                    </button>
                                 </div>
+
                                 <button type="submit" class="btn btn-success btn-green w-100 my-3 mt-4">
                                     Create Account
                                 </button>

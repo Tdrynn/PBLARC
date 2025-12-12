@@ -14,9 +14,8 @@
                         −
                     </button>
 
-                    <input type="number" id="flysheet"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="flysheet" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="flysheet">
                         +
@@ -36,9 +35,8 @@
                         −
                     </button>
 
-                    <input type="number" id="smallStove"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="smallStove" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="smallStove">
                         +
@@ -46,7 +44,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Regular Mat -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -58,9 +56,8 @@
                         −
                     </button>
 
-                    <input type="number" id="regularMat"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="regularMat" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="regularMat">
                         +
@@ -68,7 +65,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Portable Stove -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -80,9 +77,8 @@
                         −
                     </button>
 
-                    <input type="number" id="portableStove"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="portableStove" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="portableStove">
                         +
@@ -90,7 +86,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Sleeping Bag -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -102,9 +98,8 @@
                         −
                     </button>
 
-                    <input type="number" id="sleepingBag"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="sleepingBag" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="sleepingBag">
                         +
@@ -112,7 +107,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Grill Pan -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -124,9 +119,8 @@
                         −
                     </button>
 
-                    <input type="number" id="grillPan"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="grillPan" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="grillPan">
                         +
@@ -134,7 +128,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Folding Chair -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -146,9 +140,8 @@
                         −
                     </button>
 
-                    <input type="number" id="foldingChair"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="foldingChair" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="foldingChair">
                         +
@@ -156,7 +149,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Nesting -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -168,9 +161,8 @@
                         −
                     </button>
 
-                    <input type="number" id="Nesting"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="Nesting" class="form-control form-control-sm text-center" value="0" min="0"
+                        style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="Nesting">
                         +
@@ -178,7 +170,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Folding Table -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -190,9 +182,8 @@
                         −
                     </button>
 
-                    <input type="number" id="foldingTable"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="foldingTable" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="foldingTable">
                         +
@@ -200,7 +191,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Tent Lamp -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -212,9 +203,8 @@
                         −
                     </button>
 
-                    <input type="number" id="tentLamp"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="tentLamp" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="tentLamp">
                         +
@@ -222,7 +212,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Hammock -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -234,9 +224,8 @@
                         −
                     </button>
 
-                    <input type="number" id="Hammock"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="Hammock" class="form-control form-control-sm text-center" value="0" min="0"
+                        style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="Hammock">
                         +
@@ -244,7 +233,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Portable Gas -->
         <div class="col">
             <div class="p-3 rounded-4 shadow-sm text-center bg-white">
@@ -256,9 +245,8 @@
                         −
                     </button>
 
-                    <input type="number" id="portableGas"
-                        class="form-control form-control-sm text-center"
-                        value="0" min="0" style="width: 60px;">
+                    <input type="number" id="portableGas" class="form-control form-control-sm text-center" value="0"
+                        min="0" style="width: 60px;">
 
                     <button type="button" class="btn btn-outline-success btn-sm plus-btn" data-input="portableGas">
                         +
@@ -266,6 +254,22 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
+<script>
+    // + / - Button Add Ons
+    document.querySelectorAll('.plus-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const input = document.getElementById(this.dataset.input);
+            input.value = parseInt(input.value) + 1;
+        });
+    });
+
+    document.querySelectorAll('.minus-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const input = document.getElementById(this.dataset.input);
+            input.value = Math.max(0, parseInt(input.value) - 1);
+        });
+    });
+</script>

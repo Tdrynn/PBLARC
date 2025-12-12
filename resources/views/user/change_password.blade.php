@@ -15,8 +15,7 @@
                     {{-- Title --}}
                     <div class="d-flex align-items-center text-start" style="padding: 20px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                            class="bi bi-lock me-3"
-                            viewBox="0 0 16 16">
+                            class="bi bi-lock me-3" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                 d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4M4.5 7A1.5 1.5 0 0 0 3 8.5v5A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 11.5 7zM8 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3" />
                         </svg>
@@ -41,20 +40,40 @@
                             style="width: 95%;">
                             @csrf
                             @method('PUT')
+                            <!-- OLD PASSWORD -->
                             <div class="mb-2">
-                                <label for="password" class="form-label">Old Password</label>
-                                <input type="password" id="password" class="form-control border-success" required
-                                    name="oldpass">
+                                <label class="form-label">Old Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="oldpassword" class="form-control border-success"
+                                        name="oldpass" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleOld">
+                                        <i id="iconOld" class="bi bi-eye-slash"></i>
+                                    </button>
+                                </div>
                             </div>
+
+                            <!-- NEW PASSWORD -->
                             <div class="mb-2">
-                                <label for="newpassword" class="form-label">New Password</label>
-                                <input type="password" id="newpassword" class="form-control border-success" required
-                                    name="password">
+                                <label class="form-label">New Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="newpassword" class="form-control border-success"
+                                        name="password" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleNew">
+                                        <i id="iconNew" class="bi bi-eye-slash"></i>
+                                    </button>
+                                </div>
                             </div>
+
+                            <!-- CONFIRM PASSWORD -->
                             <div class="mb-2">
-                                <label for="confirmpassword" class="form-label">Confirm Password</label>
-                                <input type="password" id="confirmpassword" class="form-control border-success" required
-                                    name="confirmpass">
+                                <label class="form-label">Confirm Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="confirmpassword" class="form-control border-success"
+                                        name="confirmpass" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="toggleConfirm">
+                                        <i id="iconConfirm" class="bi bi-eye-slash"></i>
+                                    </button>
+                                </div>
                             </div>
 
                             <div class="d-flex justify-content-end mt-4 gap-5 justify-content-end">
@@ -89,3 +108,34 @@
             </div>
         </div>
 @endsection
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            function togglePassword(inputId, iconId) {
+                const input = document.getElementById(inputId);
+                const icon = document.getElementById(iconId);
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    icon.classList.replace("bi-eye-slash", "bi-eye");
+                } else {
+                    input.type = "password";
+                    icon.classList.replace("bi-eye", "bi-eye-slash");
+                }
+            }
+
+            document.getElementById("toggleOld").addEventListener("click", function () {
+                togglePassword("oldpassword", "iconOld");
+            });
+
+            document.getElementById("toggleNew").addEventListener("click", function () {
+                togglePassword("newpassword", "iconNew");
+            });
+
+            document.getElementById("toggleConfirm").addEventListener("click", function () {
+                togglePassword("confirmpassword", "iconConfirm");
+            });
+
+        });
+    </script>

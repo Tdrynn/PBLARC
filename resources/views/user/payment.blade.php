@@ -19,8 +19,7 @@
                             <p class="fs-3 text-success fw-semibold text-center">Select Payment Method</p>
 
                             <div class="row my-2 border-bottom border-3 border-success-subtle mx-2">
-                                <a href="#"
-                                    class="fs-3 fw-semibold text-success text-decoration-none"
+                                <a href="#" class="fs-3 fw-semibold text-success text-decoration-none"
                                     style="border-width: 700px;">Cash</a><br>
                             </div>
 
@@ -39,8 +38,7 @@
                             </div>
 
                             <div class="row my-2 border-bottom border-3 border-success-subtle mx-2">
-                                <a href="#"
-                                    class="fs-3 fw-semibold text-success text-decoration-none">QRIS</a>
+                                <a href="#" class="fs-3 fw-semibold text-success text-decoration-none">QRIS</a>
                             </div>
                         </div>
                     </div>
@@ -154,4 +152,12 @@
                 </div>
             </div>
         </div>
+
+        <script>
+
+            // Payment Virtual Account
+            document.querySelector('[data-bs-target="#VirtualAccount]').addEventListener('click', function () {
+                const icon = document.getElementById('virtualAccount');
+            });
+        </script>
 @endsection

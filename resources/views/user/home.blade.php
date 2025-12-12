@@ -167,36 +167,30 @@
 
             <div class="row d-flex align-items-center justify-content-center">
 
-                {{-- LEFT COLUMN --}}
+                {{-- LEFT SUMMARY --}}
                 <div class="col-md-3 text-center">
                     <a href="{{ Route('reviewList') }}" class="text-decoration-none text-white">
-
-                        {{-- Number Rating --}}
-                        <h1 class="fw-bold text-center" style="font-size: 100px;">
+                        <h1 class="fw-bold" style="font-size: 100px;">
                             {{ number_format($averageRating, 1) }}
                         </h1>
-                        
-                        {{-- Function Star Empty --}}
+
                         @php
                             $avgFilled = round($averageRating);
-                            $avgEmpty = 5 - $avgFilled;
                         @endphp
 
-                        {{-- Star Output --}}
                         <h1 class="fw-bold" style="font-size: 60px;">
-                            {{ str_repeat('★', $avgFilled) }}{{ str_repeat('☆', $avgEmpty) }}
+                            {{ str_repeat('★', $avgFilled) . str_repeat('☆', 5 - $avgFilled) }}
                         </h1>
 
-                        {{-- Review Number --}}
                         <h5>
                             Based on {{ $totalReviews }} Review{{ $totalReviews > 1 ? 's' : '' }}
                         </h5>
                     </a>
                 </div>
 
-                {{-- RIGHT COLUMN -> CAROUSEL --}}
+                {{-- RIGHT CAROUSEL --}}
                 <div class="col-md-8">
-        
+
                     <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
 
@@ -206,6 +200,7 @@
 
                                         @foreach ($group as $review)
                                             <div class="review-card p-3">
+                                                {{-- Avatar + Name --}}
                                                 <div class="d-flex align-items-center gap-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
                                                         fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -215,101 +210,98 @@
                                                     <h1>{{ $review->name }}</h1>
                                                 </div>
 
-                                                @php
-                                                    $f = round($review->rating);
-                                                @endphp
-
+                                                {{-- Rating --}}
+                                                @php $stars = round($review->rating); @endphp
                                                 <h3>
                                                     {{ number_format($review->rating, 1) }}
-                                                    {{ str_repeat('★', $f) }}{{ str_repeat('☆', 5 - $f) }}
+                                                    {{ str_repeat('★', $stars) . str_repeat('☆', 5 - $stars) }}
                                                 </h3>
 
-                                                <small class="text-white-50 text-end">
+                                                {{-- Date --}}
+                                                <small class="text-white-50">
                                                     {{ $review->created_at->format('d M Y') }}
                                                 </small>
 
-                                                @php
-                                                    $limit = 120;
-                                                    $isLong = strlen($review->review) > $limit;
-                                                    $preview = $isLong ? substr($review->review, 0, $limit) . '...' : $review->review;
-                                                @endphp
-
+                                                {{-- Review Text --}}
                                                 <p class="review-text">
                                                     {{ Str::limit($review->review, 100) }}
+
+                                                    {{-- Read More if > 100 characters --}}
+                                                    @if (strlen($review->review) > 100)
+                                                        <button class="btn btn-link text-white p-0" data-bs-toggle="modal"
+                                                            data-bs-target="#reviewModal{{ $review->id }}">
+                                                            Read More
+                                                        </button>
+                                                    @endif
                                                 </p>
 
-                                                @if (strlen($review->review) > 100)
-                                                    <button class="btn btn-link text-white p-0" data-bs-toggle="modal"
-                                                        data-bs-target="#reviewModal{{ $review->id }}">
-                                                        Read More
-                                                    </button>
-                                                @endif
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
                             @endforeach
 
-                            {{-- Carousel Buttons --}}
-                            <button class="carousel-control-prev custom-control" type="button"
-                                data-bs-target="#reviewCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                            </button>
-
-                            <button class="carousel-control-next custom-control" type="button"
-                                data-bs-target="#reviewCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                            </button>
-
                         </div>
+
+                        {{-- Carousel Controls --}}
+                        <button class="carousel-control-prev custom-control" type="button" data-bs-target="#reviewCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+
+                        <button class="carousel-control-next custom-control" type="button" data-bs-target="#reviewCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
 
                     </div>
                 </div>
+            </div>
 
-                <div class=" justify-content-center align-items-center my-5">
-                    <a href="{{ Route('review') }}"
-                        class="text-decoration-none align-items-center justify-content-center d-flex">
-                        <button type="button" class="btn btn-light shadow bg-body-tertiary fw-bold">Write a Review</button>
-                    </a>
-                </div>
+            {{-- "Write a Review" Button --}}
+            <div class="d-flex justify-content-center my-5">
+                <a href="{{ Route('review') }}" class="text-decoration-none">
+                    <button type="button" class="btn btn-light shadow fw-bold">Write a Review</button>
+                </a>
+            </div>
 
-                <div class="text-center">
-                    <a href="{{ Route('reviewList') }}" class="text-white text-decoration-none">
-                        <h3>See All Review</h3>
-                    </a>
-                </div>
+            {{-- "See All Reviews" --}}
+            <div class="text-center">
+                <a href="{{ Route('reviewList') }}" class="text-white text-decoration-none">
+                    <h3>See All Review</h3>
+                </a>
+            </div>
 
-                @foreach ($reviews as $group)
-                    @foreach ($group as $review)
-                        <div class="modal fade" id="reviewModal{{ $review->id }}" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content modal-card text-light">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">{{ $review->name }}'s Review</h5>
-                                        <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        @php
-                                            $f = round($review->rating);
-                                        @endphp
+            {{-- MODALS --}}
+            @foreach ($reviews as $group)
+                @foreach ($group as $review)
+                    <div class="modal fade" id="reviewModal{{ $review->id }}" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content modal-card text-light">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{{ $review->name }}'s Review</h5>
+                                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
 
-                                        <small class="text-white-50 text-end">
-                                            {{ $review->created_at->format('d M Y') }}
-                                        </small> 
+                                    <small class="text-white-50">
+                                        {{ $review->created_at->format('d M Y') }}
+                                    </small>
 
-                                        <h3>
-                                            {{ number_format($review->rating, 1) }}
-                                            {{ str_repeat('★', $f) }}{{ str_repeat('☆', 5 - $f) }}
-                                        </h3>
+                                    @php $stars = round($review->rating); @endphp
+                                    <h3>
+                                        {{ number_format($review->rating, 1) }}
+                                        {{ str_repeat('★', $stars) . str_repeat('☆', 5 - $stars) }}
+                                    </h3>
 
-                                        {{ $review->review }}
-                                    </div>
+                                    <p>{{ $review->review }}</p>
+
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
                 @endforeach
-
+            @endforeach
         </section>
 
         <section id="moreinfo" class="HomePage5 align-items-center justify-content-center">
