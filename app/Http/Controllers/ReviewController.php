@@ -22,7 +22,7 @@ class ReviewController extends Controller
         $reviews = Review::latest()->get()->chunk(2); // 2 review per slide
         $averageRating = Review::avg('rating');
         $totalReviews = Review::count();
-        return view('user.home', compact('reviews', 'averageRating', 'totalReviews'));
+        return view('welcome', compact('reviews', 'averageRating', 'totalReviews'));
     }
     public function home()
     {
