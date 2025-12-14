@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserResource extends Resource
 {
@@ -54,37 +55,37 @@ class UserResource extends Resource
             ]);
     }
 
-
     public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('name')->searchable(),
-                Tables\Columns\TextColumn::make('email')->searchable(),
-                Tables\Columns\BadgeColumn::make('role')
-                    ->colors([
-                        'danger' => 'admin',
-                        'success' => 'pengunjung',
-                    ]),
-                Tables\Columns\IconColumn::make('is_active')
-                    ->boolean()
-                    ->label('Aktif'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-            ])
-            ->filters([])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
+{
+    return $table
+        ->columns([
+            Tables\Columns\TextColumn::make('name')->searchable(),
+            Tables\Columns\TextColumn::make('email')->searchable(),
+            Tables\Columns\TextColumn::make('role')
+                ->badge()
+                ->colors([
+                    'danger' => 'admin',
+                    'success' => 'pengunjung',
+                ]),
+            Tables\Columns\IconColumn::make('is_active')
+                ->boolean()
+                ->label('Aktif'),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime(),
+        ])
+        ->filters([])
+        ->actions([
+            Tables\Actions\EditAction::make(),
+            Tables\Actions\DeleteAction::make(),
+        ])
+        ->bulkActions([
+            Tables\Actions\DeleteBulkAction::make(),
+        ]);
     }
 
     public static function canViewAny(): bool
     {
-        return auth()->user()?->role === 'admin';
+        return Auth::check() && Auth::user()->role === 'admin';
     }
 
     public static function getRelations(): array
