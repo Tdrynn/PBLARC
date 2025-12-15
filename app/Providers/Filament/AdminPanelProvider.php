@@ -24,6 +24,8 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->brandName('Angklung River Camp')
+            ->favicon(asset('Logo.png'))
             ->default()
             ->id('admin')
             ->path('admin')
