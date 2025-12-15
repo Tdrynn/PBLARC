@@ -28,7 +28,8 @@ class AuthController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role' => 'pengunjung',
         ]);
 
         return redirect()->route('login')->with('success', 'Account created successfully');
@@ -48,14 +49,25 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+
             $request->session()->regenerate();
+            
+            if (!Auth::user()->is_active) {
+                Auth::logout();
+                return back()->with('error', 'Your account has been blocked');
+            }
 
             session([
                 'user_name' => Auth::user()->name,
                 'user_phone' => Auth::user()->phone,
                 'user_email' => Auth::user()->email,
                 'user_id' => Auth::user()->id,
+                'user_role' => Auth::user()->role,
             ]);
+
+            if (Auth::user()->role === 'admin') {
+                return redirect('/admin');
+            }
 
             return redirect('/home');
         }

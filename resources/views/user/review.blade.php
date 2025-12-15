@@ -4,7 +4,7 @@
     @include('layouts.navbar.navbar_back_history')
 
     <div class="row min-vh-100 d-flex justify-content-center align-items-center">
-        <section id="review" class="Booking">
+        <section id="review" class="HomePage4">
 
             {{-- Review Form --}}
             <div class="rounded-5 bg-white w-75 w-md-75 w-lg-50 p-3 position-fixed top-50 start-50 translate-middle">
