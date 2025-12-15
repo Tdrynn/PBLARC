@@ -107,7 +107,6 @@ Route::middleware(['auth'])->group(function () {
         return view('user.review');
     })->name('review');
 
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
