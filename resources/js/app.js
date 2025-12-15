@@ -42,3 +42,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+// + / - Button Add Ons
+document.querySelectorAll('.plus-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.input);
+        input.value = parseInt(input.value) + 1;
+    });
+});
+
+document.querySelectorAll('.minus-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.input);
+        input.value = Math.max(0, parseInt(input.value) - 1);
+    });
+});
