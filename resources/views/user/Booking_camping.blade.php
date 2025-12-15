@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="w-75 justify-content-center align-items-center mx-auto mt-0">
-                    <form action={{ route('booking.store', $package->id) }} method="POST">
+                    <form action="{{ route('booking.store', $package->id) }}" method="POST">
                         @csrf
                         <div class="mb-2">
                             <label for="name" class="form-label fw-semibold">Reservation Name</label>
@@ -40,12 +40,13 @@
                                     <label for="participants" class="form-label fw-semibold">Number of
                                         participants</label>
                                     <input type="number" class="form-control border-success w-50" id="participants"
-                                        name="participants">
+                                        name="participants" min="1" required>
                                 </div>
 
                                 <div class="col flex-column">
                                     <label for="tent" class="form-label fw-semibold">Tent</label>
-                                    <input type="number" class="form-control border-success w-75" id="tent" name="tent">
+                                    <input type="number" class="form-control border-success w-75" id="tent" name="tent"
+                                        min="1" required>
                                 </div>
 
                                 <div class="col">
@@ -58,13 +59,14 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="checkin" class="form-label fw-semibold">Check in Date</label>
-                                    <input type="date" class="form-control border-success w-75" id="checkin" name="checkin">
+                                    <input type="date" class="form-control border-success w-75" id="checkin" name="checkin"
+                                        required>
                                 </div>
 
                                 <div class="col">
                                     <label for="checkout" class="form-label fw-semibold">Check out Date</label>
                                     <input type="date" class="form-control border-success w-75" id="checkout"
-                                        name="checkout">
+                                        name="checkout" required>
                                 </div>
 
                                 <div class="col">
@@ -81,8 +83,9 @@
                             <hr class="border border-dark opacity-50 mt-1 mb-3" style="width: 100%;">
                         </div>
 
-                        <div>
-                            <p class="fs-5 fw-semibold">Price Summary <br> IDR XX.XXX,XX</p>
+                        <div class="fs-5 fw-semibold">
+                            Price Summary <br>
+                            <span id="priceSummary">IDR 0</span>
                         </div>
 
                         <div class="d-flex gap-3 my-4 align-items-end justify-content-end">
@@ -114,4 +117,50 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const PACKAGE_PRICE = {{ $package->price }};
+    </script>
+
+    <script>
+        const tentInput = document.getElementById('tent');
+        const checkinInput = document.getElementById('checkin');
+        const checkoutInput = document.getElementById('checkout');
+        const priceSummary = document.getElementById('priceSummary');
+
+        function calculateDays() {
+            if (!checkinInput.value || !checkoutInput.value) return 0;
+
+            const checkin = new Date(checkinInput.value);
+            const checkout = new Date(checkoutInput.value);
+
+            const diffTime = checkout - checkin;
+            const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+            return diffDays > 0 ? diffDays : 0;
+        }
+
+        function formatRupiah(number) {
+            return 'IDR ' + number.toLocaleString('id-ID');
+        }
+
+        function updatePrice() {
+            const days = calculateDays();
+            const tentQty = parseInt(tentInput.value) || 0;
+
+            if (days === 0 || tentQty === 0) {
+                priceSummary.innerText = 'IDR 0';
+                return;
+            }
+
+            const total = PACKAGE_PRICE * tentQty * days;
+            priceSummary.innerText = formatRupiah(total);
+        }
+
+        // Trigger realtime
+        tentInput.addEventListener('input', updatePrice);
+        checkinInput.addEventListener('change', updatePrice);
+        checkoutInput.addEventListener('change', updatePrice);
+    </script>
+
 @endsection

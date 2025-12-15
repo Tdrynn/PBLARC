@@ -11,18 +11,17 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('package_id')->constrained('packages'); // ✔ cukup ini 1 baris
-
+            $table->foreignId('package_id')
+                  ->constrained('packages')
+                  ->cascadeOnDelete();
             $table->string('name');
-            $table->string('telephone'); // ✔ tidak unique
+            $table->string('telephone');
             $table->string('email')->nullable();
-            $table->integer('participants');
-            $table->integer('tent')->nullable();
+            $table->unsignedInteger('participants');
+            $table->unsignedInteger('tent')->default(1);
             $table->date('checkin');
             $table->date('checkout');
-
-            $table->integer('total_price')->default(0);
-
+            $table->unsignedInteger('total_price')->default(0);
             $table->timestamps();
         });
     }

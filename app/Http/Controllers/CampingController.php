@@ -1,144 +1,118 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use App\Models\Booking;
-    use App\Models\Package;
-    use App\Models\Addon;
-    use Illuminate\Http\Request;
-    use Carbon\Carbon;
-    use Carbon\CarbonPeriod;
+use App\Models\Booking;
+use App\Models\Package;
+use App\Models\Addon;
+use Illuminate\Http\Request;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\DB;
 
-    class CampingController extends Controller
+class CampingController extends Controller
+{
+    public function checkAvailability(Request $request)
     {
-        /**
-         * Cek ketersediaan tanggal berdasarkan package_id
-         */
-        public function checkAvailability(Request $request, $package_id)
-        {
-            $request->validate([
-                'checkin'   => 'required|date',
-                'checkout'  => 'required|date|after_or_equal:checkin',
-            ]);
+        $request->validate([
+            'package_id' => 'required|exists:packages,id',
+            'checkin'    => 'required|date',
+            'checkout'   => 'required|date|after_or_equal:checkin',
+            'tent'       => 'required|integer|min:1',
+        ]);
 
-            $package = Package::findOrFail($package_id);
+        $package_id = $request->package_id;
+        $package = Package::findOrFail($package_id);
 
-            // Jika paket single-day, paksa checkout = checkin
-            if ($package->is_single_day) {
-                $request->merge(['checkout' => $request->checkin]);
-            }
+        $period = CarbonPeriod::create($request->checkin, $request->checkout);
 
-            $period = CarbonPeriod::create($request->checkin, $request->checkout);
+        foreach ($period as $date) {
+            $d = $date->format('Y-m-d');
 
-            foreach ($period as $date) {
-                $d = $date->format('Y-m-d');
-
-                // 1️⃣ Jika ada group event di tanggal tersebut → semua paket penuh
-                $groupBooked = Booking::whereHas('package', function ($q) {
-                    $q->where('block_other_packages', true);
-                })
+            $usedTent = Booking::where('package_id', $package_id)
                 ->whereDate('checkin', '<=', $d)
-                ->whereDate('checkout', '>=', $d)
-                ->exists();
+                ->whereDate('checkout', '>', $d) // 🔥 PERBAIKAN
+                ->sum('tent');
 
-                if ($groupBooked && !$package->block_other_packages) {
-                    return response()->json([
-                        'available' => false,
-                        'message'   => "Tanggal $d tidak tersedia karena ada booking Group Event."
-                    ]);
-                }
-
-                // 2️⃣ Hitung total booking yang bentrok untuk paket ini
-                $bookedCount = Booking::where('package_id', $package_id)
-                    ->whereDate('checkin', '<=', $d)
-                    ->whereDate('checkout', '>=', $d)
-                    ->count();
-
-                // 3️⃣ Cek kapasitas
-                if ($bookedCount >= $package->capacity) {
-                    return response()->json([
-                        'available' => false,
-                        'message'   => "Tanggal $d penuh."
-                    ]);
-                }
+            if (($usedTent + $request->tent) > $package->capacity) {
+                return response()->json([
+                    'available' => false,
+                    'message'   => "Tanggal $d penuh"
+                ]);
             }
-
-            return response()->json([
-                'available' => true,
-                'message'   => "Tanggal tersedia."
-            ]);
         }
 
-        /**
-         * Simpan Booking
-         */
-        public function store(Request $request, $package_id)
-        {
-            $package = Package::findOrFail($package_id);
+        return response()->json([
+            'available' => true,
+            'message'   => 'Tanggal tersedia'
+        ]);
+    }
 
-            $request->validate([
-                'name'          => 'required|string|max:255',
-                'telephone'     => 'required|string|max:20',
-                'email'         => 'nullable|email',
-                'participants'  => 'required|integer|min:1',
-                'tent'          => 'nullable|string|max:255',
-                'checkin'       => 'required|date',
-                'checkout'      => 'required|date|after_or_equal:checkin',
-            ]);
+    public function store(Request $request, $package_id)
+    {
+        // 1️⃣ Ambil package dari URL param
+        $package = Package::findOrFail($package_id);
 
-            // PICNIC: hanya 1 hari
-            if ($package->is_single_day) {
-                $request->merge(['checkout' => $request->checkin]);
+        // 2️⃣ VALIDASI FORM (JANGAN VALIDASI package_id)
+        $request->validate([
+            'name'         => 'required|string|max:255',
+            'telephone'    => 'required|string|max:20',
+            'email'        => 'nullable|email',
+            'participants' => 'required|integer|min:1',
+            'tent'         => 'required|integer|min:1',
+            'checkin'      => 'required|date',
+            'checkout'     => 'required|date|after:checkin',
+        ]);
+
+        // 3️⃣ CEK AVAILABILITY ULANG (ANTI RACE CONDITION)
+        $period = CarbonPeriod::create($request->checkin, $request->checkout);
+
+        foreach ($period as $date) {
+            $d = $date->format('Y-m-d');
+
+            $usedTent = Booking::where('package_id', $package_id)
+                ->whereDate('checkin', '<=', $d)
+                ->whereDate('checkout', '>', $d) // ✅ FIX OVERLAP
+                ->sum('tent');
+
+            if (($usedTent + $request->tent) > $package->capacity) {
+                return back()->with('error',
+                    "Tanggal $d tidak tersedia. Sisa kapasitas: " . ($package->capacity - $usedTent)
+                );
             }
+        }
 
-            // Simpan booking
+        // 4️⃣ SIMPAN KE DATABASE
+        DB::beginTransaction();
+
+        try {
             $booking = Booking::create([
-                'package_id'    => $package_id,
-                'name'          => $request->name,
-                'telephone'     => $request->telephone,
-                'email'         => $request->email,
-                'participants'  => $request->participants,
-                'tent'          => $request->tent,
-                'checkin'       => $request->checkin,
-                'checkout'      => $request->checkout,
+                'package_id'   => $package_id,
+                'name'         => $request->name,
+                'telephone'    => $request->telephone,
+                'email'        => $request->email,
+                'participants' => $request->participants,
+                'tent'         => $request->tent,
+                'checkin'      => $request->checkin,
+                'checkout'     => $request->checkout,
+                'total_price'  => $package->price, // sementara
             ]);
 
-            // Handle addons (sama seperti sebelumnya)
-            $addons = $request->addons ?? [];
-            $totalAddons = 0;
+            DB::commit();
 
-            foreach ($addons as $addonId => $qty) {
-                if ($qty > 0) {
+            return redirect()
+                ->route('booking.camping', $package_id)
+                ->with('success', 'Booking berhasil dibuat!');
+        } catch (\Exception $e) {
+            DB::rollBack();
 
-                    $addon = Addon::find($addonId);
-                    if (!$addon) continue;
-
-                    if ($addon->stock < $qty) {
-                        return redirect()->back()->with('error', "Stok addon {$addon->name} tidak cukup!");
-                    }
-
-                    $booking->addons()->attach($addonId, [
-                        'quantity' => $qty
-                    ]);
-
-                    $addon->stock -= $qty;
-                    $addon->save();
-
-                    $totalAddons += $addon->price * $qty;
-                }
-            }
-
-            // hitung total
-            $booking->update([
-                'total_price' => $package->price + $totalAddons
-            ]);
-
-            return redirect()->back()->with('success', 'Booking berhasil dibuat!');
-        }
-
-        public function bookingForm($package_id)
-        {
-            $package = Package::findOrFail($package_id);
-            return view('user.booking_camping', compact('package'));
+            return back()->with('error', $e->getMessage());
         }
     }
+
+
+    public function bookingForm($package_id)
+    {
+        $package = Package::findOrFail($package_id);
+        return view('user.booking_camping', compact('package'));
+    }
+}

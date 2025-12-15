@@ -113,10 +113,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/review', fn() => view('user.review'))->name('review');
     Route::post('review/store', [ReviewController::class, 'store'])->name('review.store');
 
-    Route::post('/camping/check-availability', [CampingController::class, 'checkAvailability'])
-    ->name('booking.check');
-    Route::get('/camping/{package_id}/booking', [CampingController::class, 'bookingForm'])
-    ->name('booking.camping');
+    Route::post('/check-availability', [CampingController::class, 'checkAvailability'])
+    ->name('check.availability');
+
+    Route::get(
+    '/booking/camping/{package}',
+    [CampingController::class, 'bookingForm']
+)->name('booking.camping');
     Route::post('/booking/{package_id}/store', [CampingController::class, 'store'])
     ->name('booking.store');
 });

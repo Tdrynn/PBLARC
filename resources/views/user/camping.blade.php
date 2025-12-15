@@ -89,14 +89,27 @@
                                 <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}" width="25"
                                     height="25">
                                 <p class="fw-bold fs-5 text-dark me-5 my-auto">Show Availaibility</p>
-                                <div class="ms-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                        class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
-                                        <title>Ready To Book</title>
-                                        <path
-                                            d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+                                <div id="availabilityStatus" class="ms-5 d-none">
+                                    <svg id="availableIcon" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                        fill="currentColor" class="text-success d-none" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0z
+                             M6.97 10.03a.75.75 0 0 0 1.08.02
+                             l3.992-4.99a.75.75 0 1 0-1.16-.96
+                             L7.477 8.417 5.383 6.323a.75.75 0 0 0-1.06 1.06
+                             l2.647 2.647z" />
+                                    </svg>
+
+                                    <svg id="fullIcon" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                        fill="currentColor" class="text-danger d-none" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0z
+                             M5.354 4.646a.5.5 0 1 0-.708.708
+                             L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708
+                             L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708
+                             L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708
+                             L8 7.293 5.354 4.646z" />
                                     </svg>
                                 </div>
+
                             </div>
                             <div class="d-flex gap-3">
                                 <div>
@@ -113,52 +126,88 @@
                         </div>
 
                         <div class="col justify-content-center align-item-center d-flex my-auto">
-                            <a href="{{ route('booking.camping', 2) }}">
-                                <button class="btn btn-lg text-light fw-semibold rounded-4 me-3 mb-0" id="bookingButton"
-                                    disabled class="btn btn-success" style="background-color:#114A06;">Booking</button>
-                                <meta name="csrf-token" content="{{ csrf_token() }}">
-                            </a>
+                            <button class="btn btn-lg text-light fw-semibold rounded-4 me-3 mb-0" id="bookingButton"
+                                disabled style="background-color:#114A06;" onclick="goToBooking()">
+                                Booking
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+            const packageId = 2; // SESUAIKAN
+            const checkinInput = document.getElementById('checkin');
+            const checkoutInput = document.getElementById('checkout');
+            const bookingButton = document.getElementById('bookingButton');
+
+            const availabilityStatus = document.getElementById('availabilityStatus');
+            const availableIcon = document.getElementById('availableIcon');
+            const fullIcon = document.getElementById('fullIcon');
+
+            function resetStatus() {
+                availabilityStatus.classList.add('d-none');
+                availableIcon.classList.add('d-none');
+                fullIcon.classList.add('d-none');
+                bookingButton.disabled = true;
+            }
+
+            function checkAvailability() {
+
+                if (!checkinInput.value || !checkoutInput.value) {
+                    resetStatus();
+                    return;
+                }
+
+                fetch(`{{ route('check.availability') }}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document
+                            .querySelector('meta[name="csrf-token"]')
+                            .getAttribute('content')
+                    },
+                    body: JSON.stringify({
+                        package_id: packageId,
+                        checkin: checkinInput.value,
+                        checkout: checkoutInput.value,
+                        tent: 1
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+                        availabilityStatus.classList.remove('d-none');
+
+                        if (data.available) {
+                            availableIcon.classList.remove('d-none');
+                            fullIcon.classList.add('d-none');
+                            bookingButton.disabled = false;
+                        } else {
+                            fullIcon.classList.remove('d-none');
+                            availableIcon.classList.add('d-none');
+                            bookingButton.disabled = true;
+                        }
+                    })
+                    .catch(() => {
+                        resetStatus();
+                    });
+            }
+
+            function goToBooking() {
+                const checkin = document.getElementById('checkin').value;
+                const checkout = document.getElementById('checkout').value;
+
+                if (!checkin || !checkout) {
+                    alert('Pilih tanggal terlebih dahulu');
+                    return;
+                }
+
+                // SESUAI ROUTE KAMU
+                window.location.href =
+                    `/booking/camping/${packageId}?checkin=${checkin}&checkout=${checkout}`;
+            }
+        </script>
+
 @endsection
-
-    <script>
-        function checkAvailability() {
-            let checkin = document.getElementById("checkin").value;
-            let checkout = document.getElementById("checkout").value;
-            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-            if (checkin === "" || checkout === "") return;
-
-            fetch("{{ route('booking.check', 2) }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": token
-                },
-                body: JSON.stringify({
-                    checkin: checkin,
-                    checkout: checkout
-                })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    let btn = document.getElementById("bookingButton");
-
-                    if (data.available) {
-                        btn.disabled = false;
-                        btn.style.backgroundColor = "#114A06";
-                    } else {
-                        btn.disabled = true;
-                        btn.style.backgroundColor = "gray";
-                        alert(data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                });
-        }
-    </script>

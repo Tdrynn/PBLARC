@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('capacity')->default(10);  
+            $table->unsignedInteger('capacity')->default(10);  
             $table->boolean('is_single_day')->default(false); 
             $table->boolean('block_other_packages')->default(false); 
             $table->integer('price')->default(0);
