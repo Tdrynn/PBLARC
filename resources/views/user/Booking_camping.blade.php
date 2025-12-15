@@ -36,12 +36,12 @@
                             <div class="row">
                                 <div class="col col-4">
                                     <label for="checkin" class="form-label fw-semibold">Check in Date</label>
-                                    <input type="date" class="form-control border-success w-75" id="checkin">
+                                    <input type="date" class="form-control border-success" id="checkin">
                                 </div>
 
                                 <div class="col col-4">
                                     <label for="checkout" class="form-label fw-semibold">Check out Date</label>
-                                    <input type="date" class="form-control border-success w-75" id="checkout">
+                                    <input type="date" class="form-control border-success" id="checkout">
                                 </div>
 
                                 <div class="col">
@@ -52,17 +52,51 @@
                         <div class="mb-2 container p-0">
                             <div class="row">
                                 <div class="col col-4">
-                                    <label for="participants" class="form-label fw-semibold">Number of participants</label>
-                                    <input type="number" class="form-control border-success w-50" id="participants">
+                                    <label for="participants" class="form-label fw-semibold">Participants</label>
+                                    <input type="number" class="form-control border-success w-75" id="participants">
+                                </div>
+
+                                <div class="col col-6">
+                                    <label for="participants" class="form-label fw-semibold">Select Tent</label>
+                                    <select class="form-select border-success" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">Bring Own Tent</option>
+                                        <option value="2">Rent Tent 2 Person (IDR. 150.000,00)</option>
+                                        <option value="3">Rent Tent 4 Person (IDR. 250.000,00)</option>
+                                    </select>
                                 </div>
 
                                 <div class="col col-4">
-                                    <label for="tent" class="form-label fw-semibold">Number of Tent</label>
-                                    <input type="number" class="form-control border-success w-50" id="tent">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-2 container p-0">
+                            <div class="row">
+                                <div class="col col-4 w-50">
+                                    <div class="justify-content-start align-items-start">
+                                        <h6 class="fw-semibold mb-1 w-100">Amount of Tent</h6>
+
+                                        <div class="d-flex gap-2 mt-2">
+                                            <button type="button" class="btn btn-outline-success btn-sm minus-btn"
+                                                data-input="amountTent">
+                                                −
+                                            </button>
+
+                                            <input type="number" id="amountTent"
+                                                class="form-control form-control-sm text-center" value="0" min="1"
+                                                style="width: 60px;" required>
+
+                                            <button type="button" class="btn btn-outline-success btn-sm plus-btn"
+                                                data-input="amountTent">
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col">
-
                                 </div>
                             </div>
                         </div>
