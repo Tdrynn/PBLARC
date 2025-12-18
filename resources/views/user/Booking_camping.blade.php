@@ -85,7 +85,7 @@
                                             </button>
 
                                             <input type="number" id="amountTent"
-                                                class="form-control form-control-sm text-center" value="0" min="1"
+                                                class="form-control form-control-sm text-center" value="1" min="1"
                                                 style="width: 60px;" required>
 
                                             <button type="button" class="btn btn-outline-success btn-sm plus-btn"

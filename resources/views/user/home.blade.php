@@ -52,26 +52,23 @@
         {{-- About Section --}}
         <section id="about" class="text-white container HomePage2 d-flex justify-content-center align-items-center">
             <div class="row justify-content-center align-items-center mx-auto">
-                <h3 class="fw-bold text-start top-0" style="font-size: 3rem;"> ABOUT US </h3>
+                <h3 class="fw-bold text-start top-0 ms-5" style="font-size: 3rem;"> ABOUT US </h3>
 
                 {{-- Card + Shadow --}}
                 <div class="col-md-6 my-5 justify-content-center d-flex">
                     <div class="d-flex justify-content-center position-relative"
                         style="max-width: 500px; margin-top: 30px;">
-                        <div class="shadow-box position-absolute rounded-4"
-                            style="background-color: rgba(0, 0, 0, 0.9); width: 95%; height: 95%; top: -25px; left: -25px; border-radius: 20px; z-index: 1; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);">
-                        </div>
 
-                        <img src="{{ Vite::asset('resources/images/CP1.png') }}" alt="Foto"
-                            class="rounded-4 shadow-lg position-relative"
-                            style="width: 100%; height: auto; border-radius: 20px; z-index: 2; box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);">
+                        <img src="{{ Vite::asset('resources/images/CP2.jpeg') }}" alt="Foto"
+                            class="rounded-4"
+                            style="width: 100%; height: auto; border-radius: 20px; z-index: 2; box-shadow: -30px -35px 25px 2px rgba(0, 0, 0, 0.7);">
                     </div>
                 </div>
 
                 {{-- About --}}
                 <div class="col-md-6">
-                    <h1 class="fw-bold mb-3">WHO ARE WE?</h1>
-                    <p class="mb-3 fs-4" style="width: 90%;">
+                    <h3 class="fw-bold mb-3">WHO ARE WE?</h3>
+                    <p class="mb-3 fs-5" style="width: 90%;">
                         Located in edging clear river in Klungkung regency, Angklung River Camp offers a tranquil
                         camping
                         experience perfectly at one with nature. Perfect for families, groups, and organizations.
@@ -80,7 +77,7 @@
 
                     <!-- Find Out More Button -->
                     <a href="{{ Route('FindOut') }}" class="btn d-flex align-items-center justify-content-center gap-2"
-                        style="background-color: #1F2922; color: #FFFFFF; border-radius: 64px; height: 60px; width: 250px; font-size: 20px;">
+                        style="background-color: #1F2922; color: #FFFFFF; border-radius: 64px; height: 55px; width: 230px; font-size: 20px;">
                         <span class="fw-bold">FIND OUT MORE</span>
                         <img src="{{ Vite::asset('resources/images/Search.png') }}" alt="Search" width="28" height="28">
                     </a>
