@@ -43,10 +43,6 @@ class UserResource extends Resource
                     ])
                     ->required(),
 
-                Forms\Components\Toggle::make('is_active')
-                    ->label('Akun Aktif')
-                    ->default(true),
-
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->dehydrateStateUsing(fn($state) => filled($state) ? Hash::make($state) : null)
@@ -56,31 +52,27 @@ class UserResource extends Resource
     }
 
     public static function table(Table $table): Table
-{
-    return $table
-        ->columns([
-            Tables\Columns\TextColumn::make('name')->searchable(),
-            Tables\Columns\TextColumn::make('email')->searchable(),
-            Tables\Columns\TextColumn::make('role')
-                ->badge()
-                ->colors([
-                    'danger' => 'admin',
-                    'success' => 'pengunjung',
-                ]),
-            Tables\Columns\IconColumn::make('is_active')
-                ->boolean()
-                ->label('Aktif'),
-            Tables\Columns\TextColumn::make('created_at')
-                ->dateTime(),
-        ])
-        ->filters([])
-        ->actions([
-            Tables\Actions\EditAction::make(),
-            Tables\Actions\DeleteAction::make(),
-        ])
-        ->bulkActions([
-            Tables\Actions\DeleteBulkAction::make(),
-        ]);
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('email')->searchable(),
+                Tables\Columns\TextColumn::make('role')
+                    ->badge()
+                    ->colors([
+                        'danger' => 'admin',
+                        'success' => 'pengunjung',
+                    ]),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
+            ])
+            ->filters([])
+            ->actions([
+                Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]);
     }
 
     public static function canViewAny(): bool
@@ -100,7 +92,6 @@ class UserResource extends Resource
         return [
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }
