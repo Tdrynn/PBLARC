@@ -51,14 +51,14 @@
         {{-- About Section --}}
         <section id="about" class="text-white container HomePage2 d-flex justify-content-center align-items-center">
             <div class="row justify-content-center align-items-center mx-auto">
-                <h3 class="fw-bold text-start top-0" style="font-size: 3rem;"> ABOUT US </h3>
+                <h3 class="fw-bold text-start top-0" style="font-size: 3rem;">ABOUT US</h3>
 
                 {{-- Card + Shadow --}}
                 <div class="col-md-6 my-5 justify-content-center d-flex">
                     <div class="d-flex justify-content-center position-relative"
                         style="max-width: 500px; margin-top: 30px;">
 
-                        <img src="{{ Vite::asset('resources/images/CP2.jpeg') }}" alt="Foto"
+                        <img src="{{ Vite::asset('resources/images/GalleryKa.png') }}" alt="Foto"
                             class="rounded-4"
                             style="width: 100%; height: auto; border-radius: 20px; z-index: 2; box-shadow: -30px -35px 25px 2px rgba(0, 0, 0, 0.7);">
                     </div>
@@ -67,7 +67,7 @@
                 {{-- About --}}
                 <div class="col-md-6">
                     <h1 class="fw-bold mb-3">WHO ARE WE?</h1>
-                    <p class="mb-3 fs-4" style="width: 90%;">
+                    <p class="mb-3 fs-5 fw-semibolc" style="width: 90%;">
                         Located in edging clear river in Klungkung regency, Angklung River Camp offers a tranquil
                         camping
                         experience perfectly at one with nature. Perfect for families, groups, and organizations.
@@ -76,7 +76,7 @@
 
                     <!-- Find Out More Button -->
                     <a href="{{ Route('FindOut') }}" class="btn d-flex align-items-center justify-content-center gap-2"
-                        style="background-color: #1F2922; color: #FFFFFF; border-radius: 64px; height: 60px; width: 250px; font-size: 20px;">
+                        style="background-color: #1F2922; color: #FFFFFF; border-radius: 64px; height: 55px; width: 230px; font-size: 20px;">
                         <span class="fw-bold">FIND OUT MORE</span>
                         <img src="{{ Vite::asset('resources/images/Search.png') }}" alt="Search" width="28" height="28">
                     </a>
@@ -88,7 +88,7 @@
         <section id="gallery"
             class="container text-center flex-column align-items-center justify-content-center HomePage3 py-5 text-white">
 
-            <div id="galleryCarousel" class="carousel slide mt-5" data-bs-ride="carousel" data-bs-interval="4000">
+            <div id="galleryCarousel" class="carousel slide mt-3" data-bs-ride="carousel" data-bs-interval="4000">
                 <h1 class="fw-bold mb-5" style="font-size: 3rem;">OUR GALLERY</h1>
                 <div class="carousel-inner" width="500" height="500">
 
@@ -116,7 +116,7 @@
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center">
                             <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/GalleryKi.png') }}" class="img-fluid rounded-4"
+                                <img src="{{ Vite::asset('resources/images/Gallery1.jpg') }}" class="img-fluid rounded-4"
                                     style="width:100%; height:500px; object-fit:cover;" alt="Gallery 3">
                             </div>
                         </div>
@@ -126,22 +126,61 @@
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center">
                             <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/PN1.png') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 3">
+                                <img src="{{ Vite::asset('resources/images/Gallery2.jpg') }}" class="img-fluid rounded-4"
+                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 4">
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Slide 5 -->
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center">
                             <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/PN5.png') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 3">
+                                <img src="{{ Vite::asset('resources/images/Gallery3.jpg') }}" class="img-fluid rounded-4"
+                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 5">
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- Slide 6 -->
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-center">
+                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
+                                <img src="{{ Vite::asset('resources/images/Gallery4.jpg') }}" class="img-fluid rounded-4"
+                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 6">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 7 -->
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-center">
+                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
+                                <img src="{{ Vite::asset('resources/images/Gallery5.jpg') }}" class="img-fluid rounded-4"
+                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 7">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 8 -->
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-center">
+                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
+                                <img src="{{ Vite::asset('resources/images/Gallery6.jpg') }}" class="img-fluid rounded-4"
+                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 8">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 9 -->
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-center">
+                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
+                                <img src="{{ Vite::asset('resources/images/Gallery7.jpg') }}" class="img-fluid rounded-4"
+                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 9">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Controls -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">

@@ -55,19 +55,19 @@
                     <!-- Thumbnails -->
                     <div class="d-flex justify-content-center gap-2 thumbnail-wrapper mt-2">
 
-                        <img src="{{ Vite::asset('resources/images/PN1.jpeg') }}" class="thumbnail active-thumb"
+                        <img src="{{ Vite::asset('resources/images/GE1.jpeg') }}" class="thumbnail active-thumb"
                             data-bs-target="#mainCarousel" data-bs-slide-to="0">
 
-                        <img src="{{ Vite::asset('resources/images/PN2.jpeg') }}" class="thumbnail"
+                        <img src="{{ Vite::asset('resources/images/GE2.jpeg') }}" class="thumbnail"
                             data-bs-target="#mainCarousel" data-bs-slide-to="1">
 
-                        <img src="{{ Vite::asset('resources/images/PN3.png') }}" class="thumbnail"
+                        <img src="{{ Vite::asset('resources/images/GE3.jpg') }}" class="thumbnail"
                             data-bs-target="#mainCarousel" data-bs-slide-to="2">
 
-                        <img src="{{ Vite::asset('resources/images/PN4.jpeg') }}" class="thumbnail"
+                        <img src="{{ Vite::asset('resources/images/GE4.jpeg') }}" class="thumbnail"
                             data-bs-target="#mainCarousel" data-bs-slide-to="3">
 
-                        <img src="{{ Vite::asset('resources/images/PN5.jpeg') }}" class="thumbnail"
+                        <img src="{{ Vite::asset('resources/images/GE5.jpeg') }}" class="thumbnail"
                             data-bs-target="#mainCarousel" data-bs-slide-to="4">
                     </div>
 
