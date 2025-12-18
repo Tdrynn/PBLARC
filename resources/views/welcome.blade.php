@@ -57,13 +57,10 @@
                 <div class="col-md-6 my-5 justify-content-center d-flex">
                     <div class="d-flex justify-content-center position-relative"
                         style="max-width: 500px; margin-top: 30px;">
-                        <div class="shadow-box position-absolute rounded-4"
-                            style="background-color: rgba(0, 0, 0, 0.9); width: 95%; height: 95%; top: -25px; left: -25px; border-radius: 20px; z-index: 1; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);">
-                        </div>
 
-                        <img src="{{ Vite::asset('resources/images/CP1.png') }}" alt="Foto"
-                            class="rounded-4 shadow-lg position-relative"
-                            style="width: 100%; height: auto; border-radius: 20px; z-index: 2; box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);">
+                        <img src="{{ Vite::asset('resources/images/CP2.jpeg') }}" alt="Foto"
+                            class="rounded-4"
+                            style="width: 100%; height: auto; border-radius: 20px; z-index: 2; box-shadow: -30px -35px 25px 2px rgba(0, 0, 0, 0.7);">
                     </div>
                 </div>
 

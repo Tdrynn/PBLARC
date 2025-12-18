@@ -9,7 +9,7 @@
 
                 <div class="row rounded-4" style="background-color: #fff; width: 90%;">
                     <div class="col-md-6 justify-content-center d-flex">
-                        <img src="{{ Vite::asset('resources/images/PN1.png') }}" alt="Picnic"
+                        <img src="{{ Vite::asset('resources/images/PN1.jpeg') }}" alt="Picnic"
                             class="rounded-4 package-img img-fluid m-3">
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-center">
@@ -27,7 +27,7 @@
 
                 <div class="row rounded-4" style="background-color: #fff; width: 90%;">
                     <div class="col-md-6 justify-content-center d-flex">
-                        <img src="{{ Vite::asset('resources/images/CP1.png') }}" alt="Camping"
+                        <img src="{{ Vite::asset('resources/images/CP1.jpeg') }}" alt="Camping"
                             class="rounded-4 package-img img-fluid m-3">
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-center">
@@ -45,7 +45,7 @@
 
                 <div class="row rounded-4" style="background-color: #fff; width: 90%;">
                     <div class="col-md-6 justify-content-center d-flex">
-                        <img src="{{ Vite::asset('resources/images/CV1.png') }}" alt="Campervan"
+                        <img src="{{ Vite::asset('resources/images/CV1.jpg') }}" alt="Campervan"
                             class="rounded-4 package-img img-fluid m-3">
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-center">
@@ -63,7 +63,7 @@
 
                 <div class="row rounded-4" style="background-color: #fff; width: 90%;">
                     <div class="col-md-6 justify-content-center d-flex">
-                        <img src="{{ Vite::asset('resources/images/GE1.png') }}" alt="Group Event"
+                        <img src="{{ Vite::asset('resources/images/GE1.jpeg') }}" alt="Group Event"
                             class="rounded-4 package-img img-fluid m-3">
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-center">

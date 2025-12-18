@@ -10,6 +10,11 @@ Route::middleware('redirect.auth')->group(function () {
     Route::get('/', [ReviewController::class, 'welcome'])->name('welcome');
 });
 
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+});
+
 Route::get('/login', function () {
     return view('auth.login'); // perhatikan: gunakan "auth.login" dengan titik
 })->name('login');
@@ -41,12 +46,11 @@ Route::get('/package', function () {
     return view('user.package');
 })->name('package');
 
-Route::get('/FindOut', function() {
+Route::get('/FindOut', function () {
     return view('user.FindOut');
 })->name('FindOut');
 
 Route::get('/reviewList', [ReviewController::class, 'index'])->name('reviewList');
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [ReviewController::class, 'home'])->name('home');
@@ -69,7 +73,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/changepassword', function () {
         return view('user.change_password');
     })->name('changepassword');
-
 
     Route::get('/bookingPicnic', function () {
         return view('user.booking_picnic');

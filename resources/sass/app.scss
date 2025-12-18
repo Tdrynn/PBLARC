@@ -103,8 +103,6 @@ input[type=number] {
     right: 20px;
 }
 
-
-
 .HomePage5 {
     background-color: #1E1F1E;
     background-size: cover;
@@ -134,6 +132,12 @@ input[type=number] {
     background-repeat: no-repeat;
     width: 100%;
     min-height: 100vh;
+}
+
+.carousel-Image {
+    height: 25rem;
+    width: 50rem;
+    object-fit: cover;
 }
 
 .package-img {
@@ -264,7 +268,7 @@ input[type=number] {
     filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25));
 }
 
-.carousel-item img {
+.carousel-items img {
     height: 80vh;
     width: auto;
     object-fit: cover;
@@ -330,6 +334,34 @@ input[type=number] {
     width: 60%; 
     height: auto;
 }
+
+.carousel-wrapper {
+    max-width: 900px;
+}
+
+.main-img {
+    width: 100%;
+    aspect-ratio: 18 / 9;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.thumbnail {
+    width: 90px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    opacity: 0.6;
+}
+
+.thumbnail:hover,
+.active-thumb {
+    opacity: 1;
+    outline: 2px solid #198754;
+}
+
+
 
 @media (max-width: 768px) {
     .login-card {
