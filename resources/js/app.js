@@ -81,6 +81,7 @@ document.querySelectorAll('.plus-btn').forEach(btn => {
     });
 });
 
+// Learn More Carousel Thumbnail Active State
 document.querySelectorAll('.minus-btn').forEach(btn => {
     btn.addEventListener('click', function () {
         const input = document.getElementById(this.dataset.input);

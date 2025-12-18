@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-md-5 col-11 mt-2">
-                    <img src="{{ Vite::asset('resources/images/GalleryT.png') }}" alt="Angklung River Camp" class="mb-5 rounded-5 FindOut-img" style="box-shadow: 30px 35px 25px 2px rgba(0, 0, 0, 0.4);">
+                    <img src="{{ Vite::asset('resources/images/GalleryT.png') }}" alt="Angklung River Camp" class="mb-5 rounded-5" style="width: 30rem; height: 20rem;box-shadow: 30px 35px 25px 2px rgba(0, 0, 0, 0.4);">
         
                     <h3 class=" border-bottom border-light border-3" style="width: 45%">Why choose us?</h3>
                     <p>1.Beautiful Riverside Location <br>

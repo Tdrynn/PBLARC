@@ -14,27 +14,27 @@
                         <div class="carousel-inner rounded-4">
 
                             <div class="carousel-item active">
-                                <img src="{{ Vite::asset('resources/images/PN1.jpeg') }}" class="d-block w-100 main-img"
+                                <img src="{{ Vite::asset('resources/images/CP1.jpeg') }}" class="d-block w-100 main-img"
                                     alt="Picnic 1">
                             </div>
 
                             <div class="carousel-item">
-                                <img src="{{ Vite::asset('resources/images/PN2.jpeg') }}" class="d-block w-100 main-img"
+                                <img src="{{ Vite::asset('resources/images/CP2.jpeg') }}" class="d-block w-100 main-img"
                                     alt="Picnic 2">
                             </div>
 
                             <div class="carousel-item">
-                                <img src="{{ Vite::asset('resources/images/PN3.png') }}" class="d-block w-100 main-img"
+                                <img src="{{ Vite::asset('resources/images/CP3.jpeg') }}" class="d-block w-100 main-img"
                                     alt="Picnic 3">
                             </div>
 
                             <div class="carousel-item">
-                                <img src="{{ Vite::asset('resources/images/PN4.jpeg') }}" class="d-block w-100 main-img"
+                                <img src="{{ Vite::asset('resources/images/CP4.jpeg') }}" class="d-block w-100 main-img"
                                     alt="Picnic 4">
                             </div>
 
                             <div class="carousel-item">
-                                <img src="{{ Vite::asset('resources/images/PN5.jpeg') }}" class="d-block w-100 main-img"
+                                <img src="{{ Vite::asset('resources/images/CP5.jpg') }}" class="d-block w-100 main-img"
                                     alt="Picnic 5">
                             </div>
 
@@ -55,19 +55,19 @@
                     <!-- Thumbnails -->
                     <div class="d-flex justify-content-center gap-2 thumbnail-wrapper mt-2">
 
-                        <img src="{{ Vite::asset('resources/images/PN1.jpeg') }}" class="thumbnail active-thumb"
+                        <img src="{{ Vite::asset('resources/images/CP1.jpeg') }}" class="thumbnail active-thumb"
                             data-bs-target="#mainCarousel" data-bs-slide-to="0">
 
-                        <img src="{{ Vite::asset('resources/images/PN2.jpeg') }}" class="thumbnail"
+                        <img src="{{ Vite::asset('resources/images/CP2.jpeg') }}" class="thumbnail"
                             data-bs-target="#mainCarousel" data-bs-slide-to="1">
 
-                        <img src="{{ Vite::asset('resources/images/PN3.png') }}" class="thumbnail"
+                        <img src="{{ Vite::asset('resources/images/CP3.jpeg') }}" class="thumbnail"
                             data-bs-target="#mainCarousel" data-bs-slide-to="2">
 
-                        <img src="{{ Vite::asset('resources/images/PN4.jpeg') }}" class="thumbnail"
+                        <img src="{{ Vite::asset('resources/images/CP4.jpeg') }}" class="thumbnail"
                             data-bs-target="#mainCarousel" data-bs-slide-to="3">
 
-                        <img src="{{ Vite::asset('resources/images/PN5.jpeg') }}" class="thumbnail"
+                        <img src="{{ Vite::asset('resources/images/CP5.jpg') }}" class="thumbnail"
                             data-bs-target="#mainCarousel" data-bs-slide-to="4">
                     </div>
 
