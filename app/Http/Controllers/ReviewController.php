@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class ReviewController extends Controller
         $reviews = Review::latest()->get()->chunk(2); // 2 review per slide
         $averageRating = Review::avg('rating');
         $totalReviews = Review::count();
-        return view('welcome', compact('reviews', 'averageRating', 'totalReviews'));
+        $images = Image::where('page', 'home')->get();
+        return view('welcome', compact('reviews', 'averageRating', 'totalReviews', 'images'));
     }
     public function home()
     {
@@ -30,7 +32,8 @@ class ReviewController extends Controller
         $reviews = Review::latest()->get()->chunk(2); // 2 review per slide
         $averageRating = Review::avg('rating');
         $totalReviews = Review::count();
-        return view('user.home', compact('reviews', 'averageRating', 'totalReviews'));
+        $images = Image::where('page', 'home')->get();
+        return view('user.home', compact('reviews', 'averageRating', 'totalReviews', 'images'));
     }
 
     public function index()

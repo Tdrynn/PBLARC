@@ -59,8 +59,7 @@
                     <div class="d-flex justify-content-center position-relative"
                         style="max-width: 500px; margin-top: 30px;">
 
-                        <img src="{{ Vite::asset('resources/images/GalleryKa.png') }}" alt="Foto"
-                            class="rounded-4"
+                        <img src="{{ Vite::asset('resources/images/GalleryKa.png') }}" alt="Foto" class="rounded-4"
                             style="width: 100%; height: auto; border-radius: 20px; z-index: 2; box-shadow: -30px -35px 25px 2px rgba(0, 0, 0, 0.7);">
                     </div>
                 </div>
@@ -79,7 +78,8 @@
                     <a href="{{ Route('FindOut') }}" class="btn d-flex align-items-center justify-content-center gap-2"
                         style="background-color: #1F2922; color: #FFFFFF; border-radius: 64px; height: 55px; width: 230px; font-size: 20px;">
                         <span class="fw-bold">FIND OUT MORE</span>
-                        <img src="{{ Vite::asset('resources/images/Search.png') }}" alt="Search" width="28" height="28">
+                        <img src="{{ Vite::asset('resources/images/Search.png') }}" alt="Search" width="28"
+                            height="28">
                     </a>
                 </div>
             </div>
@@ -91,110 +91,34 @@
 
             <div id="galleryCarousel" class="carousel slide mt-3" data-bs-ride="carousel" data-bs-interval="4000">
                 <h1 class="fw-bold mb-5" style="font-size: 3rem;">OUR GALLERY</h1>
-                <div class="carousel-inner" width="500" height="500">
 
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active">
-                        <div class="d-flex justify-content-center">
-                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/GalleryT.png') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 1">
-                            </div>
-                        </div>
-                    </div>
+                <div class="carousel-inner">
 
-                    <!-- Slide 2 -->
-                    <div class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/GalleryKa.png') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 2">
+                    @foreach ($images as $index => $image)
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                            <div class="d-flex justify-content-center">
+                                <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
+                                    <img src="{{ asset('storage/' . $image->image) }}" class="img-fluid rounded-4"
+                                        style="width:100%; height:500px; object-fit:cover;"
+                                        alt="{{ $image->title ?? 'Gallery Image' }}">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
-                    <!-- Slide 3 -->
-                    <div class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/Gallery1.jpg') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 3">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/Gallery2.jpg') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 4">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 5 -->
-                    <div class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/Gallery3.jpg') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 5">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 6 -->
-                    <div class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/Gallery4.jpg') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 6">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 7 -->
-                    <div class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/Gallery5.jpg') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 7">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 8 -->
-                    <div class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/Gallery6.jpg') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 8">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 9 -->
-                    <div class="carousel-item">
-                        <div class="d-flex justify-content-center">
-                            <div class="card bg-transparent border-0 shadow-lg rounded-4" style="max-width:900px;">
-                                <img src="{{ Vite::asset('resources/images/Gallery7.jpg') }}" class="img-fluid rounded-4"
-                                    style="width:100%; height:500px; object-fit:cover;" alt="Gallery 9">
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <!-- Controls -->
+
+                {{-- Controls --}}
                 <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon bg-light rounded-circle p-3 bg-dark" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3"></span>
                 </button>
 
                 <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon bg-light rounded-circle p-3 bg-dark" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                    <span class="carousel-control-next-icon bg-dark rounded-circle p-3"></span>
                 </button>
             </div>
         </section>
+
 
         {{-- Reviews Section --}}
         <section id="reviews" class="HomePage4 text-white container py-5">
@@ -239,7 +163,8 @@
                                                 {{-- Avatar + Name --}}
                                                 <div class="d-flex align-items-center gap-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                                        fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                                        fill="currentColor" class="bi bi-person-fill"
+                                                        viewBox="0 0 16 16">
                                                         <path
                                                             d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                                     </svg>
@@ -280,13 +205,13 @@
                         </div>
 
                         {{-- Carousel Controls --}}
-                        <button class="carousel-control-prev custom-control" type="button" data-bs-target="#reviewCarousel"
-                            data-bs-slide="prev">
+                        <button class="carousel-control-prev custom-control" type="button"
+                            data-bs-target="#reviewCarousel" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
                         </button>
 
-                        <button class="carousel-control-next custom-control" type="button" data-bs-target="#reviewCarousel"
-                            data-bs-slide="next">
+                        <button class="carousel-control-next custom-control" type="button"
+                            data-bs-target="#reviewCarousel" data-bs-slide="next">
                             <span class="carousel-control-next-icon"></span>
                         </button>
 
