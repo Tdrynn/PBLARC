@@ -1,6 +1,8 @@
 import './bootstrap';
 import * as bootstrap from 'bootstrap';
 
+window.bootstrap = bootstrap;
+
 // Read More Review Modal
 document.addEventListener("DOMContentLoaded", function () {
     const modal = new bootstrap.Modal(document.getElementById('reviewModal'));
@@ -75,18 +77,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // + / - Button Add Ons
 document.querySelectorAll('.plus-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-        const input = document.getElementById(this.dataset.input);
+    btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.target);
         input.value = parseInt(input.value) + 1;
+        input.dispatchEvent(new Event('change'));
     });
 });
 
 // Learn More Carousel Thumbnail Active State
 document.querySelectorAll('.minus-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-        const input = document.getElementById(this.dataset.input);
-        input.value = Math.max(0, parseInt(input.value) - 1);
+    btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.target);
+        if (input.value > 0) {
+            input.value = parseInt(input.value) - 1;
+            input.dispatchEvent(new Event('change'));
+        }
     });
+}); 
 });
 
  const carousel = document.getElementById('mainCarousel');
