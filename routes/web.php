@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChangePassController;
+use App\Http\Controllers\ImageController;
 
 Route::middleware('redirect.auth')->group(function () {
     Route::get('/', [ReviewController::class, 'welcome'])->name('welcome');
@@ -20,21 +21,31 @@ Route::get('/login', function () {
 })->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-Route::get('/picnic', function () {
-    return view('user.picnic');
-})->name('picnic');
+// Route::get('/picnic', function () {
+//     return view('user.picnic');
+// })->name('picnic');
 
-Route::get('/camping', function () {
-    return view('user.camping');
-})->name('camping');
+// Route::get('/camping', function () {
+//     return view('user.camping');
+// })->name('camping');
 
-Route::get('/camperVan', function () {
-    return view('user.camperVan');
-})->name('camperVan');
+// Route::get('/camperVan', function () {
+//     return view('user.camperVan');
+// })->name('camperVan');
 
-Route::get('/groupEvent', function () {
-    return view('user.groupEvent');
-})->name('groupEvent');
+// Route::get('/groupEvent', function () {
+//     return view('user.groupEvent');
+// })->name('groupEvent');
+
+Route::get('/camping', [ImageController::class, 'camping'])
+    ->name('camping');
+Route::get('/picnic', [ImageController::class, 'picnic'])
+    ->name('picnic');
+Route::get('/camperVan', [ImageController::class, 'camperVan'])
+    ->name('camperVan');
+Route::get('/groupEvent', [ImageController::class, 'groupEvent'])
+    ->name('groupEvent');
+
 
 Route::get('/register', function () {
     return view('auth.register');
