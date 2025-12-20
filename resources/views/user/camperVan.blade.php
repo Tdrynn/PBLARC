@@ -82,29 +82,33 @@
                                 <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}" width="25"
                                     height="25">
                                 <h5 class="fw-bold text-dark my-auto">Show Availaibility</h5>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                    class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
-                                    <title>Ready To Book</title>
-                                    <path
-                                        d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
-                                </svg>
+                                <div>
+                                    <span id="availabilityIcon" class="d-none"></span>
+                                </div>
                             </div>
-                            <form action="{{ Route('bookingCampervan') }}">
+                            <form action="{{ route('bookingCampervan') }}" method="GET">
+                                <input type="hidden" name="checkin" id="hiddenCheckin">
+                                <input type="hidden" name="checkout" id="hiddenCheckout">
+                                <input type="hidden" id="package_id" value="{{ $package->id }}">
                                 <div class="d-flex gap-2 mt-1">
                                     <div>
                                         <label for="checkin" class="form-label fw-semibold">Check in Date</label>
-                                        <input type="date" class="form-control border-success" id="checkin" required>
+                                        <input type="date" class="form-control border-success" id="checkin" name="checkin"
+                                            required>
                                     </div>
                                     <div>
                                         <label for="checkout" class="form-label fw-semibold">Check out Date</label>
-                                        <input type="date" class="form-control border-success" id="checkout" required>
+                                        <input type="date" class="form-control border-success" id="checkout" name="checkout"
+                                            required>
                                     </div>
                                 </div>
                         </div>
 
                         <div class="col justify-content-center align-item-center d-flex my-auto">
-                            <button class="btn btn-lg text-light fw-semibold rounded-4 me-3 mb-0"
-                                style="background-color:#114A06;">Booking</button>
+                            <button id="bookingBtn" type="submit" class="btn btn-lg text-light fw-semibold rounded-4 mt-3"
+                                style="background-color:#114A06;" disabled>
+                                Booking
+                            </button>
                         </div>
                         </form>
                     </div>
@@ -112,4 +116,79 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const checkinInput = document.getElementById('checkin');
+            const checkoutInput = document.getElementById('checkout');
+            const bookingBtn = document.getElementById('bookingBtn');
+            const iconWrapper = document.getElementById('availabilityIcon');
+
+            if (!checkinInput || !checkoutInput || !bookingBtn || !iconWrapper) {
+                console.error('Element tidak ditemukan');
+                return;
+            }
+
+            async function checkAvailability() {
+                const checkin = checkinInput.value;
+                const checkout = checkoutInput.value;
+
+                if (!checkin || !checkout) {
+                    iconWrapper.classList.add('d-none');
+                    bookingBtn.disabled = true;
+                    return;
+                }
+
+                const response = await fetch("{{ route('check.availability') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify({
+                        package_id: {{ $package->id }},
+                        checkin: checkin,
+                        checkout: checkout
+                    })
+                });
+
+                const data = await response.json();
+
+                iconWrapper.classList.remove('d-none');
+
+                if (data.available) {
+                    iconWrapper.innerHTML = greenCheckSvg();
+                    bookingBtn.disabled = false;
+
+                    document.getElementById('hiddenCheckin').value = checkin;
+                    document.getElementById('hiddenCheckout').value = checkout;
+
+                } else {
+                    iconWrapper.innerHTML = redCrossSvg();
+                    bookingBtn.disabled = true;
+                }
+
+            }
+
+            checkinInput.addEventListener('change', checkAvailability);
+            checkoutInput.addEventListener('change', checkAvailability);
+
+            function greenCheckSvg() {
+                return `
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                            class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
+                                            <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+                                        </svg>`;
+            }
+
+            function redCrossSvg() {
+                return `
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                            class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                                        </svg>`;
+            }
+
+        });
+    </script>
 @endsection
