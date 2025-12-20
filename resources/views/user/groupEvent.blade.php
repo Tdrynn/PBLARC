@@ -8,74 +8,80 @@
             <div class="container-fluid px-0">
                 <h1 class="text-center fw-bold text-dark mt-5">Group Event</h1>
 
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-5 g-0 align-item-center justify-content-center d-flex">
-                        <img src="{{ Vite::asset('resources/images/GE1.png') }}" alt="Group Event"
-                            class="rounded-4 object-fit-cover img1-package p-1">
+                <div class="carousel-wrapper mx-auto">
+
+                    <div id="mainCarousel" class="carousel slide mb-3" data-bs-ride="false">
+                        <div class="carousel-inner rounded-4">
+
+                            @foreach ($images as $index => $image)
+                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                    <img src="{{ asset('storage/' . $image->image) }}" class="d-block w-100 main-img"
+                                        alt="{{ $image->title ?? 'Camping Image' }}">
+                                </div>
+                            @endforeach
+
+                        </div>
+
+                        <!-- Controls -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+
+                        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
                     </div>
 
-                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
-                        <div class="d-flex flex-row flex-lg-column">
-                            <img src="{{ Vite::asset('resources/images/GE2.png') }}" alt="Group Event"
-                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
-                            <img src="{{ Vite::asset('resources/images/GE3.png') }}" alt="Group Event"
-                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
-                        </div>
+                    <!-- Thumbnails -->
+                    <div class="d-flex justify-content-center gap-2 thumbnail-wrapper mt-2">
+                        @foreach ($images as $index => $image)
+                            <img src="{{ asset('storage/' . $image->image) }}"
+                                class="thumbnail {{ $index === 0 ? 'active-thumb' : '' }}" data-bs-target="#mainCarousel"
+                                data-bs-slide-to="{{ $index }}">
+                        @endforeach
                     </div>
 
-                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
-                        <div class="d-flex flex-row flex-lg-column">
-                            <img src="{{ Vite::asset('resources/images/GE4.png') }}" alt="Group Event"
-                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
-                            <img src="{{ Vite::asset('resources/images/GE5.png') }}" alt="Group Event"
-                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
         <div style="background-color: #4f9e84;">
-            <div class="my-3 bg-white rounded-4 shadow-sm p-2">
-                <div class="row ms-2">
-                    <div class="col-md-3" style="width: auto;">
-                        <h4 class="fw-bold">Facility & Price</h4>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-wrap justify-content-center container facility gap-2">
-                    <div class="col-md-2 d-flex align-items-center gap-2">
-                        <img src="{{ Vite::asset('resources/images/toilet.png') }}" alt="toilet" class="img-fluid"
-                            width="40px">
-                        <p class="fs-5 fw-semibold text-dark">Toilet</p>
-                    </div>
-                    <div class="col-md-2 d-flex align-items-center gap-2">
-                        <img src="{{ Vite::asset('resources/images/parking.png') }}" alt="parking" class="img-fluid"
-                            width="40px">
-                        <p class="fs-5 fw-semibold text-dark">Parking</p>
-                    </div>
-                    <div class="col-md-2 d-flex align-items-center gap-2">
-                        <img src="{{ Vite::asset('resources/images/electrical.png') }}" alt="electrical" class="img-fluid"
-                            width="40px">
-                        <p class="fs-5 fw-semibold text-dark">Electrical Socket</p>
-                    </div>
-                    <div class="col-md-2 d-flex align-items-center gap-2">
-                        <img src="{{ Vite::asset('resources/images/sink.png') }}" alt="sink" class="img-fluid" width="40px">
-                        <p class="fs-5 fw-semibold text-dark">Wash Basin</p>
-                    </div>
-                </div>
-
-                <div class="d-flex align-item-center justify-content-center">
-                    <hr class="border border-dark opacity-75" style="width: 90%;">
-                </div>
-
-                <div class="container">
-                    <div class="row gap-2">
-                        <div class="col-md-5 col-12 justify-content-start">
-                            <h6 class="fw-semibold fs-5">Private Event
-                                <p class="my-0 fs-6 fw-normal">IDR 2.5Mil / Days</p>
-                            </h6>
+            <div class="my-3 bg-white rounded-4 shadow-sm p-2 mx-auto" style="width: 90%;">
+                <div class="my-2">
+                    <div class="row mx-auto" style="width: 95%;">
+                        <div class="col-md-3 p-0 my-auto">
+                            <h4 class="fw-bold text-dark">Facility & Price</h4>
                         </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap justify-content-center container facility gap-2">
+                        <div class="col-md-2 col-4 d-flex align-items-center gap-2">
+                            <img src="{{ Vite::asset('resources/images/toilet.png') }}" alt="toilet" class="img-fluid"
+                                width="40px">
+                            <p class="fs-5 fw-semibold text-dark">Toilet</p>
+                        </div>
+                        <div class="col-md-2 col-4 d-flex align-items-center gap-2">
+                            <img src="{{ Vite::asset('resources/images/parking.png') }}" alt="parking" class="img-fluid"
+                                width="40px">
+                            <p class="fs-5 fw-semibold text-dark">Parking</p>
+                        </div>
+                        <div class="col-md-3 col-7 d-flex align-items-center gap-2">
+                            <img src="{{ Vite::asset('resources/images/electrical.png') }}" alt="electrical"
+                                class="img-fluid" width="40px">
+                            <p class="fs-5 fw-semibold text-dark">Electrical Socket</p>
+                        </div>
+                        <div class="col-md-2 col-3 d-flex align-items-center gap-2">
+                            <img src="{{ Vite::asset('resources/images/sink.png') }}" alt="sink" class="img-fluid"
+                                width="40px">
+                            <p class="fs-5 fw-semibold text-dark">Wash Basin</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-item-center justify-content-center">
+                        <hr class="border border-dark opacity-75" style="width: 95%;">
+                    </div>
 
                         <div class="col-md-4 col-12 align-item-center">
                             <div class="d-flex gap-2">
@@ -102,7 +108,20 @@
                                             required>
                                     </div>
                                 </div>
-                        </div>
+                                <form action="{{ Route('bookingGroupEvent') }}">
+                                    <div class="d-flex gap-2 mt-1">
+                                        <div class="col-6">
+                                            <label for="checkin" class="form-label fw-semibold">Check in Date</label>
+                                            <input type="date" class="form-control border-success" id="checkin"
+                                                required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="checkout" class="form-label fw-semibold">Check out Date</label>
+                                            <input type="date" class="form-control border-success" id="checkout"
+                                                required>
+                                        </div>
+                                    </div>
+                            </div>
 
                         <div class="col justify-content-center align-item-center d-flex my-auto">
                             <button id="bookingBtn" type="submit" class="btn btn-lg text-light fw-semibold rounded-4 mt-3"
@@ -110,7 +129,6 @@
                                 Booking
                             </button>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>

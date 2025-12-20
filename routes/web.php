@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChangePassController;
+use App\Http\Controllers\ImageController;
 
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PicnicController;
@@ -25,11 +26,46 @@ Route::middleware('redirect.auth')->group(function () {
     Route::get('/', [ReviewController::class, 'welcome'])->name('welcome');
 });
 
-// Auth
-Route::get('/login', fn () => view('auth.login'))->name('login');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+});
+
+Route::get('/login', function () {
+    return view('auth.login'); // perhatikan: gunakan "auth.login" dengan titik
+})->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-Route::get('/register', fn () => view('auth.register'))->name('register');
+// Route::get('/picnic', function () {
+//     return view('user.picnic');
+// })->name('picnic');
+
+// Route::get('/camping', function () {
+//     return view('user.camping');
+// })->name('camping');
+
+// Route::get('/camperVan', function () {
+//     return view('user.camperVan');
+// })->name('camperVan');
+
+// Route::get('/groupEvent', function () {
+//     return view('user.groupEvent');
+// })->name('groupEvent');
+
+Route::get('/camping', [ImageController::class, 'camping'])
+    ->name('camping');
+Route::get('/picnic', [ImageController::class, 'picnic'])
+    ->name('picnic');
+Route::get('/camperVan', [ImageController::class, 'camperVan'])
+    ->name('camperVan');
+Route::get('/groupEvent', [ImageController::class, 'groupEvent'])
+    ->name('groupEvent');
+
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 
 // Package List
@@ -40,17 +76,16 @@ Route::get('/picnic', [PicnicController::class, 'index'])->name('picnic');
 Route::get('/camping', [CampingController::class, 'index'])->name('camping');
 Route::get('/camperVan', [CampervanController::class, 'index'])->name('camperVan');
 Route::get('/groupEvent', [GroupEventController::class, 'index'])->name('groupEvent');
+Route::get('/FindOut', function () {
+    return view('user.FindOut');
+})->name('FindOut');
 
 // Informational Pages
 Route::get('/FindOut', fn () => view('user.FindOut'))->name('FindOut');
 Route::get('/reviewList', [ReviewController::class, 'index'])->name('reviewList');
 Route::get('/reviewList/all', [ReviewController::class, 'all'])->name('reviewList.all');
 
-/*
-|--------------------------------------------------------------------------
-| AUTHENTICATED USER ROUTES
-|--------------------------------------------------------------------------
-*/
+
 Route::middleware(['auth'])->group(function () {
 
     // Home
@@ -122,4 +157,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::put('/update-profile', [ProfileController::class, 'update'])->name('updateprofile');
+    Route::put('/update-pass', [ChangePassController::class, 'update'])->name('updatepass');
+
+    Route::get('/review', fn() => view('user.review'))->name('review');
+    Route::post('review/store', [ReviewController::class, 'store'])->name('review.store');
+    Route::get('/reviewList/all', [ReviewController::class, 'all'])->name('reviewList.all');
 });

@@ -6,32 +6,42 @@
     <div class="row">
         <section id="FindOut" class="FindOut container d-flex align-items-center justify-content-center">
             <div class="row d-flex text-light align-items-center justify-content-center mt-5">
-                <div class="col-md-5 col-11 mt-2">
-                    <div style="width: 90%;">
-                        <h3 class="border-bottom border-light border-3">Backgrounf of the establishment
-                        </h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, provident
-                            amet facere temporibus sapiente est reprehenderit distinctio cupiditate fugiat sit explicabo,
-                            magni atque voluptate maxime exercitationem architecto repellat dolore corrupti ex minus numquam
-                            repellendus veritatis suscipit. Temporibus omnis eligendi alias ipsa, sit ratione atque ullam
-                            magni sequi maiores quam. Quas!</p>
-                        
-                        <h3 class="border-bottom border-light border-3" style="width:65%">Activities Can You Do</h3>
-                        <p>We offer a variety of enjoyable and engaging activities designed to help you relax, learn, and explore. Whether you prefer adventure, creativity, or calm moments.</p>
 
-                        <h3 class="border-bottom border-light border-3" style="width: 65%">Our Mission & Values</h3>
-                        <p>Our mission is to create meaningful experiences through a safe, welcoming environment, with quality service and activities rooted in trust, responsibility, and community.</p>
+                <div class="col-md-5 col-10 mt-2">
+                    <div style="width: 90%;">
+                        <h4 class="text-white" style="width: 80%; border-bottom: 2px solid rgba(255, 255, 255, 0.7);">
+                            Activities Can You Do</h4>
+                        <p class="w-75">We offer a variety of enjoyable and engaging activities designed to help you relax,
+                            learn, and
+                            explore. Whether you prefer adventure, creativity, or calm moments.</p>
+
+                        <h4 class="text-white" style="width: 80%; border-bottom: 2px solid rgba(255, 255, 255, 0.7);">Our
+                            Mission & Values</h4>
+                        <p class="w-75">Our mission is to create meaningful experiences through a safe, welcoming
+                            environment, with
+                            quality service and activities rooted in trust, responsibility, and community.</p>
+
+                        <h4 class="text-white" style="width: 80%; border-bottom: 2px solid rgba(255, 255, 255, 0.7);">Rules
+                            & Regulations</h4>
+                        <p class="w-75">
+                            1. Please do not litter in the camping area, especially in the river. <br>
+                            2. Children under 12 years old must be supervised by a parent at all times. <br>
+                            3. Always be aware of river conditions, especially during extreme or rainy weather. <br>
+                            4. Sound systems or speakers are not allowed, except for approved group events.
+                        </p>
                     </div>
                 </div>
 
-                <div class="col-md-5 col-11 mt-2">
-                    <img src="{{ Vite::asset('resources/images/GalleryT.png') }}" alt="Angklung River Camp" class="mb-5 rounded-5 FindOut-img" style="box-shadow: 30px 35px 25px 2px rgba(0, 0, 0, 0.4);">
-        
-                    <h3 class=" border-bottom border-light border-3" style="width: 45%">Why choose us?</h3>
-                    <p>1.Beautiful Riverside Location <br>
+                <div class="col-md-5 col-10 mt-2">
+                    <img src="{{ Vite::asset('resources/images/GalleryT.png') }}" alt="Angklung River Camp"
+                        class="mb-5 rounded-5 FindOut-img" />
+
+                    <h4>Why choose us?</h4>
+                    <p>1. Beautiful Riverside Location <br>
                         2. Safe & Family-Friendly Environment <br>
                         3. Complete Camping Facilities <br>
-                        4. Flexible Packages for Everyone</p>
+                        4. Flexible Packages for Everyone
+                    </p>
                 </div>
             </div>
         </section>

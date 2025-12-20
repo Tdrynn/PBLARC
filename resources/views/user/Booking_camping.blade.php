@@ -97,7 +97,9 @@
                                                 −
                                             </button>
 
+
                                             <input type="number" name="tent_qty" id="tent_qty"
+
                                                 class="form-control form-control-sm text-center" value="1" min="1"
                                                 style="width: 60px;" required>
 

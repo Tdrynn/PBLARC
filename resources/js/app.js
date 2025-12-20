@@ -45,6 +45,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+// Change Password Script
+document.addEventListener("DOMContentLoaded", function () {
+
+    function togglePassword(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.replace("bi-eye-slash", "bi-eye");
+        } else {
+            input.type = "password";
+            icon.classList.replace("bi-eye", "bi-eye-slash");
+        }
+    }
+
+    document.getElementById("toggleOld").addEventListener("click", function () {
+        togglePassword("oldpassword", "iconOld");
+    });
+
+    document.getElementById("toggleNew").addEventListener("click", function () {
+        togglePassword("newpassword", "iconNew");
+    });
+
+    document.getElementById("toggleConfirm").addEventListener("click", function () {
+        togglePassword("confirmpassword", "iconConfirm");
+    });
+
+});
+
 // + / - Button Add Ons
 document.querySelectorAll('.plus-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -54,6 +84,7 @@ document.querySelectorAll('.plus-btn').forEach(btn => {
     });
 });
 
+// Learn More Carousel Thumbnail Active State
 document.querySelectorAll('.minus-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const input = document.getElementById(btn.dataset.target);
@@ -63,3 +94,12 @@ document.querySelectorAll('.minus-btn').forEach(btn => {
         }
     });
 }); 
+});
+
+ const carousel = document.getElementById('mainCarousel');
+    const thumbs = document.querySelectorAll('.thumbnail');
+
+    carousel.addEventListener('slide.bs.carousel', function (e) {
+        thumbs.forEach(t => t.classList.remove('active-thumb'));
+        thumbs[e.to].classList.add('active-thumb');
+    });

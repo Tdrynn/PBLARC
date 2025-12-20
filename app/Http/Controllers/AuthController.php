@@ -65,11 +65,11 @@ class AuthController extends Controller
                 'user_role' => Auth::user()->role,
             ]);
 
+            return redirect()->intended('/home');
+
             if (Auth::user()->role === 'admin') {
                 return redirect('/admin');
             }
-
-            return redirect('/home');
         }
 
         return back()->with('error', 'Incorrect email or password');

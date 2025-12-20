@@ -16,6 +16,7 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+// Landing Page Home & Welcome Pages
 .HomePage1 {
     background: linear-gradient(rgba(0, 0, 0, 0.67), rgba(0, 0, 0, 0.67)), url('../images/HP1.jpeg') center/cover no-repeat;
     background-size: cover;
@@ -25,6 +26,7 @@ input[type=number] {
     min-height: 100vh;
 }
 
+// About Us Section
 .HomePage2 {
     background: url('../images/HP2.png') center/cover no-repeat;
     background-color: #678a72;
@@ -33,16 +35,6 @@ input[type=number] {
     background-size: cover;
     min-height: 100vh;
     width: 100%;
-}
-
-.HomePage3 {
-    background: url('../images/HP3.png') center/cover no-repeat;
-    background-color: #344539;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    min-height: 100vh;
 }
 
 .FindOut {
@@ -57,8 +49,22 @@ input[type=number] {
 .FindOut-img {
     width: 30rem;
     height: 20rem;
+    box-shadow: 30px 35px 25px 2px rgba(0, 0, 0, 0.4);
 }
 
+// About Us Section
+
+.HomePage3 {
+    background: url('../images/HP3.png') center/cover no-repeat;
+    background-color: #344539;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
+}
+
+// Review Section
 .HomePage4 {
     background: url('../images/HP4.png') center/cover no-repeat;
     background-color: #344539;
@@ -70,19 +76,19 @@ input[type=number] {
 }
 
 .review-card {
-    width: 350px; 
+    width: 350px;
     min-height: auto;
     background: rgba(8, 6, 6, 0.3);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .modal-card {
     background: rgba(8, 6, 6, 0.3);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .custom-control {
@@ -103,7 +109,21 @@ input[type=number] {
     right: 20px;
 }
 
+.star {
+    transition: 0.2s;
+    stroke: #03AC0E;
+    stroke-width: 1.2;
+}
 
+.star.filled {
+    fill: #03AC0E;
+}
+
+.star:hover {
+    transform: scale(1.1);
+}
+
+// Review Section
 
 .HomePage5 {
     background-color: #1E1F1E;
@@ -117,6 +137,10 @@ input[type=number] {
     min-height: 100vh;
 }
 
+// Landing Page Home & Welcome Pages
+
+
+// Profile Page
 .ProfilePage {
     background: url('../images/Profile.png') center/cover no-repeat;
     background-size: cover;
@@ -126,6 +150,25 @@ input[type=number] {
     min-height: 100vh;
 }
 
+.login-card {
+    background: rgba(240, 240, 240, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 10px 10px;
+    width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-green {
+    background-color: #114A06;
+    color: white;
+    border: none;
+    height: 45px;
+}
+
+// Profile Page
+
+// Package Page
 .Package {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url('../images/Booking.jpg') center/cover no-repeat;
     background-color: #344539;
@@ -151,14 +194,37 @@ input[type=number] {
     min-height: auto;
 }
 
-.img1-package {
-    width: 525px;
-    height: 364px;
+// Gallery Package
+.carousel-wrapper {
+    max-width: 900px;
 }
 
-.img2-package {
-    width: 320px;
-    height: 180px;
+.main-img {
+    width: 100%;
+    aspect-ratio: 18 / 9;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.thumbnail {
+    width: 90px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    opacity: 0.6;
+}
+
+.thumbnail:hover,
+.active-thumb {
+    opacity: 1;
+    outline: 2px solid #198754;
+}
+
+// Gallery Package
+
+.facility {
+    width: 95%;
 }
 
 .Booking {
@@ -170,113 +236,19 @@ input[type=number] {
     min-height: 100%;
 }
 
-.star {
-    transition: 0.2s;
-    stroke: #03AC0E;
-    stroke-width: 1.2;
-}
-
-.star.filled {
-    fill: #03AC0E;
-}
-
-.star:hover {
-    transform: scale(1.1);
-}
-
-.addon-group input {
-    max-width: 100px;
-}
-
-.addon-label {
-    width: 110px;
-}
-
 .form-booking {
     width: 70%;
     background-color: #fff;
     height: auto;
 }
 
-.Payment {
-    background: url('../images/payment.png') center/cover no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    min-height: 100vh;
+.booking-form {
+    background-color: #FFFFFF;
+    width: 60%;
+    height: auto;
 }
 
-.login-card {
-    background: rgba(240, 240, 240, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 10px 10px;
-    width: 600px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.form-container {
-    width: 500px;
-    margin: 0 auto;
-}
-
-.custom-input {
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
-    border: 1px solid #1B4332;
-    padding: 10px 15px;
-    font-size: 16px;
-}
-
-.btn-green {
-    background-color: #114A06;
-    color: white;
-    border: none;
-    height: 45px;
-}
-
-.imgPg2 {
-    border-top-left-radius: 50px;
-    border-top-right-radius: 25px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 50px;
-    width: 400px;
-    height: 400px;
-    position: absolute;
-    z-index: 2;
-    filter: drop-shadow(0px 15px 25px rgba(0, 0, 0, 0.4));
-}
-
-.shadow-box {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background-color: #1F2922;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 25px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 50px;
-    top: -30px;
-    left: 90px;
-    z-index: 1;
-    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25));
-}
-
-.carousel-item img {
-    height: 80vh;
-    width: auto;
-    object-fit: cover;
-}
-
-.nav-link.active {
-    color: #fff !important;
-    font-weight: 600;
-    border-bottom: 2px solid #fff;
-    transition: all 0.2s ease-in-out;
-}
-
+// Progress Bar
 .step-circle {
     width: 35px;
     height: 35px;
@@ -312,24 +284,27 @@ input[type=number] {
     fill: #244C2C !important;
 }
 
+// Progress Bar
 
-.addon-input {
-    width: 80px !important;
-    height: 35px !important;
-    flex-shrink: 0;
+// Package Page
+
+// Navbar Active Link
+.nav-link.active {
+    color: #fff !important;
+    font-weight: 600;
+    border-bottom: 2px solid #fff;
+    transition: all 0.2s ease-in-out;
 }
 
-.addon-label {
-    width: 110px;
-    min-height: 45px;
-    margin: 0;
-}
+// Navbar Active Link
 
-.booking-form {
-    background-color: #FFFFFF; 
-    width: 60%; 
-    height: auto;
+// Footer Border
+.footer-border {
+    border-right: 1px solid #fff !important;
+    border-bottom: none !important;
 }
+// Footer Border
+
 
 @media (max-width: 768px) {
     .login-card {
@@ -367,45 +342,122 @@ input[type=number] {
         width: 50%;
     }
 
-    .img1-package {
-        width: 395px;
-        height: 364px;
-    }
-
-    .img2-package {
-        position: center;
-        width: 190px;
-        height: 180px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     .FindOut-img {
         width: 23rem;
         height: 15rem;
     }
 
     .booking-form {
-        background-color: #FFFFFF; 
-        width: 90%; 
+        background-color: #FFFFFF;
+        width: 90%;
         height: auto;
     }
+
+    // ??
+    // .img1-package {
+    //     width: 395px;
+    //     height: 364px;
+    // }
+
+    // .img2-package {
+    //     position: center;
+    //     width: 190px;
+    //     height: 180px;
+    //     margin-left: auto;
+    //     margin-right: auto;
+    // }
 }
 
-@media (min-width: 769px) {
-    .learnMore {
-        padding: 20px 10px;
-    }
-
-    .facility-icon {
-        width: 30px !important;
-    }
-
-    .footer-border {
-        border-right: 1px solid #fff !important;
-        border-bottom: none !important;
-    }
-    .facility {
-        width: 95%;
-    }
+.Payment {
+    background: url('../images/payment.png') center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
 }
+
+// ?????
+
+// .img1-package {
+//     width: 525px;
+//     height: 364px;
+// }
+
+// .img2-package {
+//     width: 320px;
+//     height: 180px;
+// }
+
+// .carousel-Image {
+//     height: 25rem;
+//     width: 50rem;
+//     object-fit: cover;
+// }
+
+// .addon-group input {
+//     max-width: 100px;
+// }
+
+// .addon-label {
+//     width: 110px;
+// }
+
+// .addon-input {
+//     width: 80px !important;
+//     height: 35px !important;
+//     flex-shrink: 0;
+// }
+
+// .addon-label {
+//     width: 110px;
+//     min-height: 45px;
+//     margin: 0;
+// }
+
+// .form-container {
+//     width: 500px;
+//     margin: 0 auto;
+// }
+
+// .custom-input {
+//     width: 100%;
+//     height: 40px;
+//     border-radius: 8px;
+//     border: 1px solid #1B4332;
+//     padding: 10px 15px;
+//     font-size: 16px;
+// }
+
+// .shadow-box {
+//     position: absolute;
+//     width: 400px;
+//     height: 400px;
+//     background-color: #1F2922;
+//     border-top-left-radius: 50px;
+//     border-top-right-radius: 25px;
+//     border-bottom-left-radius: 10px;
+//     border-bottom-right-radius: 50px;
+//     top: -30px;
+//     left: 90px;
+//     z-index: 1;
+//     filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25));
+// }
+
+// .imgPg2 {
+//     border-top-left-radius: 50px;
+//     border-top-right-radius: 25px;
+//     border-bottom-left-radius: 10px;
+//     border-bottom-right-radius: 50px;
+//     width: 400px;
+//     height: 400px;
+//     position: absolute;
+//     z-index: 2;
+//     filter: drop-shadow(0px 15px 25px rgba(0, 0, 0, 0.4));
+// }
+
+// .carousel-items img {
+//     height: 80vh;
+//     width: auto;
+//     object-fit: cover;
+// }

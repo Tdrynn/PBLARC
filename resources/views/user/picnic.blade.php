@@ -7,30 +7,41 @@
         <div id="picnic" class="text-light LearnMore py-4 shadow-lg p-3">
             <div class="container-fluid px-0">
                 <h1 class="text-center fw-bold text-dark mt-5">Picnic</h1>
+                <div class="carousel-wrapper mx-auto">
 
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-5 g-0 align-item-center justify-content-center d-flex">
-                        <img src="{{ Vite::asset('resources/images/PN1.png') }}" alt="Picnic"
-                            class="rounded-4 object-fit-cover img1-package p-1">
-                    </div>
+                    <div id="mainCarousel" class="carousel slide mb-3" data-bs-ride="false">
+                        <div class="carousel-inner rounded-4">
 
-                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
-                        <div class="d-flex flex-row flex-lg-column">
-                            <img src="{{ Vite::asset('resources/images/PN2.png') }}" alt="Picnic"
-                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
-                            <img src="{{ Vite::asset('resources/images/PN3.png') }}" alt="Picnic"
-                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
+                            @foreach ($images as $index => $image)
+                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                    <img src="{{ asset('storage/' . $image->image) }}" class="d-block w-100 main-img"
+                                        alt="{{ $image->title ?? 'Camping Image' }}">
+                                </div>
+                            @endforeach
+
                         </div>
+
+                        <!-- Controls -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+
+                        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
                     </div>
 
-                    <div class="col-md-3 g-0 d-flex justify-content-center align-item-center">
-                        <div class="d-flex flex-row flex-lg-column">
-                            <img src="{{ Vite::asset('resources/images/PN4.png') }}" alt="Picnic"
-                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
-                            <img src="{{ Vite::asset('resources/images/PN5.png') }}" alt="Picnic"
-                                class="rounded-4 object-fit-cover img2-package img2-package p-1">
-                        </div>
+                    <!-- Thumbnails -->
+                    <div class="d-flex justify-content-center gap-2 thumbnail-wrapper mt-2">
+                        @foreach ($images as $index => $image)
+                            <img src="{{ asset('storage/' . $image->image) }}"
+                                class="thumbnail {{ $index === 0 ? 'active-thumb' : '' }}" data-bs-target="#mainCarousel"
+                                data-bs-slide-to="{{ $index }}">
+                        @endforeach
                     </div>
+
                 </div>
             </div>
         </div>
@@ -68,12 +79,12 @@
                     </div>
 
                     <div class="d-flex align-item-center justify-content-center">
-                        <hr class="border border-dark opacity-75" style="width: 90%;">
+                        <hr class="border border-dark opacity-75" style="width: 95%;">
                     </div>
 
-                    <div class="container">
-                        <div class="row gap-2">
-                            <div class="col-md-6 col-12 justify-content-start" style="width: 50%">
+                    <div class="container" style="width: 95%;">
+                        <div class="row">
+                            <div class="col-md-6 col-12" style="width: 50%">
                                 <h6 class="fw-semibold fs-5">Adult
                                     <p class="my-0 fs-6 fw-normal">IDR 15K /Person</p>
                                 </h6>
@@ -84,8 +95,8 @@
 
                             <div class="col-md-4 mx-auto col-12 align-item-center">
                                 <div class="d-flex gap-2">
-                                    <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}" width="30"
-                                        height="30">
+                                    <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}"
+                                        width="30" height="30">
                                     <h5 class="fw-bold text-dark my-auto">Show Availaibility</h5>
                                     <div id="availabilityIcon"></div>
                                 </div>
