@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\Addon;
 use App\Models\PackageAvailability;
+use App\Models\Image;
 
 class PicnicController extends Controller
 {
@@ -13,9 +14,9 @@ class PicnicController extends Controller
     public function index()
     {
         $package = Package::where('slug', 'picnic')->firstOrFail();
-        $addons  = Addon::where('is_active', true)->get();
+        $images = Image::where('page', 'picnic')->get();
 
-        return view('user.picnic', compact('package', 'addons'));
+        return view('user.picnic', compact('package', 'images'));
     }
 
     public function checkAvailability(Request $request)

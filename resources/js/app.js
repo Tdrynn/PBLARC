@@ -94,7 +94,6 @@ document.querySelectorAll('.minus-btn').forEach(btn => {
         }
     });
 }); 
-});
 
  const carousel = document.getElementById('mainCarousel');
     const thumbs = document.querySelectorAll('.thumbnail');
