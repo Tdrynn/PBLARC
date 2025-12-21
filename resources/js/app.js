@@ -86,20 +86,16 @@ document.querySelectorAll('.plus-btn').forEach(btn => {
 
 // Learn More Carousel Thumbnail Active State
 document.querySelectorAll('.minus-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const input = document.getElementById(btn.dataset.target);
-        if (input.value > 0) {
-            input.value = parseInt(input.value) - 1;
-            input.dispatchEvent(new Event('change'));
-        }
+    btn.addEventListener('click', function () {
+        const input = document.getElementById(this.dataset.input);
+        input.value = Math.max(0, parseInt(input.value) - 1);
     });
-}); 
 });
 
- const carousel = document.getElementById('mainCarousel');
-    const thumbs = document.querySelectorAll('.thumbnail');
+const carousel = document.getElementById('mainCarousel');
+const thumbs = document.querySelectorAll('.thumbnail');
 
-    carousel.addEventListener('slide.bs.carousel', function (e) {
-        thumbs.forEach(t => t.classList.remove('active-thumb'));
-        thumbs[e.to].classList.add('active-thumb');
-    });
+carousel.addEventListener('slide.bs.carousel', function (e) {
+    thumbs.forEach(t => t.classList.remove('active-thumb'));
+    thumbs[e.to].classList.add('active-thumb');
+});

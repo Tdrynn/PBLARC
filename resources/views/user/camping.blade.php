@@ -88,13 +88,13 @@
                             <div class="col-md-6 col-12 d-flex justify-content-start gap-3">
                                 <div>
                                     <h6 class="fw-semibold fs-6">Own Tent
-                                        <p class="fw-normal my-0 fs-6">(weekdays) <br> IDR 20K / day</p>
+                                        <p class="fw-normal my-0 fs-6">(weekdays) <br> IDR 25K / day</p>
                                         <p class="fw-normal my-0 fs-6">(weekend) <br> IDR 35K / day</p>
                                     </h6>
                                 </div>
                                 <div>
                                     <h6 class="fw-semibold fs-6">Rent Tent 2
-                                        <p class="fw-normal my-0 fs-6 ">(weekdays / Weekend) <br> IDR 150k</p>
+                                        <p class="fw-normal my-0 fs-6 ">(weekdays / Weekend) <br> IDR 150k / Day</p>
                                     </h6>
                                 </div>
                                 <div>
