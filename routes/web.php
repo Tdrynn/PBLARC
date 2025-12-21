@@ -52,14 +52,14 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 //     return view('user.groupEvent');
 // })->name('groupEvent');
 
-Route::get('/camping', [ImageController::class, 'camping'])
-    ->name('camping');
-Route::get('/picnic', [ImageController::class, 'picnic'])
-    ->name('picnic');
-Route::get('/camperVan', [ImageController::class, 'camperVan'])
-    ->name('camperVan');
-Route::get('/groupEvent', [ImageController::class, 'groupEvent'])
-    ->name('groupEvent');
+// Route::get('/camping', [ImageController::class, 'camping'])
+//     ->name('camping');
+// Route::get('/picnic', [ImageController::class, 'picnic'])
+//     ->name('picnic');
+// Route::get('/camperVan', [ImageController::class, 'camperVan'])
+//     ->name('camperVan');
+// Route::get('/groupEvent', [ImageController::class, 'groupEvent'])
+//     ->name('groupEvent');
 
 
 Route::get('/register', function () {

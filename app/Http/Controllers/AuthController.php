@@ -51,11 +51,6 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
 
             $request->session()->regenerate();
-            
-            if (!Auth::user()->is_active) {
-                Auth::logout();
-                return back()->with('error', 'Your account has been blocked');
-            }
 
             session([
                 'user_name' => Auth::user()->name,
