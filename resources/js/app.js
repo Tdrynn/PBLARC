@@ -75,13 +75,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-// + / - Button Add Ons
-document.querySelectorAll('.plus-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const input = document.getElementById(btn.dataset.target);
-        input.value = parseInt(input.value) + 1;
-        input.dispatchEvent(new Event('change'));
-    });
+document.addEventListener('click', function (e) {
+
+    if (!e.target.classList.contains('plus-btn') &&
+        !e.target.classList.contains('minus-btn')) return;
+
+    const targetId = e.target.dataset.target;
+    const input = document.getElementById(targetId);
+
+    if (!input) {
+        console.warn('Target input not found:', targetId);
+        return;
+    }
+
+    let val = parseInt(input.value || 0);
+
+    if (e.target.classList.contains('plus-btn')) {
+        input.value = val + 1;
+    }
+
+    if (e.target.classList.contains('minus-btn') && val > 0) {
+        input.value = val - 1;
+    }
+
+    input.dispatchEvent(new Event('input', { bubbles: true }));
 });
 
 // Learn More Carousel Thumbnail Active State
