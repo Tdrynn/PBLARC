@@ -119,7 +119,8 @@ class BookingController extends Controller
          * DATABASE TRANSACTION
          * =========================
          */
-        DB::transaction(function () use ($request, $package, $checkin, $checkout) {
+
+        $booking = DB::transaction(function () use ($request, $package, $checkin, $checkout) {
 
             /**
              * =========================
@@ -192,13 +193,14 @@ class BookingController extends Controller
             $booking->update([
                 'total_price' => $totalPrice
             ]);
+            return $booking;
         });
 
         // ✅ BERSIHKAN SESSION
         session()->forget('booking');
 
         return redirect()
-            ->route('package')
+            ->route('payment.page', $booking->id)
             ->with('success', 'Booking berhasil dibuat');
     }
 

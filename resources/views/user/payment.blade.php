@@ -12,38 +12,6 @@
 
             <div class="container mt-4">
                 <div class="row d-flex justify-content-center align-items-center gap-4 my-4">
-
-                    <!-- CARD KIRI -->
-                    <div class="col-md-4 col-9 justify-content-center align-items-center d-flex bg-light rounded-4">
-                        <div class="my-3">
-                            <p class="fs-3 text-success fw-semibold text-center">Select Payment Method</p>
-
-                            <div class="row my-2 border-bottom border-3 border-success-subtle mx-2">
-                                <a href="#" class="fs-3 fw-semibold text-success text-decoration-none"
-                                    style="border-width: 700px;">Cash</a><br>
-                            </div>
-
-                            <div class="row my-2 border-bottom border-3 border-success-subtle mx-2">
-                                <a href="#" data-bs-toggle="collapse" data-bs-target="#VirtualAccount"
-                                    class="fs-3 fw-semibold text-success text-decoration-none">Virtual
-                                    Account
-                                </a>
-
-                                <div class="row collapse ms-3 fs-3 fw-semibold my-2" id="VirtualAccount">
-                                    <a href="" class="text-success text-decoration-none">BCA</a>
-                                    <a href="" class="text-success text-decoration-none">BRI</a>
-                                    <a href="" class="text-success text-decoration-none">MANDIRI</a>
-                                    <a href="" class="text-success text-decoration-none">BPD BALI</a>
-                                </div>
-                            </div>
-
-                            <div class="row my-2 border-bottom border-3 border-success-subtle mx-2">
-                                <a href="#" class="fs-3 fw-semibold text-success text-decoration-none">QRIS</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CARD KANAN -->
                     <div class="col bg-light rounded-4 mx-2">
                         <div class="p-4">
                             <!-- Order ID -->
@@ -125,18 +93,6 @@
                                 </div>
                                 <div class="col text-end">
                                     <p class="fw-bold fs-5 m-0">IDR 65.500,00</p>
-                                </div>
-                            </div>
-
-                            <!-- Payment deadline -->
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <p class="m-0">Complete payment before</p>
-                                    <p class="m-0">Time left</p>
-                                </div>
-                                <div class="col text-end">
-                                    <p class="m-0">28 Oct 2025, 03:00 PM</p>
-                                    <p class="m-0">29:59</p>
                                 </div>
                             </div>
 

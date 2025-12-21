@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'midtrans' => [
+        'serverKey' => env('MIDTRANS_SERVER_KEY'),
+        'clientKey' => env('MIDTRANS_CLIENT_KEY'),
+        'isProduction' => false, // SANDBOX
+        'isSanitized' => true,
+        'is3ds' => true,
+    ],
+
 ];
