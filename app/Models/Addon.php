@@ -30,6 +30,17 @@ class Addon extends Model
             Booking::class,
             'booking_addons'
         )->withPivot('quantity', 'price')
-         ->withTimestamps();
+            ->withTimestamps();
+    }
+
+    protected static function booted()
+    {
+        static::saving(function ($addOn) {
+            if ($addOn->stock <= 0) {
+                $addOn->is_active = false;
+            } else {
+                $addOn->is_active = true;
+            }
+        });
     }
 }
