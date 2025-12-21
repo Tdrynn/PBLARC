@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\Addon;
 use App\Models\PackageAvailability;
+use App\Models\Image;
 
 class CampingController extends Controller
 {
     public function index()
     {
         $package = Package::where('slug', 'camping')->firstOrFail();
+        $images = Image::where('page', 'camperVan')->get();
 
-        return view('user.camping', compact('package'));
+        return view('user.camping', compact('package', 'images'));
     }
 
     public function bookingForm(Request $request)
