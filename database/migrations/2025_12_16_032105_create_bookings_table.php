@@ -25,9 +25,19 @@ return new class extends Migration
             $table->integer('participants')->default(1);
             $table->unsignedInteger('total_price')->default(0);
 
+            // =====================
+            // MIDTRANS FIELDS
+            // =====================
+            $table->string('order_id')->nullable()->unique();
+            $table->string('snap_token')->nullable();
+            $table->enum('payment_status', ['pending','paid','failed'])->default('pending');
+
+            // BUSINESS STATUS
             $table->enum('status', ['pending','confirmed','cancelled'])->default('pending');
+
             $table->timestamps();
         });
+
 
     }
 

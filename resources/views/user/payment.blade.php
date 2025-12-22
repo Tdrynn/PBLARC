@@ -9,10 +9,13 @@
         <div class="Payment">
 
             @include('layouts.progressBar')
+            <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+                data-client-key="{{ config('services.midtrans.clientKey') }}">
+                </script>
 
             <div class="container mt-4">
                 <div class="row d-flex justify-content-center align-items-center gap-4 my-4">
-                    <div class="col bg-light rounded-4 mx-2">
+                    <div class="col-lg-6 bg-light rounded-4 mx-2">
                         <div class="p-4">
                             <!-- Order ID -->
                             <div class="row border-bottom pb-2 mb-3 border-3" style="border-color:#AFAFAF;">
@@ -20,7 +23,9 @@
                                     <p class="text-secondary m-0">Order ID</p>
                                 </div>
                                 <div class="col text-end">
-                                    <p class="fw-semibold m-0">1234567890</p>
+                                    <p class="fw-semibold m-0">
+                                        {{ $booking->order_id ?? '-' }}
+                                    </p>
                                 </div>
                             </div>
 
@@ -31,19 +36,23 @@
                             <div class="row text-center mb-3">
                                 <div class="col">
                                     <small class="text-secondary">Check In</small>
-                                    <p class="m-0 fw-semibold">29 October 2025</p>
-                                    <small class="text-secondary">14.00 WITA</small>
+                                    <p class="m-0 fw-semibold">
+                                        {{ \Carbon\Carbon::parse($booking->checkin)->format('d F Y') }}
+                                    </p>
                                 </div>
 
                                 <div class="col border-start border-end border-3" style="border-color:#BFBFBF;">
                                     <small class="text-secondary">Check Out</small>
-                                    <p class="m-0 fw-semibold">30 October 2025</p>
-                                    <small class="text-secondary">14.00 WITA</small>
+                                    <p class="m-0 fw-semibold">
+                                        {{ \Carbon\Carbon::parse($booking->checkout)->format('d F Y') }}
+                                    </p>
                                 </div>
 
                                 <div class="col">
                                     <small class="text-secondary">Duration</small>
-                                    <p class="m-0 fw-semibold">1 Night</p>
+                                    <p class="m-0 fw-semibold">
+                                        {{ $duration }} Night
+                                    </p>
                                 </div>
                             </div>
 
@@ -53,7 +62,9 @@
                                     <p class="fw-semibold m-0">Packages Type</p>
                                 </div>
                                 <div class="col text-end">
-                                    <p class="fw-semibold m-0">Camping</p>
+                                    <p class="fw-semibold m-0">
+                                        {{ ucfirst($package->name) }}
+                                    </p>
                                 </div>
                             </div>
 
@@ -70,12 +81,19 @@
                             </div>
 
                             <div class="mb-3">
-                                <p class="m-0">Sleeping Bag</p>
-                                <p class="m-0">Hammock</p>
+                                @if($addons->count())
+                                    @foreach($addons as $addon)
+                                        <p class="m-0">
+                                            {{ $addon->name }} (x{{ $addon->pivot->quantity }})
+                                        </p>
+                                    @endforeach
+                                @else
+                                    <p class="text-muted">No add-ons</p>
+                                @endif
                             </div>
 
                             <!-- Price section -->
-                            <div class="row border-bottom pb-3 mb-3 border-3" style="border-color:#AFAFAF;">
+                            {{-- <div class="row border-bottom pb-3 mb-3 border-3" style="border-color:#AFAFAF;">
                                 <div class="col">
                                     <p class="m-0">Price per Night</p>
                                     <p class="m-0">Tax & Service</p>
@@ -84,7 +102,7 @@
                                     <p class="m-0">IDR 55.000,00</p>
                                     <p class="m-0">IDR 5.500,00</p>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!-- Total Payment -->
                             <div class="row mb-3">
@@ -92,8 +110,16 @@
                                     <p class="fw-bold fs-5 m-0">Total Payment</p>
                                 </div>
                                 <div class="col text-end">
-                                    <p class="fw-bold fs-5 m-0">IDR 65.500,00</p>
+                                    <p class="fw-bold fs-5 m-0">
+                                        IDR {{ number_format($booking->total_price, 0, ',', '.') }}
+                                    </p>
+
                                 </div>
+                            </div>
+                            <div class="row mb-3">
+                                <button id="pay-button" class="btn btn-success btn-lg">
+                                    Pay Now
+                                </button>
                             </div>
 
                             <!-- Description -->
@@ -108,12 +134,60 @@
                 </div>
             </div>
         </div>
-
         <script>
+            document.getElementById('pay-button').addEventListener('click', function () {
 
-            // Payment Virtual Account
-            document.querySelector('[data-bs-target="#VirtualAccount]').addEventListener('click', function () {
-                const icon = document.getElementById('virtualAccount');
+                const button = this;
+                button.disabled = true;
+                button.innerText = 'Processing...';
+
+                fetch("{{ route('payment.snap', $booking->id) }}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+                        if (!data.snap_token) {
+                            alert('Gagal membuat transaksi');
+                            button.disabled = false;
+                            button.innerText = 'Pay Now';
+                            return;
+                        }
+
+                        snap.pay(data.snap_token, {
+
+                            onSuccess: function () {
+                                window.location.href =
+                                    "{{ route('payment.success', $booking->id) }}?wait=true";
+                            },
+
+                            onPending: function (result) {
+                                window.location.href = "{{ route('payment.pending', $booking->id) }}";
+                            },
+
+                            onError: function (result) {
+                                alert('Pembayaran gagal');
+                                button.disabled = false;
+                                button.innerText = 'Pay Now';
+                            },
+
+                            onClose: function () {
+                                button.disabled = false;
+                                button.innerText = 'Pay Now';
+                            }
+
+                        });
+                    })
+                    .catch(() => {
+                        alert('Server error');
+                        button.disabled = false;
+                        button.innerText = 'Pay Now';
+                    });
+
             });
         </script>
 @endsection

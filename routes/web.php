@@ -154,9 +154,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/pending/{booking}', [PaymentController::class, 'pending'])
         ->name('payment.pending');
 
-    // webhook midtrans
-    Route::post('/payment/notification', [MidtransController::class, 'handle'])
-        ->name('payment.notification');
     // Route::get('/payment', fn () => view('user.booking_payment'))->name('payment');
     Route::get('/paymentQris', fn () => view('user.payment_qris'))->name('paymentQris');
     Route::get('/paymentVirtualAccount', fn () => view('user.payment_virtualAccount'))
