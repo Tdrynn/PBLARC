@@ -23,28 +23,28 @@ class BookingResource extends Resource
 {
     protected static ?string $model = Booking::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-arrow-right-end-on-rectangle';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Select::make('package_id')
-                    ->relationship('package', 'name')
-                    ->required(),
+                // Select::make('package_id')
+                //     ->relationship('package', 'name')
+                //     ->required(),
 
-                TextInput::make('name')->required(),
-                TextInput::make('telephone'),
-                TextInput::make('email')->email(),
-                DatePicker::make('checkin'),
-                DatePicker::make('checkout'),
-                TextInput::make('participants')->numeric(),
-                TextInput::make('total_price')->numeric(),
-                Select::make('status')->options([
-                    'pending' => 'Pending',
-                    'paid' => 'Paid',
-                    'cancelled' => 'Cancelled',
-                ]),
+                // TextInput::make('name')->required(),
+                // TextInput::make('telephone'),
+                // TextInput::make('email')->email(),
+                // DatePicker::make('checkin'),
+                // DatePicker::make('checkout'),
+                // TextInput::make('participants')->numeric(),
+                // TextInput::make('total_price')->numeric(),
+                // Select::make('status')->options([
+                //     'pending' => 'Pending',
+                //     'paid' => 'Paid',
+                //     'cancelled' => 'Cancelled',
+                // ]),
             ]);
     }
 
