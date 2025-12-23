@@ -148,11 +148,17 @@ Route::middleware(['auth'])->group(function () {
         ->name('payment.snap');
 
     // redirect snap
-    Route::get('/payment/success/{booking}', [PaymentController::class, 'success'])
+    Route::get('/payment/success/{booking}/success', [PaymentController::class, 'success'])
         ->name('payment.success');
 
-    Route::get('/payment/pending/{booking}', [PaymentController::class, 'pending'])
+    Route::get('/payment/pending/{booking}/pending', [PaymentController::class, 'pending'])
         ->name('payment.pending');
+
+    Route::get('/payment/failed/{booking}/failed', [PaymentController::class, 'failed'])
+        ->name('payment.failed');
+
+    Route::post('/payment/retry/{booking}/retry', [MidtransController::class, 'retry'])
+        ->name('payment.retry');
 
     // Route::get('/payment', fn () => view('user.booking_payment'))->name('payment');
     Route::get('/paymentQris', fn () => view('user.payment_qris'))->name('paymentQris');

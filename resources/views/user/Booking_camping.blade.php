@@ -182,78 +182,125 @@
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
-            /* ==========================
+            /* =====================================================
              * ELEMENTS
-             * ========================== */
-            const vanQty = document.getElementById('van_qty');
+             * ===================================================== */
+            const form = document.querySelector('form');
             const participants = document.getElementById('participants');
+            const tentType = document.getElementById('tent_type');
+            const tentQty = document.getElementById('tent_qty');
             const priceTotalEl = document.getElementById('priceTotal');
 
-            // WAJIB: input addons harus punya class="addon-input"
             const addonInputs = document.querySelectorAll('.addon-input');
 
-            /* ==========================
-             * CONFIG (SESUAI BACKEND)
-             * ========================== */
-            const VAN_CAPACITY = 4;
-            const EXTRA_PERSON_PRICE = 25000;
-            const VAN_PRICE = {{ $package->price }}; // dari backend
+            /* =====================================================
+             * MODAL CAPACITY
+             * ===================================================== */
+            const modalEl = document.getElementById('capacityModal');
+            const modal = new bootstrap.Modal(modalEl);
+            const msg = document.getElementById('capacityMessage');
 
-            /* ==========================
-             * FORMAT RUPIAH
-             * ========================== */
+            /* =====================================================
+             * CAPACITY RULE
+             * ===================================================== */
+            function tentCapacity(type) {
+                if (type === 'tent_2p') return 2;
+                if (type === 'tent_4p') return 4;
+                return 0;
+            }
+
+            function validateCapacity(showModal = false) {
+                const p = parseInt(participants.value || 0);
+                const q = parseInt(tentQty.value || 1);
+                const t = tentType.value;
+
+                if (!p || !t || t === 'bring_own') return true;
+
+                const totalCapacity = tentCapacity(t) * q;
+
+                if (p > totalCapacity) {
+                    if (showModal) {
+                        msg.innerHTML = `
+                                        Participants: <b>${p}</b><br>
+                                        Tent Capacity: <b>${totalCapacity}</b><br><br>
+                                        Please add more tents or change tent type.
+                                    `;
+                        modal.show();
+                    }
+                    return false;
+                }
+
+                return true;
+            }
+
+            /* =====================================================
+             * PRICE RULE
+             * ===================================================== */
+            function tentPrice(type) {
+                if (type === 'tent_2p') return 150000;
+                if (type === 'tent_4p') return 250000;
+                return 0;
+            }
+
             function formatIDR(num) {
                 return 'IDR ' + num.toLocaleString('id-ID');
             }
 
-            /* ==========================
+            /* =====================================================
              * PRICE CALCULATOR
-             * ========================== */
+             * ===================================================== */
             function updatePriceSummary() {
                 let total = 0;
 
-                const van = parseInt(vanQty.value || 0);
-                const people = parseInt(participants.value || 0);
+                // 🏕️ TENT
+                const type = tentType.value;
+                const qty = parseInt(tentQty.value || 0);
+                total += tentPrice(type) * qty;
 
-                /* 🚐 BASE VAN PRICE */
-                total += van * VAN_PRICE;
-
-                /* 👥 EXTRA PERSON */
-                const maxCapacity = van * VAN_CAPACITY;
-                if (people > maxCapacity) {
-                    const extra = people - maxCapacity;
-                    total += extra * EXTRA_PERSON_PRICE;
-                }
-
-                /* ➕ ADDONS */
+                // ➕ ADDONS
                 addonInputs.forEach(input => {
                     const qty = parseInt(input.value || 0);
                     const price = parseInt(input.dataset.price || 0);
                     total += qty * price;
                 });
 
-                priceTotalEl.innerText = formatIDR(total);
+                priceTotalEl.innerText = 'IDR ' + total.toLocaleString('id-ID');
             }
 
-            /* ==========================
-             * EVENTS
-             * ========================== */
-            vanQty.addEventListener('input', updatePriceSummary);
-            participants.addEventListener('input', updatePriceSummary);
+            /* =====================================================
+             * EVENTS — VALIDATION
+             * ===================================================== */
+            form.addEventListener('submit', function (e) {
+                if (!validateCapacity(true)) {
+                    e.preventDefault();
+                }
+            });
+
+            participants.addEventListener('input', () => validateCapacity(false));
+            tentType.addEventListener('change', () => validateCapacity(false));
+            tentQty.addEventListener('input', () => validateCapacity(false));
+
+            /* =====================================================
+             * EVENTS — PRICE SUMMARY
+             * ===================================================== */
+            tentType.addEventListener('change', updatePriceSummary);
+            tentQty.addEventListener('input', updatePriceSummary);
 
             addonInputs.forEach(input => {
                 input.addEventListener('input', updatePriceSummary);
                 input.addEventListener('change', updatePriceSummary);
             });
 
-            /* ==========================
+            /* =====================================================
              * INIT
-             * ========================== */
+             * ===================================================== */
             updatePriceSummary();
+
         });
     </script>
+
 
 @endsection

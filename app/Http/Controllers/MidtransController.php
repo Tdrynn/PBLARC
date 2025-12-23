@@ -26,13 +26,28 @@ class MidtransController extends Controller
     {
         $booking = Booking::findOrFail($bookingId);
 
-        // JIKA BELUM ADA order_id, BUAT SEKALI SAJA
-        if (!$booking->order_id) {
+        // JIKA PAYMENT BELUM PAID → BUAT ORDER_ID BARU
+        if ($booking->payment_status !== 'paid') {
             $booking->order_id = 'BOOK-' . $booking->id . '-' . time();
             $booking->save();
         }
 
+        $items = $booking->details;
+
+        $itemDetails = [];
+
+        foreach($items as $item) {
+            $itemDetails[] = [
+        'id'            => $item->id,
+        'price'         => $item->price,
+        'quantity'      => $item->quantity,
+        'name'          => $item->item_name,
+        'category'      => $item->item_type,
+            ];
+        }
+
         $params = [
+            'item_details' => $itemDetails,
             'transaction_details' => [
                 'order_id'     => $booking->order_id,
                 'gross_amount' => $booking->total_price,
@@ -44,10 +59,10 @@ class MidtransController extends Controller
             ],
         ];
 
-        $snapToken = Snap::getSnapToken($params);
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
 
         $booking->update([
-            'snap_token' => $snapToken,
+            'snap_token' => $snapToken
         ]);
 
         return response()->json([
@@ -56,26 +71,25 @@ class MidtransController extends Controller
     }
 
 
+
+
     // ============================
     // MIDTRANS WEBHOOK
     // ============================
     public function notification(Request $request)
     {
         try {
-            // ✅ INIT NOTIFICATION
             $notif = new Notification();
 
             $orderId = $notif->order_id;
             $status  = $notif->transaction_status;
 
-            // 🔍 CARI BOOKING BERDASARKAN ORDER_ID
             $booking = Booking::where('order_id', $orderId)->first();
 
             if (!$booking) {
                 return response()->json(['error' => 'Booking not found'], 404);
             }
 
-            // ✅ UPDATE STATUS PEMBAYARAN
             match ($status) {
                 'capture', 'settlement' => $booking->update([
                     'payment_status' => 'paid',
@@ -93,14 +107,42 @@ class MidtransController extends Controller
             return response()->json(['status' => 'ok']);
 
         } catch (\Throwable $e) {
-
-            // 🔥 LOG ERROR (PENTING)
-            \Log::error('MIDTRANS WEBHOOK ERROR', [
+            Log::error('MIDTRANS WEBHOOK ERROR', [
                 'message' => $e->getMessage(),
                 'payload' => $request->all(),
             ]);
 
             return response()->json(['error' => 'Server error'], 500);
         }
+    }
+
+    public function retry(Booking $booking)
+    {
+        // 🚨 WAJIB order_id BARU
+        $booking->order_id = 'BOOK-' . $booking->id . '-' . time();
+        $booking->payment_status = 'pending';
+        $booking->save();
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $booking->order_id,
+                'gross_amount' => $booking->total_price,
+            ],
+            'customer_details' => [
+                'first_name' => $booking->name,
+                'email' => $booking->email,
+                'phone' => $booking->telephone,
+            ],
+        ];
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        $booking->update([
+            'snap_token' => $snapToken
+        ]);
+
+        return response()->json([
+            'snap_token' => $snapToken
+        ]);
     }
 }
