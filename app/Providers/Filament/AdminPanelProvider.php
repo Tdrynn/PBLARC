@@ -29,6 +29,10 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->renderHook(
+                'panels::footer',
+                fn() => null
+            )
 
             ->login(false)
 
@@ -51,10 +55,7 @@ class AdminPanelProvider extends PanelProvider
                 in: app_path('Filament/Widgets'),
                 for: 'App\\Filament\\Widgets'
             )
-            ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
-            ])
+            ->widgets([])
 
             ->middleware([
                 EncryptCookies::class,
@@ -71,7 +72,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            
+
             ->login(false)
             ->authMiddleware([
                 Authenticate::class,
