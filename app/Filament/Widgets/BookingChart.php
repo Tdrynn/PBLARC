@@ -4,13 +4,31 @@ namespace App\Filament\Widgets;
 
 use Filament\Widgets\ChartWidget;
 use App\Models\Booking;
+use Filament\Widgets\Concerns\InteractsWithPageFilters;
+use Carbon\Carbon;
 
 class BookingChart extends ChartWidget
 {
-    protected static ?string $heading = 'Chart';
+    use InteractsWithPageFilters; // Wajib ada agar connect ke Dashboard
+
+    protected static ?string $heading = 'Booking';
+    protected static ?int $sort = 1; // Urutan ke-1
+
+    // Set '1' agar hanya memakan setengah layar (jika layar besar)
+    protected int | string | array $columnSpan = 1;
 
     protected function getData(): array
     {
+        // 1. Ambil nilai filter dari Dashboard
+        $filter = $this->filters['period'] ?? '1_week';
+
+        // 2. Tentukan tanggal mulai berdasarkan filter
+        $startDate = match ($filter) {
+            '1_month' => now()->subMonth(),
+            '1_year'  => now()->subYear(),
+            default   => now()->subWeek(),
+        };
+
         $packages = [
             1 => 'Picnic',
             2 => 'Camping',
@@ -18,8 +36,8 @@ class BookingChart extends ChartWidget
             4 => 'Group Event',
         ];
 
-        // Ambil daftar tanggal (7 hari terakhir)
-        $dates = Booking::whereDate('created_at', '>=', now()->subDays(6))
+        // 3. Query tanggal yang ada datanya
+        $dates = Booking::whereDate('created_at', '>=', $startDate)
             ->selectRaw('DATE(created_at) as date')
             ->groupBy('date')
             ->orderBy('date')
@@ -29,12 +47,11 @@ class BookingChart extends ChartWidget
 
         foreach ($packages as $packageId => $label) {
             $data = Booking::where('package_id', $packageId)
-                ->whereDate('created_at', '>=', now()->subDays(6))
+                ->whereDate('created_at', '>=', $startDate)
                 ->selectRaw('DATE(created_at) as date, COUNT(*) as total')
                 ->groupBy('date')
                 ->pluck('total', 'date');
 
-            // Isi 0 kalau di tanggal tertentu tidak ada booking
             $datasets[] = [
                 'label' => $label,
                 'data' => $dates->map(fn($date) => $data[$date] ?? 0),
@@ -43,7 +60,7 @@ class BookingChart extends ChartWidget
 
         return [
             'datasets' => $datasets,
-            'labels' => $dates,
+            'labels' => $dates->map(fn($date) => Carbon::parse($date)->format('d M')),
         ];
     }
 

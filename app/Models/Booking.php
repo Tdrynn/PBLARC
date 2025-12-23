@@ -7,8 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     protected $fillable = [
-        'package_id','name','telephone','email',
-        'checkin','checkout','participants','total_price','status'
+        'package_id',
+        'name',
+        'telephone',
+        'email',
+        'checkin',
+        'checkout',
+        'participants',
+        'total_price',
+        'status'
     ];
 
     public function package()
@@ -24,8 +31,11 @@ class Booking extends Model
     public function addons()
     {
         return $this->belongsToMany(Addon::class, 'booking_addons')
-                    ->withPivot('quantity','price')
-                    ->withTimestamps();
+            ->withPivot('quantity', 'price')
+            ->withTimestamps();
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
-
