@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\AddOnResource\Pages;
+namespace App\Filament\Resources\AddonResource\Pages;
 
-use App\Filament\Resources\AddOnResource;
+use App\Filament\Resources\AddonResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateAddOn extends CreateRecord
+class CreateAddon extends CreateRecord
 {
-    protected static string $resource = AddOnResource::class;
+    protected static string $resource = AddonResource::class;
 }

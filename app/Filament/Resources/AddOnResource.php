@@ -4,36 +4,33 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\AddOn;
+use App\Models\Addon;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Tables\Columns\TextInputColumn;
-use App\Filament\Resources\AddOnResource\Pages;
+use App\Filament\Resources\AddonResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\AddOnResource\RelationManagers;
+use App\Filament\Resources\AddonResource\RelationManagers;
+use App\Filament\Resources\PackageResource\RelationManagers\PricesRelationManager;
 
-class AddOnResource extends Resource
+class AddonResource extends Resource
 {
-    protected static ?string $model = AddOn::class;
+    protected static ?string $model = Addon::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-archive-box';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')->label('name')->required(),
-                TextInput::make('price')->label('price')->required(),
-                TextInput::make('stock')->label('stock')->required(),
-                // Toggle::make('is_active')->label('Is Active')->default(true)->required()
-                Hidden::make('is_active')->default(1)
+                TextInput::make('name')->required(),
+                TextInput::make('price')->required(),
+                TextInput::make('stock')->required(),
+                Toggle::make('is_active')->default(1),
             ]);
     }
 
@@ -41,20 +38,13 @@ class AddOnResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')->searchable(),
                 TextColumn::make('price'),
                 TextColumn::make('stock'),
-                TextColumn::make('is_active')
-                    ->label('Status')
-                    ->badge()
-                    ->formatStateUsing(fn($state) => $state ? 'Active' : 'Inactive')
-                    ->color(fn($state) => $state ? 'success' : 'danger'),
+                TextColumn::make('is_active'),
             ])
             ->filters([
-                SelectFilter::make('is_active')->label('status')->options([
-                    1 => 'Active',
-                    0 => 'Inactive'
-                ])
+                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -69,17 +59,15 @@ class AddOnResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAddOns::route('/'),
-            'create' => Pages\CreateAddOn::route('/create'),
-            'edit' => Pages\EditAddOn::route('/{record}/edit'),
+            'index' => Pages\ListAddons::route('/'),
+            'create' => Pages\CreateAddon::route('/create'),
+            'edit' => Pages\EditAddon::route('/{record}/edit'),
         ];
     }
 }

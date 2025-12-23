@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\AddonResource\Pages;
+namespace App\Filament\Resources\PackageResource\Pages;
 
-use App\Filament\Resources\AddonResource;
+use App\Filament\Resources\PackageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditAddon extends EditRecord
+class EditPackage extends EditRecord
 {
-    protected static string $resource = AddonResource::class;
+    protected static string $resource = PackageResource::class;
 
     protected function getHeaderActions(): array
     {
