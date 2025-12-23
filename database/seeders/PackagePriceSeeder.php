@@ -14,7 +14,10 @@ class PackagePriceSeeder extends Seeder
      */
     public function run(): void
     {
-        $camping = Package::where('slug','camping')->first();
+        $camping = Package::where('slug', 'camping')->first();
+        $picnic = Package::where('slug', 'picnic')->first();
+        $campervan = Package::where('slug', 'campervan')->first();
+        $groupevent = Package::where('slug', 'groupevent')->first();
 
         PackagePrice::insert([
             [
@@ -40,6 +43,30 @@ class PackagePriceSeeder extends Seeder
                 'name' => 'Rent Tent 4',
                 'day_type' => 'all',
                 'price' => 250000,
+            ],
+            [
+                'package_id' => $picnic->id,
+                'name' => 'Adult',
+                'day_type' => 'all',
+                'price' => 15000,
+            ],
+            [
+                'package_id' => $picnic->id,
+                'name' => 'Child',
+                'day_type' => 'all',
+                'price' => 10000,
+            ],
+            [
+                'package_id' => $campervan->id,
+                'name' => 'Max 4 person',
+                'day_type' => 'all',
+                'price' => 150000,
+            ],
+            [
+                'package_id' => $groupevent->id,
+                'name' => 'Private Event',
+                'day_type' => 'all',
+                'price' => 2500000,
             ],
         ]);
     }
