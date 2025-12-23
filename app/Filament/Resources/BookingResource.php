@@ -7,7 +7,9 @@ use Filament\Tables;
 use App\Models\Booking;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -76,6 +78,27 @@ class BookingResource extends Resource
                         'success' => 'paid',
                         'danger'  => 'cancelled',
                     ]),
+            ])
+            ->headerActions([
+                Action::make('downloadPdf')
+                    ->label('Download Rekap PDF')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->color('danger')
+                    ->action(function () {
+
+                        $bookings = Booking::with('package')->get();
+
+                        $pdf = Pdf::loadView('pdf.rekap-booking', [
+                            'bookings'      => $bookings,
+                            'totalBooking' => $bookings->count(),
+                            'totalHarga'   => $bookings->sum('total_price'),
+                        ]);
+
+                        return response()->streamDownload(
+                            fn() => print($pdf->output()),
+                            'rekap-booking-' . now()->format('d-m-Y') . '.pdf'
+                        );
+                    }),
             ])
             ->filters([
                 //
