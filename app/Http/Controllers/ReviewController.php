@@ -23,7 +23,7 @@ class ReviewController extends Controller
         $reviews = Review::latest()->get()->chunk(2); // 2 review per slide
         $averageRating = Review::avg('rating');
         $totalReviews = Review::count();
-        $images = Image::where('page', 'home')->get();
+        $images = Image::where('page', 'homeWelcome')->get();
         return view('welcome', compact('reviews', 'averageRating', 'totalReviews', 'images'));
     }
     public function home()
@@ -32,7 +32,7 @@ class ReviewController extends Controller
         $reviews = Review::latest()->get()->chunk(2); // 2 review per slide
         $averageRating = Review::avg('rating');
         $totalReviews = Review::count();
-        $images = Image::where('page', 'home')->get();
+        $images = Image::where('page', 'homeWelcome')->get();
         return view('user.home', compact('reviews', 'averageRating', 'totalReviews', 'images'));
     }
 

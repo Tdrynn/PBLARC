@@ -12,7 +12,7 @@ class GroupEventController extends Controller
     public function index()
     {
         $package = Package::where('slug', 'groupevent')->firstOrFail();
-        $images = Image::where('page', 'camperVan')->get();
+        $images = Image::where('page', 'groupevent')->get();
 
         return view('user.groupEvent', compact('package', 'images'));
     }
@@ -21,6 +21,6 @@ class GroupEventController extends Controller
         $package = Package::where('slug', 'groupevent')->firstOrFail();
         $addons  = Addon::where('is_active', true)->get();
 
-        return view('user.booking_groupEvent', compact('package','addons'));
+        return view('user.booking_groupEvent', compact('package', 'addons'));
     }
 }
