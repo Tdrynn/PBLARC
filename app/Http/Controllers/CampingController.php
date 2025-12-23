@@ -13,7 +13,7 @@ class CampingController extends Controller
     public function index()
     {
         $package = Package::where('slug', 'camping')->firstOrFail();
-        $images = Image::where('page', 'camperVan')->get();
+        $images = Image::where('page', 'camping')->get();
 
         return view('user.camping', compact('package', 'images'));
     }
@@ -23,7 +23,6 @@ class CampingController extends Controller
         $package = Package::where('slug', 'camping')->firstOrFail();
         $addons  = Addon::where('is_active', true)->get();
 
-        return view('user.booking_camping', compact('package','addons'));
+        return view('user.booking_camping', compact('package', 'addons'));
     }
 }
-
