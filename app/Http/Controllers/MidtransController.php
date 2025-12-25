@@ -24,37 +24,41 @@ class MidtransController extends Controller
     // ============================
     public function createSnapToken($bookingId)
     {
-        $booking = Booking::findOrFail($bookingId);
+        $booking = Booking::with('details')->findOrFail($bookingId);
 
-        // JIKA PAYMENT BELUM PAID → BUAT ORDER_ID BARU
         if ($booking->payment_status !== 'paid') {
             $booking->order_id = 'BOOK-' . $booking->id . '-' . time();
             $booking->save();
         }
 
-        $items = $booking->details;
-
         $itemDetails = [];
+        $grossAmount = 0;
 
-        foreach($items as $item) {
+        foreach ($booking->details as $i => $item) {
+
+            $price = (int) $item->price;
+            $qty   = (int) $item->quantity;
+
             $itemDetails[] = [
-        'id'            => $item->id,
-        'price'         => $item->price,
-        'quantity'      => $item->quantity,
-        'name'          => $item->item_name,
-        'category'      => $item->item_type,
+                'id'       => 'ITEM-' . $booking->id . '-' . $i,
+                'price'    => $price,
+                'quantity' => $qty,
+                'name'     => substr($item->item_name, 0, 50),
+                'category' => $item->item_type,
             ];
+
+            $grossAmount += $price * $qty;
         }
 
         $params = [
-            'item_details' => $itemDetails,
             'transaction_details' => [
                 'order_id'     => $booking->order_id,
-                'gross_amount' => $booking->total_price,
+                'gross_amount' => $grossAmount,
             ],
+            'item_details' => $itemDetails,
             'customer_details' => [
                 'first_name' => $booking->name,
-                'email'      => $booking->email,
+                'email'      => $booking->email ?? 'guest@example.com',
                 'phone'      => $booking->telephone,
             ],
         ];
@@ -62,13 +66,15 @@ class MidtransController extends Controller
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
         $booking->update([
-            'snap_token' => $snapToken
+            'snap_token' => $snapToken,
+            'total_price' => $grossAmount, // sinkronkan
         ]);
 
         return response()->json([
             'snap_token' => $snapToken
         ]);
     }
+
 
 
 

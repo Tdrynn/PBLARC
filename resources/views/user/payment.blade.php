@@ -56,76 +56,39 @@
                                 </div>
                             </div>
 
-                            <!-- Package Type -->
                             <div class="row border-top pt-3 mb-3 border-3">
                                 <div class="col">
                                     <p class="fw-semibold m-0">Packages Type</p>
-                                    {{-- <small class="text-secondary">
-                                        {{ $packagePrice->name }}
-                                    </small> --}}
                                 </div>
                                 <div class="col text-end">
                                     <p class="fw-semibold m-0">
                                         {{ ucfirst($package->name) }}
                                     </p>
-                                    {{-- <small class="text-secondary">
-                                        IDR {{ number_format($packagePrice->price, 0, ',', '.') }}
-                                    </small> --}}
                                 </div>
                             </div>
 
-                            <!-- Add ons -->
-                            <div class="row mb-2">
-                                <div class="col d-flex align-items-center gap-2">
-                                    <p class="fw-semibold m-0">Add-ons</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                                        class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                                    </svg>
-                                </div>
-                            </div>
-
+                            <!-- Booking Details -->
                             <div class="mb-3">
-                                @if($addons->count())
-                                    @foreach($addons as $addon)
-                                        <div class="d-flex justify-content-between">
-                                            <p class="m-0">
-                                                {{ $addon->name }}
-                                                <small class="text-secondary">
-                                                    (x{{ $addon->pivot->quantity }})
-                                                </small>
-                                            </p>
-                                            <p class="m-0">
-                                                IDR {{ number_format($addon->price * $addon->pivot->quantity, 0, ',', '.') }}
-                                            </p>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <p class="text-muted">No add-ons</p>
-                                @endif
-                            </div>
-
-
-                            <div class="row border-top pt-3 mb-3 border-3" style="border-color:#AFAFAF;">
-                                <div class="col">
-                                    {{-- <p class="m-0">Package ({{ $duration }} night)</p> --}}
-                                    <p class="m-0">Add-ons</p>
-                                </div>
-                                <div class="col text-end">
-                                    {{-- <p class="m-0">
-                                        IDR {{ number_format($package->price * $duration, 0, ',', '.') }}
-                                    </p> --}}
-                                    <p class="m-0">
-                                        IDR
-                                        {{ number_format($addons->sum(fn($a) => $a->price * $a->pivot->quantity), 0, ',', '.') }}
-                                    </p>
-                                </div>
+                                @forelse($details as $item)
+                                    <div class="d-flex justify-content-between">
+                                        <p class="m-0">
+                                            {{ $item->item_name }}
+                                            <small class="text-secondary">
+                                                (x{{ $item->quantity }})
+                                            </small>
+                                        </p>
+                                        <p class="m-0">
+                                            IDR {{ number_format($item->price * $item->quantity, 0, ',', '.') }}
+                                        </p>
+                                    </div>
+                                @empty
+                                    <p class="text-muted">No booking details</p>
+                                @endforelse
                             </div>
 
 
                             <!-- Total Payment -->
-                            <div class="row mb-3">
+                            <div class="row border-top pt-3 mb-3 border-3" style="border-color:#AFAFAF;">
                                 <div class="col">
                                     <p class="fw-bold fs-5 m-0">Total Payment</p>
                                 </div>

@@ -14,6 +14,8 @@ class PaymentController extends Controller
      */
     private function paymentViewData(Booking $booking)
     {
+        $booking->load(['package', 'addons', 'details']);
+
         $checkin  = Carbon::parse($booking->checkin);
         $checkout = Carbon::parse($booking->checkout);
 
@@ -21,7 +23,7 @@ class PaymentController extends Controller
             'booking'  => $booking,
             'package'  => $booking->package,
             'addons'   => $booking->addons,
-            'details'  => $booking->bookingDetails,
+            'details'  => $booking->details,
             'duration' => max(1, $checkin->diffInDays($checkout)),
         ];
     }
