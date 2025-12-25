@@ -15,7 +15,10 @@ class Booking extends Model
         'checkout',
         'participants',
         'total_price',
-        'status'
+        'order_id',
+        'snap_token',
+        'payment_status',
+        'status',
     ];
 
     public function package()

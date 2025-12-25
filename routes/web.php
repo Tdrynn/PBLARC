@@ -14,6 +14,8 @@ use App\Http\Controllers\CampingController;
 use App\Http\Controllers\CampervanController;
 use App\Http\Controllers\GroupEventController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\MidtransController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,7 +140,27 @@ Route::middleware(['auth'])->group(function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('/payment', fn () => view('user.payment'))->name('payment');
+    Route::get('/payment/{booking}', [PaymentController::class, 'page'])
+    ->name('payment.page');
+
+    // snap token
+    Route::post('/payment/snap/{booking}', [MidtransController::class, 'createSnapToken'])
+        ->name('payment.snap');
+
+    // redirect snap
+    Route::get('/payment/success/{booking}/success', [PaymentController::class, 'success'])
+        ->name('payment.success');
+
+    Route::get('/payment/pending/{booking}/pending', [PaymentController::class, 'pending'])
+        ->name('payment.pending');
+
+    Route::get('/payment/failed/{booking}/failed', [PaymentController::class, 'failed'])
+        ->name('payment.failed');
+
+    Route::post('/payment/retry/{booking}/retry', [MidtransController::class, 'retry'])
+        ->name('payment.retry');
+
+    // Route::get('/payment', fn () => view('user.booking_payment'))->name('payment');
     Route::get('/paymentQris', fn () => view('user.payment_qris'))->name('paymentQris');
     Route::get('/paymentVirtualAccount', fn () => view('user.payment_virtualAccount'))
         ->name('paymentVirtualAccount');

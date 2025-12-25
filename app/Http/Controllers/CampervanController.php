@@ -19,9 +19,22 @@ class CampervanController extends Controller
     }
     public function bookingForm(Request $request)
     {
-        $package = Package::where('slug', 'campervan')->firstOrFail();
-        $addons  = Addon::where('is_active', true)->get();
+        $package = Package::where('slug', 'campervan')
+            ->with('prices')
+            ->firstOrFail();
 
-        return view('user.booking_campervan', compact('package','addons'));
+        $addons = Addon::where('is_active', true)->get();
+
+        $prices = $package->prices->keyBy('name');
+
+        $vanPrice = $prices['van']->price ?? 0;
+        $extraPersonPrice = $prices['extra_person']->price ?? 0;
+
+        return view('user.booking_campervan', compact(
+            'package',
+            'addons',
+            'vanPrice',
+            'extraPersonPrice'
+        ));
     }
 }

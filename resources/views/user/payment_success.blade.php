@@ -2,17 +2,13 @@
 
 @section('content')
 
-    @php $currentStep = 2; @endphp
+    @php $currentStep = 3; @endphp
 
     @include('layouts.navbar.navbar_back')
     <div class="row">
         <div class="Payment">
 
             @include('layouts.progressBar')
-            <script src="https://app.sandbox.midtrans.com/snap/snap.js"
-                data-client-key="{{ config('services.midtrans.clientKey') }}">
-                </script>
-
             <div class="container mt-4">
                 <div class="row d-flex justify-content-center align-items-center gap-4 my-4">
                     <div class="col-lg-6 bg-light rounded-4 mx-2">
@@ -56,6 +52,7 @@
                                 </div>
                             </div>
 
+                            {{-- Package --}}
                             <div class="row border-top pt-3 mb-3 border-3">
                                 <div class="col">
                                     <p class="fw-semibold m-0">Packages Type</p>
@@ -86,7 +83,6 @@
                                 @endforelse
                             </div>
 
-
                             <!-- Total Payment -->
                             <div class="row border-top pt-3 mb-3 border-3" style="border-color:#AFAFAF;">
                                 <div class="col">
@@ -99,10 +95,16 @@
 
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <button id="pay-button" class="btn btn-success btn-lg">
-                                    Pay Now
-                                </button>
+
+                            <div class="row mb-1">
+                                <p class="text-center text-success">The Invoice Has Sent To You're Email!</p>
+                            </div>
+
+                            {{-- ACTION --}}
+                            <div class="d-grid gap-2">
+                                <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+                                    Back to Home
+                                </a>
                             </div>
 
                             <!-- Description -->
@@ -116,73 +118,4 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <script>
-            function startPayment(buttonId, url) {
-                const button = document.getElementById(buttonId);
-
-                button.addEventListener('click', function () {
-
-                    button.disabled = true;
-                    button.innerText = 'Processing...';
-
-                    fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Accept': 'application/json'
-                        }
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-
-                            if (!data.snap_token) {
-                                alert('Gagal membuat transaksi');
-                                resetButton();
-                                return;
-                            }
-
-                            snap.pay(data.snap_token, {
-
-                                onSuccess: function () {
-                                    window.location.href =
-                                        "{{ route('payment.success', $booking->id) }}";
-                                },
-
-                                onPending: function () {
-                                    window.location.href =
-                                        "{{ route('payment.pending', $booking->id) }}";
-                                },
-
-                                onError: function () {
-                                    window.location.href =
-                                        "{{ route('payment.failed', $booking->id) }}";
-                                },
-
-                                onClose: function () {
-                                    // ❗ WAJIB DI-HANDLE
-                                    window.location.href =
-                                        "{{ route('payment.pending', $booking->id) }}";
-                                }
-                            });
-                        })
-                        .catch(() => {
-                            alert('Server error');
-                            resetButton();
-                        });
-
-                    function resetButton() {
-                        button.disabled = false;
-                        button.innerText = 'Pay Now';
-                    }
-                });
-            }
-
-            // payment pertama
-            startPayment(
-                'pay-button',
-                "{{ route('payment.snap', $booking->id) }}"
-            );
-        </script>
-
 @endsection

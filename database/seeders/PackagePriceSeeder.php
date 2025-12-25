@@ -69,5 +69,22 @@ class PackagePriceSeeder extends Seeder
                 'price' => 2500000,
             ],
         ]);
+
+        $campervan = Package::where('slug','campervan')->first();
+        PackagePrice::insert([
+            [
+                'package_id' => $campervan->id,
+                'name' => 'van',
+                'day_type' => 'all',
+                'price' => 150000,
+            ],
+            [
+                'package_id' => $campervan->id,
+                'name' => 'extra_person',
+                'day_type' => 'all',
+                'price' => 25000,
+            ],
+        ]);
+
     }
 }

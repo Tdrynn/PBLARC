@@ -81,11 +81,14 @@
                         </div>
 
                         <div>
-                            <p class="fs-5 fw-semibold">Price Summary <br> IDR XX.XXX,XX</p>
+                            <p class="fs-5 fw-semibold">Price Summary</p>
+                            <p class="fw-bold fs-5">
+                                Total: <span id="priceTotal">IDR 0</span>
+                            </p>
                         </div>
 
                         <div class="d-flex gap-3 my-4 align-items-end justify-content-end">
-                            <button type="cancel" class="btn btn-danger btn-lg" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal"
                                 data-bs-target="#cancelModal">Cancel</button>
                             <button type="submit" class="btn btn-success btn-lg">Submit</button>
                         </div>
@@ -113,6 +116,64 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
+            const vanQty = document.getElementById('van_qty');
+            const participants = document.getElementById('participants');
+            const priceTotalEl = document.getElementById('priceTotal');
+            const addonInputs = document.querySelectorAll('.addon-input');
+
+            // 🔥 DATA DARI package_prices
+            const VAN_PRICE = {{ $vanPrice }};
+            const EXTRA_PERSON_PRICE = {{ $extraPersonPrice }};
+            const VAN_CAPACITY = 4;
+
+            function formatIDR(num) {
+                return 'IDR ' + num.toLocaleString('id-ID');
+            }
+
+            function updatePriceSummary() {
+                let total = 0;
+
+                const van = Number(vanQty.value);
+                const people = Number(participants.value);
+
+                console.log('CALC:', { van, people, VAN_PRICE });
+
+                if (van < 1 || people < 1) {
+                    priceTotalEl.innerText = formatIDR(0);
+                    return;
+                }
+
+                // harga van
+                total += van * VAN_PRICE;
+
+                // extra person
+                const maxCapacity = van * VAN_CAPACITY;
+                if (people > maxCapacity) {
+                    total += (people - maxCapacity) * EXTRA_PERSON_PRICE;
+                }
+
+                // addons
+                addonInputs.forEach(input => {
+                    const qty = Number(input.value) || 0;
+                    const price = Number(input.dataset.price) || 0;
+                    total += qty * price;
+                });
+
+                priceTotalEl.innerText = formatIDR(total);
+            }
+
+            vanQty.addEventListener('input', updatePriceSummary);
+            participants.addEventListener('input', updatePriceSummary);
+
+            addonInputs.forEach(i => {
+                i.addEventListener('input', updatePriceSummary);
+            });
+
+            updatePriceSummary();
+        });
+    </script>
 
 @endsection

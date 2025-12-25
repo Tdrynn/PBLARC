@@ -119,7 +119,8 @@ class BookingController extends Controller
          * DATABASE TRANSACTION
          * =========================
          */
-        DB::transaction(function () use ($request, $package, $checkin, $checkout) {
+
+        $booking = DB::transaction(function () use ($request, $package, $checkin, $checkout) {
 
             /**
              * =========================
@@ -192,13 +193,14 @@ class BookingController extends Controller
             $booking->update([
                 'total_price' => $totalPrice
             ]);
+            return $booking;
         });
 
         // ✅ BERSIHKAN SESSION
         session()->forget('booking');
 
         return redirect()
-            ->route('package')
+            ->route('payment.page', $booking->id)
             ->with('success', 'Booking berhasil dibuat');
     }
 
@@ -374,27 +376,56 @@ class BookingController extends Controller
                 break;
 
             case 'campervan':
-                $days   = max(1, $checkin->diffInDays($checkout));
-                $vans   = $request->van_qty ?? 1;
 
-                $capacityPerVan = 4;
-                $extraPeople = max(0, $participants - ($vans * $capacityPerVan));
+    $days = max(1, $checkin->diffInDays($checkout));
+    $vans = (int) $request->van_qty;
 
-                if ($participants < 1) {
-                    throw ValidationException::withMessages([
-                        'participants' => 'Minimal 1 peserta campervan'
-                    ]);
-                }
+    if ($vans < 1) {
+        throw ValidationException::withMessages([
+            'van_qty' => 'Minimal 1 campervan'
+        ]);
+    }
 
-                if ($vans < 1) {
-                    throw ValidationException::withMessages([
-                        'van_qty' => 'Minimal 1 campervan'
-                    ]);
-                }
+    // ambil harga dari DB
+    $prices = $package->prices->keyBy('name');
 
-                $total += $vans * 150000 * $days;
-                $total += $extraPeople * 25000 * $days;
-                break;
+    $vanPrice         = $prices['van']->price ?? 0;
+    $extraPersonPrice = $prices['extra_person']->price ?? 0;
+
+    if ($vanPrice === 0) {
+        throw new \Exception('Harga van belum diset di package_prices');
+    }
+
+    $capacityPerVan = 4;
+    $maxCapacity    = $vans * $capacityPerVan;
+    $extraPeople    = max(0, $participants - $maxCapacity);
+
+    // harga van
+    $total += $vans * $vanPrice * $days;
+
+    BookingDetail::create([
+        'booking_id' => $booking->id,
+        'item_type'  => 'campervan',
+        'item_name'  => 'Campervan',
+        'quantity'   => $vans,
+        'price'      => $vanPrice,
+    ]);
+
+    // harga extra person
+    if ($extraPeople > 0 && $extraPersonPrice > 0) {
+
+        $total += $extraPeople * $extraPersonPrice * $days;
+
+        BookingDetail::create([
+            'booking_id' => $booking->id,
+            'item_type'  => 'campervan',
+            'item_name'  => 'Extra Person',
+            'quantity'   => $extraPeople,
+            'price'      => $extraPersonPrice,
+        ]);
+    }
+
+    break;
 
             case 'groupevent':
                 $total += 2500000;

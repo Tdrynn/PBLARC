@@ -20,8 +20,8 @@
                         </button>
 
                         <input type="number" name="addons[{{ $addon->id }}]" id="addon-{{ $addon->id }}"
-                            class="form-control form-control-sm text-center" value="0" min="0" max="{{ $addon->stock }}"
-                            style="width: 60px;">
+                            class="form-control form-control-sm text-center addon-input" value="0" min="0" max="{{ $addon->stock }}"
+                            data-price="{{ $addon->price }}" style="width: 60px;">
 
                         <button type="button" class="btn btn-outline-success btn-sm plus-btn"
                             data-target="addon-{{ $addon->id }}">

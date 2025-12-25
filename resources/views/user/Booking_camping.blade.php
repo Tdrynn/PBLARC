@@ -99,7 +99,6 @@
 
 
                                             <input type="number" name="tent_qty" id="tent_qty"
-
                                                 class="form-control form-control-sm text-center" value="1" min="1"
                                                 style="width: 60px;" required>
 
@@ -225,10 +224,10 @@
                 if (p > totalCapacity) {
                     if (showModal) {
                         msg.innerHTML = `
-                                    Participants: <b>${p}</b><br>
-                                    Tent Capacity: <b>${totalCapacity}</b><br><br>
-                                    Please add more tents or change tent type.
-                                `;
+                                        Participants: <b>${p}</b><br>
+                                        Tent Capacity: <b>${totalCapacity}</b><br><br>
+                                        Please add more tents or change tent type.
+                                    `;
                         modal.show();
                     }
                     return false;

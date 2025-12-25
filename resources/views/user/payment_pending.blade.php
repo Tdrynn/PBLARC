@@ -5,10 +5,13 @@
     @php $currentStep = 2; @endphp
 
     @include('layouts.navbar.navbar_back')
+
     <div class="row">
         <div class="Payment">
 
             @include('layouts.progressBar')
+
+            {{-- MIDTRANS SNAP --}}
             <script src="https://app.sandbox.midtrans.com/snap/snap.js"
                 data-client-key="{{ config('services.midtrans.clientKey') }}">
                 </script>
@@ -17,22 +20,33 @@
                 <div class="row d-flex justify-content-center align-items-center gap-4 my-4">
                     <div class="col-lg-6 bg-light rounded-4 mx-2">
                         <div class="p-4">
-                            <!-- Order ID -->
-                            <div class="row border-bottom pb-2 mb-3 border-3" style="border-color:#AFAFAF;">
+
+                            {{-- STATUS --}}
+                            <div class="text-center mb-3">
+                                <h4 class="text-warning">⏳ Payment Pending</h4>
+                                <small class="text-muted">
+                                    Please complete your payment to continue
+                                </small>
+                            </div>
+
+                            {{-- ORDER ID --}}
+                            <div class="row border-bottom pb-2 mb-3 border-3">
                                 <div class="col">
                                     <p class="text-secondary m-0">Order ID</p>
                                 </div>
                                 <div class="col text-end">
                                     <p class="fw-semibold m-0">
-                                        {{ $booking->order_id}}
+                                        {{ $booking->order_id }}
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- Title -->
-                            <p class="text-center fs-5 mb-4">Angklung River Camp, Klungkung Bali</p>
+                            {{-- TITLE --}}
+                            <p class="text-center fs-5 mb-4">
+                                Angklung River Camp, Klungkung Bali
+                            </p>
 
-                            <!-- Check In / Out / Duration -->
+                            {{-- CHECK IN / OUT --}}
                             <div class="row text-center mb-3">
                                 <div class="col">
                                     <small class="text-secondary">Check In</small>
@@ -41,7 +55,7 @@
                                     </p>
                                 </div>
 
-                                <div class="col border-start border-end border-3" style="border-color:#BFBFBF;">
+                                <div class="col border-start border-end border-3">
                                     <small class="text-secondary">Check Out</small>
                                     <p class="m-0 fw-semibold">
                                         {{ \Carbon\Carbon::parse($booking->checkout)->format('d F Y') }}
@@ -56,6 +70,7 @@
                                 </div>
                             </div>
 
+                            {{-- Package --}}
                             <div class="row border-top pt-3 mb-3 border-3">
                                 <div class="col">
                                     <p class="fw-semibold m-0">Packages Type</p>
@@ -86,9 +101,8 @@
                                 @endforelse
                             </div>
 
-
-                            <!-- Total Payment -->
-                            <div class="row border-top pt-3 mb-3 border-3" style="border-color:#AFAFAF;">
+                            {{-- TOTAL --}}
+                            <div class="row border-top pt-3 mb-3 border-3">
                                 <div class="col">
                                     <p class="fw-bold fs-5 m-0">Total Payment</p>
                                 </div>
@@ -96,93 +110,86 @@
                                     <p class="fw-bold fs-5 m-0">
                                         IDR {{ number_format($booking->total_price, 0, ',', '.') }}
                                     </p>
-
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <button id="pay-button" class="btn btn-success btn-lg">
-                                    Pay Now
+
+                            {{-- ACTION --}}
+                            <div class="d-grid gap-2">
+                                <button id="pay-again" class="btn btn-success btn-lg">
+                                    Pay Again
                                 </button>
                             </div>
 
-                            <!-- Description -->
-                            <p class="text-center px-2 mt-3 mb-2"><small>
-                                    Enjoy the experience of camping by the river with fresh air and Balinese green
-                                    views.
-                                    Angklung River Camp is the perfect place to unwind and become one with
-                                    nature.</small>
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-        <script>
-            function startPayment(buttonId, url) {
-                const button = document.getElementById(buttonId);
+    </div>
 
-                button.addEventListener('click', function () {
-
-                    button.disabled = true;
-                    button.innerText = 'Processing...';
-
-                    fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Accept': 'application/json'
-                        }
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-
-                            if (!data.snap_token) {
-                                alert('Gagal membuat transaksi');
-                                resetButton();
-                                return;
-                            }
-
-                            snap.pay(data.snap_token, {
-
-                                onSuccess: function () {
-                                    window.location.href =
-                                        "{{ route('payment.success', $booking->id) }}";
-                                },
-
-                                onPending: function () {
-                                    window.location.href =
-                                        "{{ route('payment.pending', $booking->id) }}";
-                                },
-
-                                onError: function () {
-                                    window.location.href =
-                                        "{{ route('payment.failed', $booking->id) }}";
-                                },
-
-                                onClose: function () {
-                                    // ❗ WAJIB DI-HANDLE
-                                    window.location.href =
-                                        "{{ route('payment.pending', $booking->id) }}";
-                                }
-                            });
-                        })
-                        .catch(() => {
-                            alert('Server error');
-                            resetButton();
-                        });
-
-                    function resetButton() {
-                        button.disabled = false;
-                        button.innerText = 'Pay Now';
-                    }
-                });
-            }
-
-            // payment pertama
-            startPayment(
-                'pay-button',
-                "{{ route('payment.snap', $booking->id) }}"
-            );
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('services.midtrans.clientKey') }}">
         </script>
+
+    <script>
+        document.getElementById('pay-again').addEventListener('click', function () {
+
+            const button = this;
+            button.disabled = true;
+            button.innerText = 'Processing...';
+
+            fetch("{{ route('payment.retry', $booking->id) }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+
+                    if (!data.snap_token) {
+                        alert('Gagal membuat transaksi');
+                        resetButton();
+                        return;
+                    }
+
+                    snap.pay(data.snap_token, {
+
+                        onSuccess: function () {
+                            window.location.href =
+                                "{{ route('payment.success', $booking->id) }}";
+                        },
+
+                        onPending: function () {
+                            window.location.href =
+                                "{{ route('payment.pending', $booking->id) }}";
+                        },
+
+                        onError: function () {
+                            window.location.href =
+                                "{{ route('payment.failed', $booking->id) }}";
+                        },
+
+                        onClose: function () {
+                            // ⛔ PENTING: override example.com
+                            window.location.href =
+                                "{{ route('payment.pending', $booking->id) }}";
+                        }
+
+                    });
+                })
+                .catch(() => {
+                    alert('Server error');
+                    resetButton();
+                });
+
+            function resetButton() {
+                button.disabled = false;
+                button.innerText = 'Pay Again';
+            }
+        });
+    </script>
 
 @endsection

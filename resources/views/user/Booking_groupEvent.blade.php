@@ -85,7 +85,10 @@
                         </div>
 
                         <div>
-                            <p class="fs-5 fw-semibold">Price Summary <br> IDR XX.XXX,XX</p>
+                            <p class="fs-5 fw-semibold">Price Summary</p>
+                            <p class="fw-bold fs-5">
+                                Total: <span id="priceTotal">IDR 0</span>
+                            </p>
                         </div>
 
                         <div class="d-flex gap-3 my-4 align-items-end justify-content-end">
@@ -117,4 +120,45 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const priceTotalEl = document.getElementById('priceTotal');
+            const addonInputs = document.querySelectorAll('.addon-input');
+
+            const BASE_PRICE = 2500000; // group event flat price
+
+            function formatIDR(num) {
+                return 'IDR ' + num.toLocaleString('id-ID');
+            }
+
+            function updatePriceSummary() {
+                let total = BASE_PRICE;
+
+                addonInputs.forEach(input => {
+                    const qty = Number(input.value) || 0;
+                    const price = Number(input.dataset.price) || 0;
+                    total += qty * price;
+                });
+
+                priceTotalEl.innerText = formatIDR(total);
+            }
+
+            // addons realtime
+            addonInputs.forEach(input => {
+                input.addEventListener('input', updatePriceSummary);
+            });
+
+            // support tombol + / -
+            document.addEventListener('click', function (e) {
+                if (e.target.closest('.plus-btn') || e.target.closest('.minus-btn')) {
+                    setTimeout(updatePriceSummary, 0);
+                }
+            });
+
+            // initial load
+            updatePriceSummary();
+        });
+    </script>
+
 @endsection
