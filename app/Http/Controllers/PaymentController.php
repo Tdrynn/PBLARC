@@ -6,6 +6,7 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Midtrans\Snap;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PaymentController extends Controller
 {
@@ -33,9 +34,7 @@ class PaymentController extends Controller
      */
     public function page(Booking $booking)
     {
-        if ($booking->total_price <= 0) {
-            abort(404);
-        }
+        abort_if($booking->user_id !== auth()->id(), 403);
 
         return view('user.payment', $this->paymentViewData($booking));
     }
@@ -50,6 +49,26 @@ class PaymentController extends Controller
         }
 
         return redirect()->route('payment.pending', $booking->id);
+    }
+
+    public function invoice(Booking $booking)
+    {
+        // ❗ hanya boleh jika sudah paid
+        if ($booking->payment_status !== 'paid') {
+            abort(403, 'Invoice hanya tersedia untuk pembayaran sukses');
+        }
+
+        $booking->load(['details', 'addons', 'package']);
+
+        $pdf = Pdf::loadView('user.invoice  ', [
+            'booking'  => $booking,
+            'details'  => $booking->details,
+            'addons'   => $booking->addons,
+        ])->setPaper('A4');
+
+        return $pdf->stream(
+            'Invoice-' . $booking->order_id . '.pdf'
+        );
     }
 
     /**

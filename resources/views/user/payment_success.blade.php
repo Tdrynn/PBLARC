@@ -96,18 +96,19 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-1">
-                                <p class="text-center text-success">The Invoice Has Sent To You're Email!</p>
-                            </div>
-
                             {{-- ACTION --}}
                             <div class="d-grid gap-2">
+                                <a href="{{ route('payment.invoice', $booking->id) }}" class="btn btn-outline-primary mt-3"
+                                    target="_blank">
+                                    Download Invoice PDF
+                                </a>
                                 <a href="{{ route('home') }}" class="btn btn-outline-secondary">
                                     Back to Home
                                 </a>
                             </div>
 
                             <!-- Description -->
+                            <p class="text-center text-success px-2 mt-3 mb-2">The Invoice Has Sent To You're Email!</p>
                             <p class="text-center px-2 mt-3 mb-2"><small>
                                     Enjoy the experience of camping by the river with fresh air and Balinese green
                                     views.

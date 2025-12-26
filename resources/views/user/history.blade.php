@@ -26,111 +26,79 @@
                     </div>
 
                     {{-- Content --}}
-                    <div class="container d-flex flex-column align-items-center gap-3 text-light text-center mb-5"
-                        style="max-height: 425px; overflow-y: auto;">
-                        <a href="" class="text-decoration-none text-light row bg-warning rounded-3" style="width: 95%;">
-                            <div class="col">
-                                <p class="mb-0 mt-2">Up coming</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-stopwatch my-2" viewBox="0 0 16 16">
-                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
-                                    <path
-                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
-                                </svg>
-                                <p>3 Days</p>
-                            </div>
-                            <div class="col">
-                                <p class="mb-0 mt-2 fw-bold fs-5">Camping</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-person my-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-                                </svg>
-                                <p>3 Mature 2 Child</p>
-                            </div>
-                            <div class="col">
-                                <p class="mb-0 mt-2">20 July 2023</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-coin my-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z" />
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12" />
-                                </svg>
-                                <p>IDR 145.000</p>
-                            </div>
-                        </a>
+                    <div class="container d-flex flex-column align-items-center gap-3 text-light text-center mb-4">
 
-                        <a href="" class="text-decoration-none text-light row bg-success rounded-3" style="width: 95%;">
-                            <div class="col">
-                                <p class="mb-0 mt-2">Success</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-stopwatch my-2" viewBox="0 0 16 16">
-                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
-                                    <path
-                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
-                                </svg>
-                                <p>3 Days</p>
-                            </div>
-                            <div class="col">
-                                <p class="mb-0 mt-2 fw-bold fs-5">Camping</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-person my-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-                                </svg>
-                                <p>3 Mature 2 Child</p>
-                            </div>
-                            <div class="col">
-                                <p class="mb-0 mt-2">20 July 2023</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-coin my-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z" />
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12" />
-                                </svg>
-                                <p>IDR 145.000</p>
-                            </div>
-                        </a>
+                        @forelse($bookings as $booking)
 
-                        <a href="" class="text-decoration-none text-light row bg-warning rounded-3" style="width: 95%;">
-                            <div class="col">
-                                <p class="mb-0 mt-2">Up coming</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-stopwatch my-2" viewBox="0 0 16 16">
-                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
-                                    <path
-                                        d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
-                                </svg>
-                                <p>3 Days</p>
-                            </div>
-                            <div class="col">
-                                <p class="mb-0 mt-2 fw-bold fs-5">Camping</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-person my-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-                                </svg>
-                                <p>3 Mature 2 Child</p>
-                            </div>
-                            <div class="col">
-                                <p class="mb-0 mt-2">20 July 2023</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-coin my-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z" />
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12" />
-                                </svg>
-                                <p>IDR 145.000</p>
-                            </div>
-                        </a>
+                            @php
+                                $statusColor = match ($booking->payment_status) {
+                                    'paid' => 'bg-success',
+                                    'pending' => 'bg-warning',
+                                    'failed' => 'bg-danger',
+                                    default => 'bg-secondary',
+                                };
+
+                                $days = max(1, $booking->checkin->diffInDays($booking->checkout));
+                            @endphp
+
+                            <a href="{{ route('payment.page', $booking->id) }}"
+                                class="text-decoration-none text-light row {{ $statusColor }} rounded-3" style="width: 95%;">
+
+                                {{-- Status & Days --}}
+                                <div class="col">
+                                    <p class="mb-0 mt-2 text-capitalize">
+                                        {{ $booking->payment_status === 'paid' ? 'Success' : 'Up Coming' }}
+                                    </p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                        class="bi bi-stopwatch my-2" viewBox="0 0 16 16">
+                                        <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                                        <path
+                                            d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64l.012-.013.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                                    </svg>
+                                    <p>{{ $days }} Days</p>
+                                </div>
+
+                                {{-- Package & Participants --}}
+                                <div class="col">
+                                    <p class="mb-0 mt-2 fw-bold fs-5">
+                                        {{ $booking->package->name }}
+                                    </p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                        class="bi bi-person my-2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                                    </svg>
+                                    <p>{{ $booking->participants }} participants</p>
+                                </div>
+
+                                {{-- Date & Price --}}
+                                <div class="col">
+                                    <p class="mb-0 mt-2">
+                                        {{ $booking->checkin->format('d M Y') }}
+                                    </p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                        class="bi bi-coin my-2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z" />
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12" />
+                                    </svg>
+                                    <p>IDR {{ number_format($booking->total_price, 0, ',', '.') }}</p>
+                                </div>
+
+                            </a>
+
+                        @empty
+                            <p class="text-muted">No booking history found.</p>
+                        @endforelse
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        {{ $bookings->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
+
             </div>
-        </section>
+    </div>
+    </section>
 @endsection

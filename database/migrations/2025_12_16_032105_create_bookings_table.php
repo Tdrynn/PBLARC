@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('package_id')->constrained()->cascadeOnDelete();
 
             $table->string('name');

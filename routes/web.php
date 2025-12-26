@@ -102,8 +102,9 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/update-pass', [ChangePassController::class, 'update'])->name('updatepass');
 
     // History
-    Route::get('/history', fn () => view('user.history'))->name('history');
-    Route::post('/history', fn () => view('user.history'));
+    Route::get('/profile/history', [ProfileController::class, 'history'])
+        ->name('profile.history');
+    // Route::post('/history', fn () => view('user.history'));
 
     /*
     |--------------------------------------------------------------------------
@@ -165,7 +166,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/paymentVirtualAccount', fn () => view('user.payment_virtualAccount'))
         ->name('paymentVirtualAccount');
 
-    Route::get('/invoice', fn () => view('user.invoice'))->name('invoice');
+    Route::get('/invoice/{booking}', [PaymentController::class, 'invoice'])
+        ->name('payment.invoice');
 
     /*
     |--------------------------------------------------------------------------

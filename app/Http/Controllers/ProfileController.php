@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Booking;
 
 
 class ProfileController extends Controller
@@ -32,4 +33,16 @@ class ProfileController extends Controller
 
         return back()->with('success', 'Profile updated!');
     }
+
+    public function history()
+    {
+        $bookings = Booking::with(['package'])
+            ->where('user_id', auth()->id())
+            ->orderByDesc('created_at')
+            ->paginate(2);
+
+        return view('user.history', compact('bookings'));
+    }
+
+
 }
