@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Booking extends Model
 {
@@ -21,11 +22,6 @@ class Booking extends Model
         'payment_status',
         'status',
     ];
-
-    public function user()
-    {
-        return $this->belongsto(User::class);
-    }
 
     public function package()
     {
