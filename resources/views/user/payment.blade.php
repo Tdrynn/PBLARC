@@ -56,6 +56,7 @@
                                 </div>
                             </div>
 
+                            {{-- Package --}}
                             <div class="row border-top pt-3 mb-3 border-3">
                                 <div class="col">
                                     <p class="fw-semibold m-0">Packages Type</p>

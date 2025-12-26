@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     protected $fillable = [
+        'user_id',
         'package_id',
         'name',
         'telephone',
@@ -20,6 +21,11 @@ class Booking extends Model
         'payment_status',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsto(User::class);
+    }
 
     public function package()
     {
@@ -41,4 +47,10 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'checkin'  => 'date',
+        'checkout' => 'date',
+    ];
+
 }
