@@ -13,47 +13,70 @@ class MidtransController extends Controller
 {
     public function __construct()
     {
-        Config::$serverKey = config('services.midtrans.serverKey');
+        Config::$serverKey    = config('services.midtrans.serverKey');
         Config::$isProduction = false; // sandbox
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        Config::$isSanitized  = true;
+        Config::$is3ds        = true;
     }
 
-    // ============================
-    // CREATE SNAP TOKEN
-    // ============================
+    /**
+     * ======================================================
+     * CREATE SNAP TOKEN
+     * ======================================================
+     */
     public function createSnapToken($bookingId)
     {
         $booking = Booking::with('details')->findOrFail($bookingId);
 
+        // =========================
+        // GENERATE UNIQUE ORDER ID
+        // =========================
         if ($booking->payment_status !== 'paid') {
-            $booking->order_id = 'BOOK-' . $booking->id . '-' . time();
+            $booking->order_id = 'BOOK-' . $booking->id . '-' . uniqid();
             $booking->save();
         }
 
         $itemDetails = [];
         $grossAmount = 0;
 
-        foreach ($booking->details as $i => $item) {
+        // =========================
+        // BUILD ITEM DETAILS
+        // =========================
+        foreach ($booking->details as $detail) {
 
-            $price = (int) $item->price;
-            $qty   = (int) $item->quantity;
+            if ($detail->quantity <= 0 || $detail->price <= 0) {
+                continue;
+            }
 
             $itemDetails[] = [
-                'id'       => 'ITEM-' . $booking->id . '-' . $i,
-                'price'    => $price,
-                'quantity' => $qty,
-                'name'     => substr($item->item_name, 0, 50),
-                'category' => $item->item_type,
+                'id'       => 'ITEM-' . $detail->id,
+                'price'    => (int) $detail->price,
+                'quantity' => (int) $detail->quantity,
+                'name'     => substr($detail->item_name, 0, 50),
             ];
 
-            $grossAmount += $price * $qty;
+            $grossAmount += $detail->price * $detail->quantity;
+        }
+
+        // =========================
+        // VALIDATION
+        // =========================
+        if (count($itemDetails) === 0) {
+            return response()->json([
+                'error' => 'Item booking kosong'
+            ], 422);
+        }
+
+        if ($grossAmount < 1) {
+            return response()->json([
+                'error' => 'Total pembayaran tidak valid'
+            ], 422);
         }
 
         $params = [
             'transaction_details' => [
                 'order_id'     => $booking->order_id,
-                'gross_amount' => $grossAmount,
+                'gross_amount' => (int) $grossAmount,
             ],
             'item_details' => $itemDetails,
             'customer_details' => [
@@ -63,11 +86,35 @@ class MidtransController extends Controller
             ],
         ];
 
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        // =========================
+        // DEBUG LOG (WAJIB ADA)
+        // =========================
+        Log::info('MIDTRANS PAYLOAD', $params);
 
+        // =========================
+        // CREATE SNAP TOKEN
+        // =========================
+        try {
+            $snapToken = Snap::getSnapToken($params);
+        } catch (\Exception $e) {
+
+            Log::error('MIDTRANS SNAP ERROR', [
+                'message' => $e->getMessage(),
+                'params'  => $params,
+            ]);
+
+            return response()->json([
+                'error'   => 'Gagal membuat transaksi',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+
+        // =========================
+        // SAVE RESULT
+        // =========================
         $booking->update([
-            'snap_token' => $snapToken,
-            'total_price' => $grossAmount, // sinkronkan
+            'snap_token'  => $snapToken,
+            'total_price' => $grossAmount,
         ]);
 
         return response()->json([
@@ -75,13 +122,11 @@ class MidtransController extends Controller
         ]);
     }
 
-
-
-
-
-    // ============================
-    // MIDTRANS WEBHOOK
-    // ============================
+    /**
+     * ======================================================
+     * MIDTRANS WEBHOOK
+     * ======================================================
+     */
     public function notification(Request $request)
     {
         try {
@@ -108,11 +153,13 @@ class MidtransController extends Controller
                     'payment_status' => 'failed',
                     'status' => 'cancelled',
                 ]),
+                default => null,
             };
 
             return response()->json(['status' => 'ok']);
 
         } catch (\Throwable $e) {
+
             Log::error('MIDTRANS WEBHOOK ERROR', [
                 'message' => $e->getMessage(),
                 'payload' => $request->all(),
@@ -122,33 +169,13 @@ class MidtransController extends Controller
         }
     }
 
+    /**
+     * ======================================================
+     * RETRY PAYMENT
+     * ======================================================
+     */
     public function retry(Booking $booking)
     {
-        // 🚨 WAJIB order_id BARU
-        $booking->order_id = 'BOOK-' . $booking->id . '-' . time();
-        $booking->payment_status = 'pending';
-        $booking->save();
-
-        $params = [
-            'transaction_details' => [
-                'order_id' => $booking->order_id,
-                'gross_amount' => $booking->total_price,
-            ],
-            'customer_details' => [
-                'first_name' => $booking->name,
-                'email' => $booking->email,
-                'phone' => $booking->telephone,
-            ],
-        ];
-
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-        $booking->update([
-            'snap_token' => $snapToken
-        ]);
-
-        return response()->json([
-            'snap_token' => $snapToken
-        ]);
+        return $this->createSnapToken($booking->id);
     }
 }
