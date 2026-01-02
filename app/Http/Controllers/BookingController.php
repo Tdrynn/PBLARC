@@ -429,8 +429,20 @@ class BookingController extends Controller
     break;
 
             case 'groupevent':
-                $total += 2500000;
-                break;
+
+            $price = 2500000;
+
+            $total += $price;
+
+            BookingDetail::create([
+                'booking_id' => $booking->id,
+                'item_type'  => 'package',
+                'item_name'  => 'Group Event Package',
+                'quantity'   => 1,
+                'price'      => $price,
+            ]);
+
+            break;
         }
 
         return $total;
