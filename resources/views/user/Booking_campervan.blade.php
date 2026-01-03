@@ -100,22 +100,25 @@
     </div>
 
     <!-- Modal Cancel -->
-    <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal fade" id="cancelModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title w-100 fw-bold" id="logoutModalLabel">Are you sure?</h5>
+                    <h5 class="modal-title w-100 fw-bold">Are you sure?</h5>
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-0">
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
-                    <form action="{{ route('camperVan') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-danger px-4">Yes</button>
-                    </form>
+                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">
+                        No
+                    </button>
+
+                    <a href="{{ route('camperVan') }}" class="btn btn-danger px-4">
+                        Yes
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
@@ -124,56 +127,98 @@
             const priceTotalEl = document.getElementById('priceTotal');
             const addonInputs = document.querySelectorAll('.addon-input');
 
-            // 🔥 DATA DARI package_prices
+            const checkinInput = document.querySelector('input[name="checkin"]');
+            const checkoutInput = document.querySelector('input[name="checkout"]');
+
+            // ===============================
+            // DATA DARI BACKEND (BLADE)
+            // ===============================
             const VAN_PRICE = {{ $vanPrice }};
             const EXTRA_PERSON_PRICE = {{ $extraPersonPrice }};
             const VAN_CAPACITY = 4;
 
+            // ===============================
+            // FORMAT RUPIAH
+            // ===============================
             function formatIDR(num) {
                 return 'IDR ' + num.toLocaleString('id-ID');
             }
 
+            // ===============================
+            // HITUNG JUMLAH HARI (SAMA BACKEND)
+            // ===============================
+            function getTotalDays() {
+                const checkin = new Date(checkinInput.value);
+                const checkout = new Date(checkoutInput.value);
+
+                if (isNaN(checkin) || isNaN(checkout)) return 0;
+
+                const diffTime = checkout - checkin;
+                const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+                return diffDays > 0 ? diffDays : 0;
+            }
+
+            // ===============================
+            // HITUNG TOTAL HARGA
+            // ===============================
             function updatePriceSummary() {
-                let total = 0;
+                let dailyTotal = 0;
 
                 const van = Number(vanQty.value);
                 const people = Number(participants.value);
+                const days = getTotalDays();
 
-                console.log('CALC:', { van, people, VAN_PRICE });
-
-                if (van < 1 || people < 1) {
+                if (van < 1 || people < 1 || days < 1) {
                     priceTotalEl.innerText = formatIDR(0);
                     return;
                 }
 
-                // harga van
-                total += van * VAN_PRICE;
+                // === Harga van per hari ===
+                dailyTotal += van * VAN_PRICE;
 
-                // extra person
+                // === Extra person per hari ===
                 const maxCapacity = van * VAN_CAPACITY;
                 if (people > maxCapacity) {
-                    total += (people - maxCapacity) * EXTRA_PERSON_PRICE;
+                    dailyTotal += (people - maxCapacity) * EXTRA_PERSON_PRICE;
                 }
 
-                // addons
+                // === Addons per hari ===
                 addonInputs.forEach(input => {
                     const qty = Number(input.value) || 0;
                     const price = Number(input.dataset.price) || 0;
-                    total += qty * price;
+                    dailyTotal += qty * price;
                 });
+
+                // === TOTAL AKHIR (SAMA DENGAN BACKEND & MIDTRANS) ===
+                const total = dailyTotal * days;
 
                 priceTotalEl.innerText = formatIDR(total);
             }
 
+            // ===============================
+            // EVENT LISTENERS
+            // ===============================
             vanQty.addEventListener('input', updatePriceSummary);
             participants.addEventListener('input', updatePriceSummary);
 
-            addonInputs.forEach(i => {
-                i.addEventListener('input', updatePriceSummary);
+            addonInputs.forEach(input => {
+                input.addEventListener('input', updatePriceSummary);
             });
 
+            // kalau suatu saat readonly dihilangkan
+            if (checkinInput && checkoutInput) {
+                checkinInput.addEventListener('change', updatePriceSummary);
+                checkoutInput.addEventListener('change', updatePriceSummary);
+            }
+
+            // ===============================
+            // INIT
+            // ===============================
             updatePriceSummary();
+
         });
     </script>
+
 
 @endsection

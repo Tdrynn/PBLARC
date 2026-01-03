@@ -104,18 +104,20 @@
     </div>
 
     <!-- Modal Cancel -->
-    <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal fade" id="cancelModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title w-100 fw-bold" id="logoutModalLabel">Are you sure?</h5>
+                    <h5 class="modal-title w-100 fw-bold">Are you sure?</h5>
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-0">
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
-                    <form action="{{ route('groupEvent') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-danger px-4">Yes</button>
-                    </form>
+                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">
+                        No
+                    </button>
+
+                    <a href="{{ route('groupEvent') }}" class="btn btn-danger px-4">
+                        Yes
+                    </a>
                 </div>
             </div>
         </div>
@@ -126,39 +128,37 @@
             const priceTotalEl = document.getElementById('priceTotal');
             const addonInputs = document.querySelectorAll('.addon-input');
 
-            const BASE_PRICE = 2500000; // group event flat price
+            const BASE_PRICE = 2500000;
+
+            const checkin = new Date("{{ session('booking.checkin') }}");
+            const checkout = new Date("{{ session('booking.checkout') }}");
+
+            const diffTime = Math.abs(checkout - checkin);
+            const days = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
 
             function formatIDR(num) {
                 return 'IDR ' + num.toLocaleString('id-ID');
             }
 
             function updatePriceSummary() {
-                let total = BASE_PRICE;
+                let total = BASE_PRICE * days;
 
                 addonInputs.forEach(input => {
                     const qty = Number(input.value) || 0;
                     const price = Number(input.dataset.price) || 0;
-                    total += qty * price;
+                    total += qty * price * days;
                 });
 
                 priceTotalEl.innerText = formatIDR(total);
             }
 
-            // addons realtime
             addonInputs.forEach(input => {
                 input.addEventListener('input', updatePriceSummary);
             });
 
-            // support tombol + / -
-            document.addEventListener('click', function (e) {
-                if (e.target.closest('.plus-btn') || e.target.closest('.minus-btn')) {
-                    setTimeout(updatePriceSummary, 0);
-                }
-            });
-
-            // initial load
             updatePriceSummary();
         });
     </script>
+
 
 @endsection

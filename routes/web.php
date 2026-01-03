@@ -73,11 +73,6 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 // Package List
 Route::get('/package', [PackageController::class, 'index'])->name('package');
 
-// Package Detail / Learn More
-Route::get('/picnic', [PicnicController::class, 'index'])->name('picnic');
-Route::get('/camping', [CampingController::class, 'index'])->name('camping');
-Route::get('/camperVan', [CampervanController::class, 'index'])->name('camperVan');
-Route::get('/groupEvent', [GroupEventController::class, 'index'])->name('groupEvent');
 Route::get('/FindOut', function () {
     return view('user.FindOut');
 })->name('FindOut');
@@ -111,6 +106,12 @@ Route::middleware(['auth'])->group(function () {
     | BOOKING FLOW
     |--------------------------------------------------------------------------
     */
+
+    // Package Detail / Learn More
+    Route::get('/picnic', [PicnicController::class, 'index'])->name('picnic');
+    Route::get('/camping', [CampingController::class, 'index'])->name('camping');
+    Route::get('/camperVan', [CampervanController::class, 'index'])->name('camperVan');
+    Route::get('/groupEvent', [GroupEventController::class, 'index'])->name('groupEvent');
 
     // Booking Forms
     Route::get('/bookingPicnic', [PicnicController::class, 'bookingForm'])

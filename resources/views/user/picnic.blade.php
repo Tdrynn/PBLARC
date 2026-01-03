@@ -46,11 +46,11 @@
             </div>
         </div>
 
-        <d iv style="background-color: #4f9e84;">
-            <div class="my-3 bg-white rounded-4 shadow-sm p-2">
-                <div>
-                    <div class="row ms-2">
-                        <div class="col-md-3" style="width: auto;">
+        <div style="background-color: #4f9e84;">
+            <div class="my-3 bg-white rounded-4 shadow-sm p-2 mx-auto" style="width: 90%;">
+                <div class="my-2">
+                    <div class="row mx-auto" style="width: 95%;">
+                        <div class="col-md-3 p-0 my-auto">
                             <h4 class="fw-bold text-dark">Facility & Price</h4>
                         </div>
                     </div>
@@ -95,8 +95,8 @@
 
                             <div class="col-md-4 mx-auto col-12 align-item-center">
                                 <div class="d-flex gap-2">
-                                    <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}"
-                                        width="30" height="30">
+                                    <img class="my-auto" src="{{ Vite::asset('resources/images/calendar.png') }}" width="30"
+                                        height="30">
                                     <h5 class="fw-bold text-dark my-auto">Show Availaibility</h5>
                                     <div id="availabilityIcon"></div>
                                 </div>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
     </div>
     <script>
         const checkinInput = document.getElementById('checkin');
@@ -131,16 +131,16 @@
         const icon = document.getElementById('availabilityIcon');
 
         const greenCheck = `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                                            class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
-                                                            <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
-                                                        </svg>`;
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                                                            class="bi bi-patch-check-fill text-success" viewBox="0 0 16 16">
+                                                                            <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708" />
+                                                                        </svg>`;
 
         const redCross = `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                                        class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
-                                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-                                                    </svg>`;
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                                                        class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
+                                                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                                                                    </svg>`;
 
         async function checkAvailability() {
             if (!checkinInput.value) {

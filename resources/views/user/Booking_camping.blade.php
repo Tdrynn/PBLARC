@@ -166,141 +166,170 @@
 
 
     <!-- Modal Cancel -->
-    <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal fade" id="cancelModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title w-100 fw-bold" id="logoutModalLabel">Are you sure?</h5>
+                    <h5 class="modal-title w-100 fw-bold">Are you sure?</h5>
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-0">
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
-                    <form action="{{ route('camping') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-danger px-4">Yes</button>
-                    </form>
+                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">
+                        No
+                    </button>
+
+                    <a href="{{ route('camping') }}" class="btn btn-danger px-4">
+                        Yes
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            /* =====================================================
-             * ELEMENTS
-             * ===================================================== */
-            const form = document.querySelector('form');
-            const participants = document.getElementById('participants');
-            const tentType = document.getElementById('tent_type');
-            const tentQty = document.getElementById('tent_qty');
-            const priceTotalEl = document.getElementById('priceTotal');
+document.addEventListener('DOMContentLoaded', function () {
 
-            const addonInputs = document.querySelectorAll('.addon-input');
+    /* =====================================================
+     * ELEMENTS
+     * ===================================================== */
+    const form = document.querySelector('form');
+    const participants = document.getElementById('participants');
+    const tentType = document.getElementById('tent_type');
+    const tentQty = document.getElementById('tent_qty');
+    const priceTotalEl = document.getElementById('priceTotal');
 
-            /* =====================================================
-             * MODAL CAPACITY
-             * ===================================================== */
-            const modalEl = document.getElementById('capacityModal');
-            const modal = new bootstrap.Modal(modalEl);
-            const msg = document.getElementById('capacityMessage');
+    const addonInputs = document.querySelectorAll('.addon-input');
 
-            /* =====================================================
-             * CAPACITY RULE
-             * ===================================================== */
-            function tentCapacity(type) {
-                if (type === 'tent_2p') return 2;
-                if (type === 'tent_4p') return 4;
-                return 0;
+    const checkinInput = document.getElementById('checkin');
+    const checkoutInput = document.getElementById('checkout');
+
+    /* =====================================================
+     * MODAL CAPACITY
+     * ===================================================== */
+    const modalEl = document.getElementById('capacityModal');
+    const modal = new bootstrap.Modal(modalEl);
+    const msg = document.getElementById('capacityMessage');
+
+    /* =====================================================
+     * CAPACITY RULE
+     * ===================================================== */
+    function tentCapacity(type) {
+        if (type === 'tent_2p') return 2;
+        if (type === 'tent_4p') return 4;
+        return 0;
+    }
+
+    function validateCapacity(showModal = false) {
+        const p = parseInt(participants.value || 0);
+        const q = parseInt(tentQty.value || 1);
+        const t = tentType.value;
+
+        if (!p || !t || t === 'bring_own') return true;
+
+        const totalCapacity = tentCapacity(t) * q;
+
+        if (p > totalCapacity) {
+            if (showModal) {
+                msg.innerHTML = `
+                    Participants: <b>${p}</b><br>
+                    Tent Capacity: <b>${totalCapacity}</b><br><br>
+                    Please add more tents or change tent type.
+                `;
+                modal.show();
             }
+            return false;
+        }
 
-            function validateCapacity(showModal = false) {
-                const p = parseInt(participants.value || 0);
-                const q = parseInt(tentQty.value || 1);
-                const t = tentType.value;
+        return true;
+    }
 
-                if (!p || !t || t === 'bring_own') return true;
+    /* =====================================================
+     * PRICE RULE
+     * ===================================================== */
+    function tentPrice(type) {
+        if (type === 'tent_2p') return 150000;
+        if (type === 'tent_4p') return 250000;
+        return 0;
+    }
 
-                const totalCapacity = tentCapacity(t) * q;
+    function formatIDR(num) {
+        return 'IDR ' + num.toLocaleString('id-ID');
+    }
 
-                if (p > totalCapacity) {
-                    if (showModal) {
-                        msg.innerHTML = `
-                                        Participants: <b>${p}</b><br>
-                                        Tent Capacity: <b>${totalCapacity}</b><br><br>
-                                        Please add more tents or change tent type.
-                                    `;
-                        modal.show();
-                    }
-                    return false;
-                }
+    /* =====================================================
+     * DURATION (NIGHTS)
+     * ===================================================== */
+    function getDuration() {
+        const checkin = new Date(checkinInput.value);
+        const checkout = new Date(checkoutInput.value);
 
-                return true;
-            }
+        if (!checkinInput.value || !checkoutInput.value) return 1;
 
-            /* =====================================================
-             * PRICE RULE
-             * ===================================================== */
-            function tentPrice(type) {
-                if (type === 'tent_2p') return 150000;
-                if (type === 'tent_4p') return 250000;
-                return 0;
-            }
+        const diffTime = checkout - checkin;
+        const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
-            function formatIDR(num) {
-                return 'IDR ' + num.toLocaleString('id-ID');
-            }
+        return diffDays > 0 ? diffDays : 1;
+    }
 
-            /* =====================================================
-             * PRICE CALCULATOR
-             * ===================================================== */
-            function updatePriceSummary() {
-                let total = 0;
+    /* =====================================================
+     * PRICE CALCULATOR (FIXED)
+     * ===================================================== */
+    function updatePriceSummary() {
+        let total = 0;
+        const duration = getDuration();
 
-                // 🏕️ TENT
-                const type = tentType.value;
-                const qty = parseInt(tentQty.value || 0);
-                total += tentPrice(type) * qty;
+        /* 🏕️ TENT */
+        const type = tentType.value;
+        const qty = parseInt(tentQty.value || 0);
+        const tentTotal = tentPrice(type) * qty * duration;
+        total += tentTotal;
 
-                // ➕ ADDONS
-                addonInputs.forEach(input => {
-                    const qty = parseInt(input.value || 0);
-                    const price = parseInt(input.dataset.price || 0);
-                    total += qty * price;
-                });
+        /* ➕ ADDONS */
+        addonInputs.forEach(input => {
+            const qty = parseInt(input.value || 0);
+            const price = parseInt(input.dataset.price || 0);
 
-                priceTotalEl.innerText = 'IDR ' + total.toLocaleString('id-ID');
-            }
-
-            /* =====================================================
-             * EVENTS — VALIDATION
-             * ===================================================== */
-            form.addEventListener('submit', function (e) {
-                if (!validateCapacity(true)) {
-                    e.preventDefault();
-                }
-            });
-
-            participants.addEventListener('input', () => validateCapacity(false));
-            tentType.addEventListener('change', () => validateCapacity(false));
-            tentQty.addEventListener('input', () => validateCapacity(false));
-
-            /* =====================================================
-             * EVENTS — PRICE SUMMARY
-             * ===================================================== */
-            tentType.addEventListener('change', updatePriceSummary);
-            tentQty.addEventListener('input', updatePriceSummary);
-
-            addonInputs.forEach(input => {
-                input.addEventListener('input', updatePriceSummary);
-                input.addEventListener('change', updatePriceSummary);
-            });
-
-            /* =====================================================
-             * INIT
-             * ===================================================== */
-            updatePriceSummary();
-
+            /**
+             * Kalau addon PER MALAM → kali duration
+             * Kalau addon SEKALI BAYAR → hapus "* duration"
+             */
+            total += qty * price * duration;
         });
-    </script>
+
+        priceTotalEl.innerText = formatIDR(total);
+    }
+
+    /* =====================================================
+     * EVENTS — VALIDATION
+     * ===================================================== */
+    form.addEventListener('submit', function (e) {
+        if (!validateCapacity(true)) {
+            e.preventDefault();
+        }
+    });
+
+    participants.addEventListener('input', () => validateCapacity(false));
+    tentType.addEventListener('change', () => validateCapacity(false));
+    tentQty.addEventListener('input', () => validateCapacity(false));
+
+    /* =====================================================
+     * EVENTS — PRICE SUMMARY
+     * ===================================================== */
+    tentType.addEventListener('change', updatePriceSummary);
+    tentQty.addEventListener('input', updatePriceSummary);
+
+    addonInputs.forEach(input => {
+        input.addEventListener('input', updatePriceSummary);
+        input.addEventListener('change', updatePriceSummary);
+    });
+
+    /* =====================================================
+     * INIT
+     * ===================================================== */
+    updatePriceSummary();
+
+});
+</script>
+
 
 
 @endsection

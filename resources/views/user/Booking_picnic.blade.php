@@ -96,22 +96,25 @@
     </div>
 
     <!-- Modal Cancel -->
-    <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title w-100 fw-bold" id="logoutModalLabel">Are you sure?</h5>
-                </div>
-                <div class="modal-footer d-flex justify-content-center border-0">
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">No</button>
-                    <form action="{{ route('picnic') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-danger px-4">Yes</button>
-                    </form>
-                </div>
+    <div class="modal fade" id="cancelModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+            <div class="modal-header border-0">
+                <h5 class="modal-title w-100 fw-bold">Are you sure?</h5>
+            </div>
+            <div class="modal-footer d-flex justify-content-center border-0">
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">
+                    No
+                </button>
+
+                <a href="{{ route('picnic') }}" class="btn btn-danger px-4">
+                    Yes
+                </a>
             </div>
         </div>
     </div>
+</div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
