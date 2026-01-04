@@ -37,15 +37,30 @@ class UserChart extends ChartWidget
                 [
                     'label' => 'New User',
                     'data' => $data->values(),
-                    'borderColor' => '#10b981', // Warna Hijau Emerald
                 ],
             ],
             'labels' => $data->keys()->map(fn($date) => Carbon::parse($date)->format('d M')),
         ];
     }
 
+
+    protected function getOptions(): array
+    {
+        return [
+            'scales' => [
+                'y' => [
+                    'beginAtZero' => true,
+                    'ticks' => [
+                        'precision' => 0,
+                        'stepSize'  => 1,
+                    ],
+                ],
+            ],
+        ];
+    }
+
     protected function getType(): string
     {
-        return 'line'; // Tipe Line Chart agar beda dengan Booking
+        return 'line';
     }
 }

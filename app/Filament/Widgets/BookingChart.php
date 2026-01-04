@@ -9,20 +9,16 @@ use Carbon\Carbon;
 
 class BookingChart extends ChartWidget
 {
-    use InteractsWithPageFilters; // Wajib ada agar connect ke Dashboard
+    use InteractsWithPageFilters;
 
     protected static ?string $heading = 'Booking';
-    protected static ?int $sort = 1; // Urutan ke-1
-
-    // Set '1' agar hanya memakan setengah layar (jika layar besar)
+    protected static ?int $sort = 1;
     protected int | string | array $columnSpan = 1;
 
     protected function getData(): array
     {
-        // 1. Ambil nilai filter dari Dashboard
         $filter = $this->filters['period'] ?? '1_week';
 
-        // 2. Tentukan tanggal mulai berdasarkan filter
         $startDate = match ($filter) {
             '1_month' => now()->subMonth(),
             '1_year'  => now()->subYear(),
@@ -30,13 +26,12 @@ class BookingChart extends ChartWidget
         };
 
         $packages = [
-            1 => 'Picnic',
-            2 => 'Camping',
-            3 => 'Campervan',
-            4 => 'Group Event',
+            1 => ['label' => 'Picnic',      'color' => '#FACC15'],
+            2 => ['label' => 'Camping',     'color' => '#22C55E'],
+            3 => ['label' => 'Campervan',   'color' => '#3B82F6'],
+            4 => ['label' => 'Group Event', 'color' => '#A855F7'],
         ];
 
-        // 3. Query tanggal yang ada datanya
         $dates = Booking::whereDate('created_at', '>=', $startDate)
             ->selectRaw('DATE(created_at) as date')
             ->groupBy('date')
@@ -45,7 +40,7 @@ class BookingChart extends ChartWidget
 
         $datasets = [];
 
-        foreach ($packages as $packageId => $label) {
+        foreach ($packages as $packageId => $package) {
             $data = Booking::where('package_id', $packageId)
                 ->whereDate('created_at', '>=', $startDate)
                 ->selectRaw('DATE(created_at) as date, COUNT(*) as total')
@@ -53,14 +48,32 @@ class BookingChart extends ChartWidget
                 ->pluck('total', 'date');
 
             $datasets[] = [
-                'label' => $label,
-                'data' => $dates->map(fn($date) => $data[$date] ?? 0),
+                'label' => $package['label'],
+                'data'  => $dates->map(fn($date) => $data[$date] ?? 0),
+                'backgroundColor' => $package['color'],
+                'borderColor'     => $package['color'],
+                'borderWidth'     => 1,
             ];
         }
 
         return [
             'datasets' => $datasets,
-            'labels' => $dates->map(fn($date) => Carbon::parse($date)->format('d M')),
+            'labels'   => $dates->map(fn($date) => Carbon::parse($date)->format('d M')),
+        ];
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            'scales' => [
+                'y' => [
+                    'beginAtZero' => true,
+                    'ticks' => [
+                        'precision' => 0,
+                        'stepSize'  => 1,
+                    ],
+                ],
+            ],
         ];
     }
 
