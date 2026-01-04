@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\BookingResource\Pages;
 
-use App\Filament\Resources\BookingResource;
 use Filament\Actions;
+use Filament\Actions\Action;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\BookingResource;
 
 class EditBooking extends EditRecord
 {
@@ -12,8 +13,10 @@ class EditBooking extends EditRecord
 
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\DeleteAction::make(),
-        ];
+        return [];
+    }
+    protected function getFormActions(): array
+    {
+        return [];
     }
 }

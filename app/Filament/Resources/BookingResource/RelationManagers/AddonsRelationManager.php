@@ -36,21 +36,6 @@ class AddonsRelationManager extends RelationManager
                 TextColumn::make('name'),
                 TextColumn::make('pivot.quantity'),
                 TextColumn::make('pivot.price')->money('IDR'),
-            ])
-            ->filters([
-                //
-            ])
-            ->headerActions([
-                Tables\Actions\CreateAction::make(),
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
             ]);
     }
 }
